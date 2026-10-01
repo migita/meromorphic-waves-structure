@@ -1,0 +1,36 @@
+{
+  "homogeneity": "A_i(P_lambda) = lambda^(i+1) A_i(P) for i <= 3",
+  "even_operators": "A_0 = A_1 = A_2 = 0 and F_J = 0 for random even operators",
+  "residue_identities": "residue formulas for A_0, A_1 and the identities in the proof of A_1 = 0 for even P",
+  "A0_A1": "A_0 = c_0 a_{p-1}, A_1 = c_1 a_{p-1}^2 for random operators",
+  "explicit_family": "explicit family: closed forms and the values of A_0, A_1",
+  "first_odd_coefficient": "c_{j-1}: formula = series; (-1)^q c_{j-1} > 0 in 3540 cases (n = 2, 3; p <= 120)",
+  "swift_hohenberg": "12 Swift-Hohenberg waves with sigma != 0: h = -B_1/A_1; 6 operators up to reflection, one wave each",
+  "even_sextic": "n = 3, P = D^6 + a0: A_5 = -13 a0/888; one wave, -wp'(z; 0, -a0/4320)/2",
+  "examples_of_c": {
+    "n=3,q=2": [
+      "36",
+      "756/185"
+    ],
+    "n=2,q=4": [
+      "702/11",
+      "160/23"
+    ],
+    "n=3,q=3": [
+      "-520/11",
+      "-117/35",
+      "-1261/3336"
+    ],
+    "n=2,q=6": [
+      "1482/17",
+      "15561/2120",
+      "13566/29039"
+    ],
+    "n=3,q=4": [
+      "884/15",
+      "1360/399",
+      "180557/900207",
+      "351169/20648925"
+    ]
+  }
+}

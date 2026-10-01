@@ -1,0 +1,50 @@
+{
+  "operator": "D^4-108",
+  "physical_normalization": "v=c*u, c^2=-360",
+  "normalized_equation": "u''''-108*u-120*u^3=0",
+  "plus": {
+    "curve": "y^2=4*x^3+6*x",
+    "profile": "u=x=wp(z;-6,0)",
+    "fourth_derivative": "120*x**3 + 108*x",
+    "full_ODE_residual": "0",
+    "Laurent_coefficients_by_exponent": {
+      "-2": "1",
+      "-1": "0",
+      "0": "0",
+      "1": "0",
+      "2": "-3/10",
+      "3": "0",
+      "4": "0",
+      "5": "0",
+      "6": "3/100",
+      "7": "0",
+      "8": "0",
+      "9": "0"
+    },
+    "h": "3/100"
+  },
+  "minus": {
+    "quartic": "r^2=g^4-1, Dg=r, Dr=2*g^3",
+    "profile": "u=-r=-D sqrt(wp(z;4,0))",
+    "Weierstrass_curve_map": "x=g^2, y=2*g*r; y^2=4*x^3-4*x",
+    "fourth_derivative": "-120*g**4*r + 12*r",
+    "full_ODE_residual": "0",
+    "Laurent_coefficients_by_exponent": {
+      "-2": "1",
+      "-1": "0",
+      "0": "0",
+      "1": "0",
+      "2": "-3/10",
+      "3": "0",
+      "4": "0",
+      "5": "0",
+      "6": "-7/600",
+      "7": "0",
+      "8": "0",
+      "9": "0"
+    },
+    "h": "-7/600"
+  },
+  "distinct_normalized_germs": true,
+  "status": "all independent direct-curve and Laurent checks passed"
+}

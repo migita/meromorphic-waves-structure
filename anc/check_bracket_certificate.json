@@ -1,0 +1,237 @@
+{
+  "uniform": {
+    "principal_transform_derivative_identity": true,
+    "arbitrary_principal_bracket_cancellation": true,
+    "linear_seed_symbol": "j*(j+1)",
+    "quadratic_seed_symbol": "q*(n + 1)*(4*c2*n*q + 4*c2*q + 2*c2 + n**2*q - n*q - 2*q - 2)",
+    "positive_certificate_n_equals_x_plus_3_q_equals_y_plus_2": "x**2*y + 2*x**2 + 5*x*y + 10*x + 4*y + 6",
+    "quadratic_factor_cross_product_gap": "-3*i + 3*q + 2",
+    "quadratic_induction_base_gap": "193/16",
+    "quadratic_induction_step_gap": "9*q-3/2",
+    "A0_before_recurrence_without_parity_sign": "(b1*(q*(n - 2)*(n + 1) - 2) + d1*(q*(n + 1) + 2))*(q*(n + 1) + 1)",
+    "A0_after_recurrence": "(-1)^(q-1)*2*(n+1)*(n*q+1)*(J+1)*b1",
+    "excluded_n2_q2_kappa": "0"
+  },
+  "optional_slope_identity": {
+    "method": "direct formal variation of S, followed by four checked recurrence equations",
+    "A1_without_parity_sign": "2*b1**2*(n + 1)*(n*q + 1)*(n*q + 2)*(n*q + q + 1)",
+    "identity": "A1=(n*q+2)*b1*A0",
+    "identity_residual": "0",
+    "optional_uniform_completion": "G'-(n*q+2)*b1*G",
+    "main_imports_retain_two_case_proof": true
+  },
+  "arbitrary_universal": [
+    {
+      "n": 2,
+      "q": 2,
+      "degree_a": 1,
+      "degree_bound_b": 4,
+      "A0": "14*(b1 - 4*d1)",
+      "principal_and_constant_checks": true,
+      "phase_check": true,
+      "arbitrary_jet_A0_zero_A1_nonzero_boundary": true
+    },
+    {
+      "n": 2,
+      "q": 4,
+      "degree_a": 3,
+      "degree_bound_b": 8,
+      "A0": "26*(b1 - 7*d1)",
+      "principal_and_constant_checks": true,
+      "phase_check": true,
+      "arbitrary_jet_A0_zero_A1_nonzero_boundary": true
+    },
+    {
+      "n": 3,
+      "q": 2,
+      "degree_a": 1,
+      "degree_bound_b": 6,
+      "A0": "-18*(3*b1 + 5*d1)",
+      "principal_and_constant_checks": true,
+      "phase_check": true,
+      "arbitrary_jet_A0_zero_A1_nonzero_boundary": true
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "degree_a": 2,
+      "degree_bound_b": 9,
+      "A0": "26*(5*b1 + 7*d1)",
+      "principal_and_constant_checks": true,
+      "phase_check": true,
+      "arbitrary_jet_A0_zero_A1_nonzero_boundary": true
+    },
+    {
+      "n": 4,
+      "q": 2,
+      "degree_a": 1,
+      "degree_bound_b": 8,
+      "A0": "-66*(3*b1 + 2*d1)",
+      "principal_and_constant_checks": true,
+      "phase_check": true,
+      "arbitrary_jet_A0_zero_A1_nonzero_boundary": true
+    }
+  ],
+  "arbitrary_affine": [
+    {
+      "n": 4,
+      "q": 2,
+      "p": 6,
+      "detector_power": 1,
+      "detector_slope": "-440",
+      "fixed_constant_term": true,
+      "principal_cancellation": true
+    },
+    {
+      "n": 5,
+      "q": 1,
+      "p": 4,
+      "detector_power": 1,
+      "detector_slope": "-84",
+      "fixed_constant_term": true,
+      "principal_cancellation": true
+    },
+    {
+      "n": 5,
+      "q": 2,
+      "p": 8,
+      "detector_power": 3,
+      "detector_slope": "-3120",
+      "fixed_constant_term": true,
+      "principal_cancellation": true
+    }
+  ],
+  "full_recurrence": [
+    {
+      "n": 2,
+      "q": 2,
+      "operator_kind": "mixed",
+      "operator": "x**2 - 5*x + 6",
+      "A0": "-210",
+      "A1": "-1260",
+      "b_is_zero": false,
+      "kappa": "0",
+      "gamma": "0",
+      "included_in_theorem": false
+    },
+    {
+      "n": 2,
+      "q": 4,
+      "operator_kind": "mixed",
+      "operator": "x**4 - 22*x**3 + 179*x**2 - 638*x + 840",
+      "A0": "-1404",
+      "A1": "-28080",
+      "b_is_zero": false,
+      "kappa": "-3744/191",
+      "gamma": "1362816/191",
+      "included_in_theorem": true,
+      "constant_completion": "A0*G'-A1*G",
+      "detector_power": 10,
+      "monic_detector": "h**2 + 814282746868219*h/43589145600 + 3320645041682864351/690914041504727040000",
+      "actual_front_h": "-2039/7925299200",
+      "actual_front_all_checked_positive_G_coefficients_vanish": true
+    },
+    {
+      "n": 3,
+      "q": 2,
+      "operator_kind": "mixed",
+      "operator": "x**4 - 28*x**3 + 284*x**2 - 1232*x + 1920",
+      "A0": "-1008",
+      "A1": "-16128",
+      "b_is_zero": false,
+      "kappa": "1512/29",
+      "gamma": "-12096/29",
+      "included_in_theorem": true,
+      "constant_completion": "A0*G'-A1*G",
+      "detector_power": 6,
+      "monic_detector": "h**2 - 2*h/675 + 1/455625",
+      "actual_front_h": "1/675",
+      "actual_front_all_checked_positive_G_coefficients_vanish": true
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "operator_kind": "mixed",
+      "operator": "x**6 - 66*x**5 + 1780*x**4 - 25080*x**3 + 194464*x**2 - 785664*x + 1290240",
+      "A0": "3120",
+      "A1": "102960",
+      "b_is_zero": false,
+      "kappa": "5200/43",
+      "gamma": "405600/43",
+      "included_in_theorem": true,
+      "constant_completion": "A0*G'-A1*G",
+      "detector_power": 10,
+      "monic_detector": "h**2 - 9649495987389173*h/638512875 - 41319141818092116406/81539738308153125",
+      "actual_front_h": "-4282/127702575",
+      "actual_front_all_checked_positive_G_coefficients_vanish": true
+    },
+    {
+      "n": 4,
+      "q": 2,
+      "operator_kind": "mixed",
+      "operator": "x**6 - 81*x**5 + 2655*x**4 - 44955*x**3 + 413424*x**2 - 1950804*x + 3674160",
+      "A0": "-2970",
+      "A1": "-89100",
+      "b_is_zero": false,
+      "kappa": "59895/331",
+      "gamma": "-598950/331",
+      "included_in_theorem": true,
+      "constant_completion": "A0*G'-A1*G",
+      "detector_power": 8,
+      "monic_detector": "h**2 + 2187*h/98560 + 4782969/38856294400",
+      "actual_front_h": "-2187/197120",
+      "actual_front_all_checked_positive_G_coefficients_vanish": true
+    },
+    {
+      "n": 2,
+      "q": 4,
+      "operator_kind": "even",
+      "operator": "x**4 + 2*x**2 + 3",
+      "A0": "0",
+      "A1": "0",
+      "b_is_zero": false,
+      "kappa": "-3744/191",
+      "gamma": "1362816/191",
+      "included_in_theorem": true,
+      "constant_completion": "G",
+      "detector_power": 11,
+      "monic_detector": "h**2 - 1421936921*h/2419559523270489600 - 719365554554422646107/2154370729486802156737535730324602880000"
+    },
+    {
+      "n": 3,
+      "q": 2,
+      "operator_kind": "even",
+      "operator": "x**4 + 2*x**2 + 3",
+      "A0": "0",
+      "A1": "0",
+      "b_is_zero": false,
+      "kappa": "1512/29",
+      "gamma": "-12096/29",
+      "included_in_theorem": true,
+      "constant_completion": "G",
+      "detector_power": 7,
+      "monic_detector": "h**2 - 2603*h/174960000 - 74191/1700611200000000"
+    },
+    {
+      "n": 3,
+      "q": 2,
+      "operator_kind": "pure",
+      "operator": "x**4",
+      "A0": "0",
+      "A1": "0",
+      "b_is_zero": true,
+      "kappa": "1512/29",
+      "gamma": "-12096/29",
+      "included_in_theorem": true,
+      "constant_completion": "G",
+      "detector_power": 7,
+      "monic_detector": "h**2"
+    }
+  ],
+  "q1_universal_obstruction": {
+    "n": 5,
+    "q": 1,
+    "h_dependent_residue": "42*h",
+    "affine_bracket_covers_this_case": true
+  }
+}

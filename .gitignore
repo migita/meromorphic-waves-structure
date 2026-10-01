@@ -1,0 +1,14 @@
+/.venv/
+/dist/
+__pycache__/
+*.py[cod]
+/main.aux
+/main.blg
+/main.log
+/main.out
+/main.toc
+/main.xdv
+/main.fdb_latexmk
+/main.fls
+/main.synctex.gz
+.DS_Store

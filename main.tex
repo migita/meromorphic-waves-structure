@@ -1,0 +1,3102 @@
+% Build with: tectonic --keep-intermediates main.tex
+\documentclass[11pt]{article}
+\usepackage[margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,microtype,float,etoolbox}
+\usepackage[shortlabels]{enumitem}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,allcolors=blue,hypertexnames=false]{hyperref}
+\usepackage{upquote}
+\usepackage{doi}
+
+\newtheorem{mainthm}{Theorem}
+\renewcommand{\themainthm}{\Alph{mainthm}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+% a statement is not broken across pages
+\AtBeginEnvironment{mainthm}{\samepage}
+\AtBeginEnvironment{theorem}{\samepage}
+\AtBeginEnvironment{proposition}{\samepage}
+\AtBeginEnvironment{lemma}{\samepage}
+\AtBeginEnvironment{corollary}{\samepage}
+\AtBeginEnvironment{definition}{\samepage}
+
+\newcommand{\CC}{\mathbb C}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\Wclass}{\mathcal W}
+\newcommand{\hatt}[1]{\widehat{#1}}
+\newcommand{\cyl}{\overline{\CC/\Gamma}}
+\newcommand{\Bil}{\mathcal B}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\cs}{cs}
+\DeclareMathOperator{\ds}{ds}
+\DeclareMathOperator{\ns}{ns}
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\cn}{cn}
+\DeclareMathOperator{\dn}{dn}
+\DeclareMathOperator{\dist}{dist}
+\setlength{\emergencystretch}{2em}
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{Meromorphic travelling waves for pure-power equations:\\
+one pole orbit and a two-wave bound}
+\author{Alexander Migita}
+\date{1 October 2026}
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+The equation \(P(d/dz)\,v+v^n/n=0\), where \(P\) is a polynomial of
+degree \(p\) with complex coefficients and \(n\ge2\), describes the
+travelling waves of evolution equations with a pure-power nonlinearity
+and arbitrary linear dispersion and dissipation. We prove that, when
+\(p\ge3\), every nonconstant solution meromorphic in the whole complex
+plane has exactly one pole modulo its twisted periods, the translations
+that multiply it by a root of unity. Hence it is rational, rational in
+an exponential, or elliptic, and lies in an explicit
+finite-dimensional space. No condition on the coefficients is imposed;
+in particular, the equation need not determine the Laurent series at a
+pole. Up to translation and multiplication by a root of unity, one
+equation has at most two such solutions, and two do occur. It has at
+most one unless \(n\le3\) and \(P\) is even. Once the twisted
+periods of a solution are known, its power \(v^{n-1}\) is determined by
+\(P\); for elliptic solutions this gives an explicit necessary
+condition on the coefficients.
+\end{abstract}
+
+\noindent\textbf{Keywords.} Meromorphic travelling waves; exact
+solutions; twisted periods; Laurent series; elliptic functions of the
+second kind.
+
+\noindent\textbf{MSC2020.} 34M05, 35C07, 33E05.
+
+% ======================================================================
+\section{Introduction}\label{sec:intro}
+
+\subsection{The equation and its waves}
+
+Exact travelling waves of nonlinear evolution equations are usually
+found with an ansatz: a polynomial in \(\tanh\), a combination of
+\(\sech\) and \(\tanh\), a Jacobi or Weierstrass elliptic function, or a
+rational function of an exponential
+\citep{MusetteConte2003,Kudryashov2005Simplest,Kudryashov2010}. Every
+such ansatz produces a function that is meromorphic in the whole
+complex plane and belongs to the class
+\[
+ \Wclass=\{\text{rational functions of } z\}
+ \cup\{\text{rational functions of } e^{kz},\ k\ne0\}
+ \cup\{\text{elliptic functions}\}.
+\]
+Two questions arise. Can a travelling wave be meromorphic in \(\CC\)
+without belonging to \(\Wclass\)? And which functions of \(\Wclass\),
+and how many of them, solve one given equation?
+
+We study both questions for the ordinary differential equation
+\begin{equation}\label{eq:main}
+ P(D)v+\frac{v^n}{n}=0,\qquad D=\frac{d}{dz},
+\end{equation}
+where \(n\ge2\) and \(P\) is a monic polynomial of degree \(p\) with
+complex coefficients. For \(p\ge3\) the answer to the first question is
+no: all nonconstant solutions that are meromorphic in \(\CC\) belong to
+\(\Wclass\). For odd \(p\) this follows from a theorem of
+\citet[Theorem~2]{Eremenko2006}; for even \(p\) it was known for
+\(P(D)=D^p+a_0\) \citep{EremenkoLiaoNg2009} and for the even operators
+of degree four \citep{DeminaKudryashovKawahara2010,ConteNgWong2012}.
+As to the second, these solutions lie in explicit
+finite-dimensional spaces, and up to the symmetries of the equation
+there are at most two of them.
+
+Equation~\eqref{eq:main} is the travelling-wave equation of evolution
+equations such as
+\begin{equation}\label{eq:pde}
+ U_t+U^{n-1}U_x+\sum_{j=1}^{p}\alpha_j\,\partial_x^{\,j+1}U=0,
+ \qquad \alpha_p\ne0.
+\end{equation}
+Indeed, travelling waves \(U(x,t)=w(x-st)\) of \eqref{eq:pde} satisfy,
+after one integration,
+\[
+ \sum_{j=1}^{p}\alpha_jw^{(j)}-sw+\frac{w^n}{n}+C=0
+\]
+with a constant \(C\). When \(C=0\), the substitution
+\(w=\alpha_p^{1/(n-1)}v\) gives \eqref{eq:main} with
+\(P(\rho)=\alpha_p^{-1}\bigl(\sum_j\alpha_j\rho^j-s\bigr)\). So the
+speed \(s\) enters the constant term of \(P\), and \(P\) is an even
+polynomial exactly when \eqref{eq:pde} contains only derivatives of odd
+order, that is, when the evolution equation has no dissipative terms.
+For \(n=2\) a shift of \(w\) removes the constant \(C\) and changes
+only the constant term of \(P\). For \(n\ge3\) we take \(C=0\); when
+\(C\ne0\), moving a constant solution to \(0\) produces lower powers of
+\(v\), and Appendix~\ref{app:general} treats such nonlinearities.
+
+For example, the Kuramoto--Sivashinsky
+\citep{KuramotoTsuzuki1976,Sivashinsky1977} and Kawahara
+\citep{Kawahara1972} equations and the Nikolaevskiy equation with
+dispersion \citep{KudryashovMigita2007} give \(n=2\) with \(p=3\),
+\(p=4\) and \(p=5\) respectively, and the Swift--Hohenberg equation
+\citep{SwiftHohenberg1977} gives \(n=3\) with \(p=4\). The last
+equation, like reaction--diffusion equations, is not of the form
+\eqref{eq:pde}: its travelling-wave equation is used as it stands,
+without an integration, so \(p\) equals the order of the equation, and the speed enters as the
+coefficient of \(D\) (Section~\ref{sec:sh}).
+
+Throughout the paper, a \emph{wave} is a nonconstant solution of
+\eqref{eq:main} that is meromorphic in the whole complex plane.
+Suppose a wave \(v\) has a pole of order \(q\) at \(z_0\), with leading
+coefficient \(c\). The highest derivative \(v^{(p)}\) must balance the
+nonlinear term \(v^n/n\), which gives
+\begin{equation}\label{eq:balance}
+ p=(n-1)q,\qquad c^{\,n-1}=-n(-1)^p(q)_p,
+\end{equation}
+where \((a)_k=a(a+1)\cdots(a+k-1)\) is the rising factorial. A solution
+without poles is constant (Proposition~\ref{prop:existence}). Hence
+waves exist only when \(n-1\) divides \(p\). All poles of all waves
+then have the same order \(q=p/(n-1)\), and the \(n-1\) possible leading
+coefficients differ by factors \(\omega\) with \(\omega^{n-1}=1\).
+
+Equation~\eqref{eq:main} is invariant under translations and under the
+\emph{phase changes} \(v\mapsto\omega v\), where \(\omega\) lies in the
+group \(\mu_{n-1}\) of \((n-1)\)st roots of unity. Combining the two
+gives the notion around which this paper is organized.
+
+\begin{definition}\label{def:twisted}
+A \emph{twisted period} of a wave \(v\) is a number \(\gamma\in\CC\)
+such that
+\[
+ v(z+\gamma)=\chi(\gamma)\,v(z)\qquad\text{for some }
+ \chi(\gamma)\in\mu_{n-1}.
+\]
+The number \(\chi(\gamma)\) is the \emph{multiplier} of \(v\) under the
+translation \(z\mapsto z+\gamma\). The twisted periods form a group
+\(\Gamma\), and \(\chi\colon\Gamma\to\mu_{n-1}\) is a homomorphism, the
+\emph{character} of \(v\). Its kernel is the group of ordinary periods.
+\end{definition}
+
+For instance, \(\sech z\) changes sign under \(z\mapsto z+i\pi\),
+whereas \(\tanh z\) is unchanged: \(i\pi\) is a twisted period of
+\(\sech\) with multiplier \(-1\), and an ordinary period of \(\tanh\).
+Both functions have a single pole modulo \(i\pi\); modulo its ordinary
+period \(2\pi i\), \(\sech z\) has two poles, with opposite residues.
+Twisted periods that are not ordinary periods can occur only for
+\(n\ge3\), since \(\mu_1=\{1\}\).
+
+\subsection{Results}
+
+In the statements we write \(m=n-1\) and \(q=p/m\).
+
+\begin{mainthm}[One pole orbit]\label{thm:A}
+Let \(n\ge2\) and let \(P\) have degree \(p\ge3\). Every wave \(v\)
+of \eqref{eq:main} has exactly one pole modulo its twisted periods: if
+\(z_0\) is a pole, then the set of all poles is the orbit
+\(z_0+\Gamma\). After the translation that moves \(z_0\) to \(0\), the
+wave has one of the following forms.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.2em]
+\item \(\Gamma=\{0\}\), and \(v\) is a polynomial of degree \(q\) in
+\(1/z\) without constant term.
+\item \(\Gamma=(2\pi i/k)\ZZ\) for some \(k\ne0\). If
+\(e^{2\pi ir/m}\), with \(1\le r\le m\), is the multiplier of \(v\)
+under \(z\mapsto z+2\pi i/k\), then
+\begin{equation}\label{eq:periodic-form}
+ v=\beta+\sum_{j=0}^{q-1}d_j\,D^jg_r,\qquad
+ g_r(z)=\frac{k\,e^{rkz/m}}{e^{kz}-1},
+\end{equation}
+with constants \(\beta,d_0,\dots,d_{q-1}\), where \(d_{q-1}\ne0\), and
+\(\beta=0\) unless \(r=m\).
+\item \(\Gamma\) is a lattice, and \(v\) is an elliptic function of the
+second kind: \(v(z+\gamma)=\chi(\gamma)v(z)\) for \(\gamma\in\Gamma\),
+with poles of order \(q\) at the points of \(\Gamma\) and nowhere else.
+\end{enumerate}
+In particular, every wave belongs to \(\Wclass\).
+\end{mainthm}
+
+The last assertion holds because the ordinary periods form a subgroup
+of index at most \(m\) in \(\Gamma\): the character maps \(\Gamma\)
+into \(\mu_m\). So a wave has at most \(m=n-1\) poles modulo its
+ordinary periods; in case~(ii) it is a rational function of
+\(e^{kz/m}\), and in case~(iii) it is elliptic for a sublattice of
+\(\Gamma\). By the forms (i)--(iii), the search for all waves of a
+given equation reduces to substitutions with finitely many unknown
+coefficients; Section~\ref{sec:sh} carries one out.
+
+In \eqref{eq:periodic-form}, the function \(g_r\) has simple poles
+exactly at the points of \((2\pi i/k)\ZZ\), with residue \(1\) at
+\(0\); it is multiplied by \(e^{2\pi ir/m}\) under
+\(z\mapsto z+2\pi i/k\), and it stays bounded as
+\(\operatorname{Re}(kz)\to\pm\infty\). Its logarithmic derivative is
+\(rk/m-G\), where
+\[
+ G=g_m=\frac{k\,e^{kz}}{e^{kz}-1}=\frac k2\Bigl(1+\coth\frac{kz}{2}\Bigr),
+ \qquad DG=G(k-G).
+\]
+By induction, \(D^jg_r\) is \(g_r\) times a polynomial of degree \(j\)
+in \(G\); so \eqref{eq:periodic-form} says that \(v=\beta+g_r\,Q(G)\)
+for a polynomial \(Q\) of degree \(q-1\). For \(n=2\) this is a
+polynomial of degree \(q\) in \(G\), and the translation
+\(z\mapsto z+i\pi/k\) turns it into a polynomial in \(\tanh(kz/2)\),
+the form assumed by the tanh method. For \(n=3\) and \(r=1\), the same
+translation turns \(g_1\) into a multiple of \(\sech(kz/2)\), and \(v\)
+into \(\sech\) times a polynomial in \(\tanh\). In case~(iii) the space
+of such elliptic functions has an explicit basis
+(Lemma~\ref{lem:second-kind}).
+
+In case~(ii) we call \(\operatorname{Re}(kz)\to\pm\infty\) the two
+\emph{ends} of the wave (for real \(k\) these are \(z\to\pm\infty\) along
+the real axis) and \(k\) its \emph{rate}; replacing \(k\) by \(-k\)
+interchanges the two ends. A wave is \emph{twisted} if its character
+is nontrivial, that is, if some twisted period is not an ordinary
+period; otherwise it is \emph{untwisted}.
+
+\begin{mainthm}[At most two waves]\label{thm:B}
+Let \(n\ge2\) and let \(P\) have degree \(p\ge3\). Up to translation
+and phase change, equation~\eqref{eq:main} has at most two waves. It
+has at most one unless \(n\le3\) and \(P\) is even. For
+\(P(D)=D^4-s\) with \(s\ne0\) it has exactly two, both for \(n=2\) and
+for \(n=3\).
+\end{mainthm}
+
+The theorem counts all waves, complex and unbounded ones included. It
+bounds their number; which operators admit a wave is a different
+question (Section~\ref{sec:scope}). In terms of \eqref{eq:pde}: at a
+fixed speed and a fixed integration constant, an evolution equation of
+order \(p+1\ge4\) has at most two meromorphic travelling waves up to
+translation and phase change, and at most one if it contains a
+dissipative term or if \(n\ge4\). Here the constant is zero when
+\(n\ge3\). For \(n=2\) it is arbitrary, but it has to be fixed,
+because \(P\) depends on it (Section~\ref{sec:ks}).
+Section~\ref{sec:example} exhibits the two waves of \(D^4-s\) for
+\(n=3\); one of them is twisted.
+
+The third result shows how much of a wave the operator determines
+before the wave is known. We normalize a wave so that it has a pole at
+\(0\) with leading coefficient \(c\), where \(c\) is a fixed root of
+\eqref{eq:balance}, and put \(u=v/c=z^{-q}+O(z^{1-q})\).
+
+\begin{mainthm}[The power of a wave]\label{thm:C}
+Let \(p\ge3\). The coefficients of \(z^{-p},\dots,z^{-1},z^{0}\) in
+the Laurent series of \(u^{\,n-1}\) at \(0\) are polynomials
+\(\ell_0=1,\ell_1,\dots,\ell_p\) in the coefficients of \(P\); they
+are the same for all waves. Together with the group \(\Gamma\) they
+determine \(u^{\,n-1}\) by the explicit formula of
+Theorem~\ref{thm:power}. In particular, the residue
+\(\mathcal R(P)=\ell_{p-1}\) of \(u^{\,n-1}\) at \(0\) satisfies
+\[
+ \mathcal R(P)=0\ \text{ if \(\Gamma\) is a lattice},\qquad
+ u_+^{\,n-1}-u_-^{\,n-1}=k\,\mathcal R(P)\ \text{ if }
+ \Gamma=(2\pi i/k)\ZZ,
+\]
+where \(u_\pm\) are the limits of \(u\) at the ends
+\(\operatorname{Re}(kz)\to\pm\infty\).
+\end{mainthm}
+
+For example, the Kuramoto--Sivashinsky equation with dispersion,
+\(U_t+UU_x+\mu U_{xx}+\delta U_{xxx}+\nu U_{xxxx}=0\), has
+\(\mathcal R=(16\mu\nu-\delta^2)/(608\nu^2)\); so its elliptic
+travelling waves require \(\delta^2=16\mu\nu\)
+(Section~\ref{sec:ks}).
+
+Three further results follow from the theorems
+(Sections~\ref{sec:power} and~\ref{sec:consequences}). If \(P\) is
+even, every wave is even or odd about each of its poles, and a
+\emph{front}, that is, a wave with different limits at its two ends,
+exists only for odd \(q\). If \(n\ge3\) and \(P\) is an even polynomial of degree
+\(p\ge4\) plus a nonzero multiple of \(D\), there are no waves at all.
+And two waves of one equation that are not related by translation and
+phase change never have the same twisted periods.
+
+The theorems need \(p\ge3\). For \(p=2\) one equation can have
+infinitely many waves, and some equations have waves outside
+\(\Wclass\). The one-pole conclusion still holds for \(p=1\),
+for even \(P\) of degree two, and for all elliptic waves with \(p=2\)
+(Appendix~\ref{sec:low-order}).
+
+\paragraph{The proofs.} The proofs use Laurent series, Cauchy's
+estimate, and the identity theorem. At a pole, the Laurent series of a
+wave is determined by \(P\) up to a root of unity and, when \(p\) is
+even, one number \(h\), the \emph{free coefficient}. If the series at
+two poles agree up to a root of unity, the difference of the poles is a
+twisted period. So a wave whose poles all carry the same \(h\) has one
+pole modulo \(\Gamma\), and two waves that share a value of \(h\)
+coincide after a translation and a phase change. To find the values of
+\(h\) we form combinations of a wave and its derivatives that have no
+poles. By Cauchy's estimate a wave is large only near its poles; so
+such a combination is constant as soon as it takes finitely many
+values at the poles. Its Taylor coefficients of positive order at a
+pole then vanish, and they are polynomials in \(h\) whose coefficients
+depend only on \(P\). This gives an equation for \(h\) of degree one
+when \(n\ge4\) and of degree two when \(n\le3\), and a further equation
+of degree one when \(P\) is not even. A count of zeros and poles shows
+that one wave cannot carry both roots of the quadratic equation.
+Section~\ref{sec:example} carries out the argument on one equation, and
+Appendix~\ref{app:notation} lists the notation.
+
+\subsection{Earlier work}\label{sec:related}
+
+\emph{Odd degree.} For odd \(p\) there is no free coefficient, and
+\citet[Theorem~2]{Eremenko2006} showed by Nevanlinna theory
+\citep{Laine1993,ConteNgWu2018} that all meromorphic solutions belong
+to \(\Wclass\), with at most \(n-1\) poles per period; the argument
+that two poles with equal Laurent series differ by a period is his
+\citep{Eremenko1982,Eremenko2006}. For \(n=2\) the forms (i)--(iii) are
+those of \citet[Theorem~1]{DeminaKudryashov2011}, who also note that an
+equation with one Laurent series has at most one meromorphic solution
+up to translation. The case \(n=4\), \(p=3\), with lower powers in the
+nonlinearity, is due to \citet{ConteNg2010}.
+
+\emph{Even degree.} The free coefficient was noted by
+\citet{Eremenko1982}; Lemma~\ref{lem:resonance} is Proposition~2.1 of
+\citet{Wu2014}, which covers every equation with the dominant terms
+\(v^{(p)}\) and \(v^n\). For \(P(D)=D^p+a_0\) (in their setting, \(D^p\) with
+a general nonlinearity), \citet*[Lemma~4]{EremenkoLiaoNg2009} fixed
+this coefficient by the first integral that comes from the integrating
+factor \(v'\). In the same way all meromorphic solutions were found
+for even operators of degree four: for \(n=2,3,5\) by
+\citet{DeminaKudryashovKawahara2010}, for \(n=3\) with a general cubic
+nonlinearity by \citet*[Theorem~1]{ConteNgWong2012}, and for \(n=5\)
+with a cubic term by \citet[Theorem~2.1]{Wu2014}. Their lists contain
+the waves that we call twisted, and the two-wave examples of
+Sections~\ref{sec:example} and~\ref{sec:n2}. The same argument works
+for every even operator (Appendix~\ref{app:general}); for an operator
+that is not even this integral is not available. For \(n=2\) and
+operators of degree four that are not even, \citet{Demina2022}
+classified the solutions that are elliptic or rational in an
+exponential, and each of them has one pole per period
+\citep[Section~5.6, Theorem~5.8]{BelovaThesis}.
+
+\emph{Examples and tools.} The Swift--Hohenberg waves of
+Section~\ref{sec:sh} were found by
+\citet{KudryashovSinelshchikov2012SH}, for an equation with an
+additional quadratic term; they also show that without dispersion all
+meromorphic travelling waves are stationary. The elliptic waves of the
+Kuramoto--Sivashinsky equation are due to \citet{Kudryashov1990}, and
+the condition \(\delta^2=16\mu\nu\) to \citet{Eremenko2006}; it is an
+instance of the residue criterion for elliptic solutions
+\citep{Hone2005,ConteNg2010}, which Theorem~\ref{thm:C} applies to
+\(u^{n-1}\). For \(p=2\), waves outside \(\Wclass\) were
+found by \citet{AblowitzZeppetella1979}; see also
+\citep[Lemmas~4.4 and~4.5]{ConteNgWu2015}. The estimates of
+Section~\ref{sec:analytic} rest on the weighted maximum of Zalcman's
+rescaling lemma \citep{Zalcman1975,Zalcman1998}, which Zalcman traces
+back to Landau's proof of Bloch's theorem; Lemma~\ref{lem:distance} is
+a pointwise counterpart of Clunie's lemma \citep{Laine1993}, and
+\citet*{PolacikQuittnerSouplet2007} prove estimates of the same form
+for superlinear elliptic equations. For the Painlev\'e transcendents,
+Steinmetz \citep{Steinmetz2002,Steinmetz2017,Steinmetz2018} uses
+estimates away from the poles and combinations of a solution and its
+derivative that are regular at the poles; expressions without poles
+built from the first Laurent coefficients are used, with Nevanlinna
+theory, by \citet{HalburdWang2015} and \citet{MengHalburd2025}.
+Functions of the second kind and Hermite's decomposition are classical
+\citep{Hermite1885,AppellLacour1897,DeminaKudryashov2011}.
+
+\emph{New here.} Theorem~\ref{thm:A} for operators of even degree that
+are not even, for every \(n\) and for an arbitrary meromorphic
+solution; for \(n\ge3\), the single pole modulo twisted periods; the
+bound of Theorem~\ref{thm:B} beyond odd \(p\) and even operators of
+degree four, with the fact that two waves require an even operator and
+\(n\le3\); the formula of Theorem~\ref{thm:C} for \(u^{n-1}\), with the
+relation \(u_+^{n-1}-u_-^{n-1}=k\,\mathcal R(P)\) between the limits at
+the two ends; and the completeness of the list of Section~\ref{sec:sh}.
+The proofs use Cauchy's estimate in place of Nevanlinna theory.
+
+% ======================================================================
+\section{The argument on one equation}\label{sec:example}\label{sec:strategy}
+
+We first carry out the whole argument on the equation
+\(v''''-sv+v^3/3=0\), that is, \(n=3\) and \(P(D)=D^4-s\); it is the
+travelling-wave equation of \(U_t+U^2U_x+U_{xxxxx}=0\) at speed \(s\)
+with zero integration constant. There are seven steps. Steps~1--5
+are carried out for every operator in
+Sections~\ref{sec:local}--\ref{sec:proof}, and Step~7 in
+Section~\ref{sec:power}; each of these steps names the
+statements that replace it. Step~6 exhibits the two waves of this
+equation.
+
+\subsection{Step 1: the Laurent series at a pole}\label{sec:ex-laurent}
+
+By \eqref{eq:balance}, every pole of a wave is double and its leading
+coefficient \(c\) satisfies \(c^2=-360\). For either root \(c\), the
+function \(u=v/c\) satisfies
+\begin{equation}\label{eq:ex-ode}
+ u''''=s\,u+120\,u^3 .
+\end{equation}
+Put a pole at \(0\) and write \(u=z^{-2}(1+b_1z+b_2z^2+\cdots)\). For
+every \(j\ge1\), the coefficients of \(z^{j-6}\) on both sides give
+\[
+ \bigl((j-2)(j-3)(j-4)(j-5)-360\bigr)\,b_j
+ =\text{a polynomial in \(s\) and \(b_1,\dots,b_{j-1}\)} .
+\]
+The product \((j-2)(j-3)(j-4)(j-5)\) is \(24\) or \(0\) for \(j\le5\)
+and increases for \(j\ge6\); it equals \(360=3\cdot4\cdot5\cdot6\) only
+for \(j=8\). So the factor on the left vanishes only there, and
+\(b_1,\dots,b_7\) are determined by \(s\). At \(j=8\) the
+coefficient \(b_8\) drops out, and the other terms,
+\(-b_4(s+360b_4)\), cancel because \(b_4=-s/360\). So \(b_8\) can be
+any number \(h\), and the later coefficients are determined by \(s\)
+and \(h\). The result is the series
+\[
+ f(z;h)=z^{-2}-\frac{s}{360}\,z^{2}+h\,z^{6}+O(z^{10}),
+\]
+and at every pole \(z_i\) of every wave
+\begin{equation}\label{eq:ex-germs}
+ v(z_i+z)=\pm c\,f(z;h_i)\qquad\text{for some number }h_i .
+\end{equation}
+We call \(h_i\) the \emph{free coefficient} of the wave at \(z_i\). It
+is all that the equation leaves open near a pole, and it enters the
+series late, at \(z^6\). The rest of the argument is about its values.
+
+\emph{In general} (Section~\ref{sec:local}): for odd \(p\) there is
+no free coefficient; for even \(p\) there is one, at \(z^{nq}\)
+(Lemma~\ref{lem:resonance}, Corollary~\ref{cor:local}).
+
+\subsection{Step 2: a wave is large only near its poles}\label{sec:ex-estimate}
+
+We quote one estimate, proved in Section~\ref{sec:analytic}: every wave
+satisfies
+\(|v(z)|\le C\bigl(1+d(z)^{-2}\bigr)\), where \(d(z)\) is the distance
+from \(z\) to the nearest pole and \(C\) depends only on \(s\)
+(Lemma~\ref{lem:distance}). The reason is that on a disk without poles
+where \(|v|\) is large, Cauchy's estimate makes \(v''''\) too small to
+balance \(v^3/3\). Two consequences are used.
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.2em]
+\item If the poles of \(v\) form finitely many cosets \(z_i+\Gamma\) of
+its group of twisted periods, then \(v\) is elliptic, or a rational
+function of an exponential that is bounded at both ends, or a rational
+function bounded at infinity, according as \(\Gamma\) is a lattice, a
+group \(\tau\ZZ\) with \(\tau\ne0\) (rank one), or \(\{0\}\)
+(Lemma~\ref{lem:germs}(c)).
+\item A polynomial in \(v,v',v'',\dots\) that has no poles and is
+bounded on the set of poles of \(v\) is constant
+(Lemma~\ref{lem:finite-values}).
+\end{enumerate}
+
+\subsection{Step 3: equal series give a twisted period}\label{sec:ex-global}
+
+If two poles \(z_1,z_2\) of a wave have the same free coefficient, then
+\(v(z_2+z)=\pm v(z_1+z)\) near \(z=0\) by \eqref{eq:ex-germs}, hence
+for all \(z\) by the identity theorem: \(z_2-z_1\) is a twisted period.
+For ordinary periods this argument is due to
+\citet{Eremenko1982,Eremenko2006}. So the poles of a wave that carry
+one value of \(h\) form a single coset \(z_1+\Gamma\). In the same way, two waves that have poles with
+the same value of \(h\) differ by a translation and a sign.
+
+Hence a wave whose poles all carry the same value of \(h\) has one pole
+modulo \(\Gamma\), and by Step~2(a) it is elliptic, rational in an
+exponential, or rational. It remains to find the possible values of
+\(h\) (Step~4) and to show that one wave carries only one of them
+(Step~5).
+
+\emph{In general} (Section~\ref{sec:global}):
+Corollary~\ref{cor:one-germ} for equal series, and
+Proposition~\ref{prop:spaces} for the forms (i)--(iii) of
+Theorem~\ref{thm:A}. For odd \(p\) there is no free coefficient, and
+this step already proves Theorems~\ref{thm:A} and~\ref{thm:B}
+(Section~\ref{sec:odd}).
+
+\subsection{Step 4: an expression without poles}\label{sec:selector-example}
+
+The values of \(h\) are found from a polynomial in \(u\) and its
+derivatives that has no poles. The combination
+\(uu''-\tfrac32(u')^2\) vanishes for \(u=z^{-2}\). On the series \(f\)
+it therefore starts with the next coefficient:
+\(ff''-\tfrac32(f')^2=-\tfrac{s}{18}\,z^{-2}+O(z^2)\). We want to
+cancel this pole by a multiple of a derivative of \(u\), at every pole
+of \(u\) and for either sign in \eqref{eq:ex-germs}. A derivative of
+\(u\) changes sign with \(u\), and the quadratic combination does not.
+So we first multiply by \(f\), which makes the expression odd in \(u\),
+and then compare with \(f''=6z^{-4}+O(1)\):
+\[
+ f^2f''-\tfrac32\,f\,(f')^2=-\frac{s}{18}\,z^{-4}+O(1),\qquad
+ \frac{s}{108}\,f''=\frac{s}{18}\,z^{-4}+O(1).
+\]
+Neither principal part contains \(h\), and they cancel in the sum. So
+\[
+ \Psi=u^2u''-\tfrac32\,u\,(u')^2+\frac{s}{108}\,u''
+\]
+has no pole at a pole of \(u\), whichever sign occurs in
+\eqref{eq:ex-germs}: it is an entire function. With more terms of \(f\)
+one finds, at a pole \(z_0\) where \(u(z_0+z)=\pm f(z;h)\),
+\[
+ \Psi(z_0+z)=\pm\Bigl[\,72\,h+\frac{7s^2}{97200}
+ +\frac{7\,(388800\,h-s^2)(6998400\,h+7s^2)}{365316480000}\,z^{8}
+ +O(z^{12})\Bigr].
+\]
+The value of \(\Psi\) at a pole contains the unknown \(h\), but
+\(\Psi'\) vanishes at every pole of \(u\). By Step~2(b), \(\Psi'\) is
+constant, hence zero, and \(\Psi\) is constant. The coefficient of
+\(z^8\) must therefore vanish:
+\[
+ h=\frac{s^2}{388800}\qquad\text{or}\qquad h=-\frac{7s^2}{6998400}.
+\]
+Every pole of every wave carries one of these two values of the free
+coefficient.
+
+\emph{In general} (Section~\ref{sec:selectors}): two expressions in
+\(u\) whose principal parts do not contain \(h\) are combined so that
+their poles cancel. This gives an equation for \(h\) of degree one if
+\(n\ge4\) (Proposition~\ref{prop:affine}) and of degree two if
+\(n=2,3\) (Proposition~\ref{prop:quadratic}).
+
+\subsection{Step 5: one wave cannot carry both values}\label{sec:ex-two-values}
+
+Suppose a wave \(v\) has poles \(z_1\) and \(z_2=z_1+a\) with free
+coefficients \(h_1\ne h_2\). By Step~4 every pole of \(v\) carries
+\(h_1\) or \(h_2\), so by Step~3 its poles form the two cosets
+\(z_1+\Gamma\) and \(z_2+\Gamma\), and Step~2(a) applies. Choose the
+sign in \(W(x)=v(z_1+a+x)\mp v(z_1+x)\) so that the leading terms at
+\(x=0\) cancel. The two series \eqref{eq:ex-germs} agree up to the term
+\(h\,z^6\), so \(W(x)=\pm c\,(h_2-h_1)\,x^6+\cdots\). Thus \(W\) has a
+zero of order \(6\) at \(0\), and at every point of \(\Gamma\), because
+\(W\) has the same multipliers as \(v\). Its poles lie in the cosets
+\(\pm a+\Gamma\) and are at most double. If \(\Gamma\) is a lattice,
+then \(W^2\) is a function on the torus \(\CC/\Gamma\) with a zero of
+order \(12\) and poles of total order at most \(4+4\). This is
+impossible: a nonzero meromorphic function on a compact Riemann surface
+has as many zeros as poles. If \(\Gamma\) has rank one or is \(\{0\}\),
+then \(v\) is bounded at the two ends of the cylinder \(\CC/\Gamma\),
+or at infinity, by Step~2(a); so \(W^2\) extends to a sphere, and the
+same count applies. For an even operator such as \(D^4-s\), the
+conclusion also follows from the first integral obtained with the
+factor \(v'\): it takes one value on the wave, and this value is affine
+in \(h\) with a nonzero coefficient (Lemma~\ref{lem:energy} and
+Theorem~\ref{thm:general}; for \(D^p+a_0\) see
+\citet*[Lemma~4]{EremenkoLiaoNg2009}). The count of zeros and poles
+works for every operator.
+
+So all poles of a wave carry the same value of \(h\). By Step~3 the
+wave has one pole modulo \(\Gamma\) and is elliptic, rational in an
+exponential, or rational: this is the first assertion of
+Theorem~\ref{thm:A} for \eqref{eq:ex-ode}, and the forms (i)--(iii)
+follow as in Proposition~\ref{prop:spaces}. Each of the two values of \(h\) belongs to at most
+one wave up to translation and sign: this is the bound of
+Theorem~\ref{thm:B}.
+
+\emph{In general} (Section~\ref{sec:proof}): Lemma~\ref{lem:two-germs}
+for two values in one wave, where \(n=2\) needs the odd part of \(W\).
+If \(n=2,3\) and \(P\) is not even, a further equation of degree one
+leaves a single value of \(h\) (Proposition~\ref{prop:not-even}).
+
+\subsection{Step 6: the two waves}\label{sec:two-waves}
+
+Both values of \(h\) occur. For \(s=108\) equation \eqref{eq:ex-ode}
+is
+\begin{equation}\label{eq:two-wave-ode}
+ u''''=108\,u+120\,u^3 ,
+\end{equation}
+and two solutions are
+\begin{equation}\label{eq:two-waves}
+ u_1=\wp(z;-6,0),\qquad
+ u_2=-y',\quad y^2=\wp(z;4,0),\quad y=z^{-1}+O(z^3).
+\end{equation}
+Here \(\wp(z;g_2,g_3)\) is the Weierstrass function with
+\((\wp')^2=4\wp^3-g_2\wp-g_3\); both discriminants \(g_2^3-27g_3^2\)
+are nonzero, so these are elliptic functions and not degenerate ones.
+The Weierstrass identities give \(u_1''=6u_1^2+3\) and then
+\(u_1''''=120u_1^3+108u_1\). The function \(\wp(z;4,0)\) has double
+poles at the points of its period lattice \(\Gamma_0\) and double
+zeros at the half-periods where \(\wp=0\), so it has a meromorphic
+square root \(y\) on \(\CC\). From \((y')^2=y^4-1\) and \(y''=2y^3\)
+we get \(u_2^2=y^4-1\) and
+\(u_2''''=(120y^4-12)\,u_2=120u_2^3+108u_2\).
+
+The solution \(u_1\) has trivial character; \(u_2\) is twisted. Indeed,
+\(y\) has a single simple pole in a period cell of \(\Gamma_0\), so it
+is not periodic for \(\Gamma_0\): its multipliers under \(\Gamma_0\)
+form a character \(\chi\) of order two, and \(y\) is an ordinary
+elliptic function for the sublattice \(\ker\chi\) of index two, with
+two simple poles in a period cell. The function \(u_2=-y'\) has the same
+character: its twisted periods are \(\Gamma=\Gamma_0\) and its
+ordinary periods are \(\ker\chi\), as in Theorem~\ref{thm:A}(iii).
+
+The Laurent expansions are
+\begin{equation}\label{eq:two-wave-jets}
+\begin{aligned}
+ u_1&=z^{-2}-\tfrac{3}{10}z^2+\tfrac{3}{100}z^6+O(z^{10}),\\
+ u_2&=z^{-2}-\tfrac{3}{10}z^2-\tfrac{7}{600}z^6+O(z^{10}),
+\end{aligned}
+\end{equation}
+so the free coefficients are \(h_1=3/100\) and \(h_2=-7/600\), the two
+values of Step~4 for \(s=108\). So \(v_1=c\,u_1\) and \(v_2=c\,u_2\),
+with \(c^2=-360\), are two waves that are not related by translation or
+phase change. They are all the waves of this equation: a wave has a
+pole, by Step~4 its free coefficient there is \(h_1\) or \(h_2\), and
+by Step~3 the wave is then \(v_1\) or \(v_2\) up to a translation and a
+sign.
+
+If \(u\) solves \eqref{eq:ex-ode}, then \(\lambda^2u(\lambda z)\)
+solves it with \(\lambda^4s\) in place of \(s\). So
+\(c\,\lambda^2u_{1,2}(\lambda z)\) are the two waves for
+\(P(D)=D^4-108\lambda^4\). Every \(s\ne0\) has the form
+\(108\lambda^4\); hence \(v''''-sv+v^3/3=0\) has exactly two waves for
+every \(s\ne0\), as Theorem~\ref{thm:B} asserts for \(n=3\)
+(Section~\ref{sec:n2} treats \(n=2\)). For
+\(s=0\) the two values of Step~4 coincide, \(h=0\); the series
+\(f(z;0)\) is then \(z^{-2}\), and the only wave is \(c\,z^{-2}\). The
+two waves are the solutions (36) and (51) of
+\citet{DeminaKudryashovKawahara2010} with \(\beta=0\) and \(C_1=0\),
+and the solutions (17) and (22) of \citet*{ConteNgWong2012} with
+\(b=s_1=s_3=0\), in the notation of those papers.
+
+\subsection{Step 7: the square of a wave}\label{sec:ex-power}
+
+The series of Step~1 also determines the square of a wave, once
+\(\Gamma\) is known. It gives \(u^2=z^{-4}-\tfrac{s}{180}+O(z^4)\) at a
+pole of any wave: in the notation of Theorem~\ref{thm:C}, \(\ell_0=1\),
+\(\ell_1=\ell_2=\ell_3=0\) and \(\ell_4=-s/180\). The function \(u^2\)
+is invariant under \(\Gamma\), because the multipliers of \(u\) are
+\(\pm1\), and it has one pole modulo \(\Gamma\). Let \(\Gamma\) be a
+lattice and \(\wp=\wp(z;g_2,g_3)\) its Weierstrass function, so that
+\(\wp^2=z^{-4}+g_2/10+O(z^2)\). Then \(u^2-\wp^2\) is an elliptic
+function without poles, hence a constant:
+\[
+ u^2=\wp^2-\frac{g_2}{10}-\frac{s}{180}.
+\]
+So the square of a wave is known as soon as its lattice is known; the
+character does not enter. For \(s=108\) the formula gives
+\(u_1^2=\wp(z;-6,0)^2\) and \(u_2^2=\wp(z;4,0)^2-1\), in agreement with
+Step~6.
+
+\emph{In general} (Section~\ref{sec:power}): Theorem~\ref{thm:power}
+gives \(u^{n-1}\) for each kind of \(\Gamma\), and
+Corollary~\ref{cor:residue} the conditions on its residue, which is
+\(\ell_3=0\) here.
+
+% ======================================================================
+\section{The Laurent series at a pole}\label{sec:local}\label{sec:origin}\label{sec:laurent}
+
+This section does Step~1 of Section~\ref{sec:example} for every operator. From now on \(p/(n-1)\)
+is a positive integer, as it must be if a wave exists
+(Proposition~\ref{prop:existence}). We fix the notation
+\[
+ m=n-1,\qquad p=mq,\qquad
+ K=(-1)^p(q)_p=(-1)^p\,\frac{(nq-1)!}{(q-1)!},
+\]
+and a number \(c\) with \(c^m=-nK\), as in \eqref{eq:balance}. If a
+wave \(v\) has a pole at \(z_0\), a phase change makes its leading
+coefficient there equal to \(c\), and then \(u(z)=v(z_0+z)/c\)
+satisfies
+\begin{equation}\label{eq:normalized}
+ P(D)u=K\,u^n,\qquad u=z^{-q}\bigl(1+O(z)\bigr).
+\end{equation}
+We call such a \(u\) a \emph{normalized wave}; it has its pole at
+\(0\).
+
+We write
+\[
+ P(\rho)=\rho^p+a_{p-1}\rho^{p-1}+\dots+a_1\rho+a_0 .
+\]
+If \(u\) is a normalized wave for \(P\) and \(\lambda\ne0\), then
+\(\lambda^qu(\lambda z)\) is a normalized wave for
+\(P_\lambda(\rho)=\lambda^pP(\rho/\lambda)\). This \emph{scaling}
+multiplies \(a_{p-k}\) by \(\lambda^k\); accordingly we say that
+\(a_{p-k}\) has \emph{weight} \(k\).
+
+Let \(u\) be a normalized wave and write
+\(u=z^{-q}\sum_{j\ge0}b_jz^j\) with \(b_0=1\). The coefficient of
+\(z^{j-q-p}\) in \(P(D)u-Ku^n\) gives the recurrence
+\begin{equation}\label{eq:recurrence}
+ I(j)\,b_j=F_j(b_1,\dots,b_{j-1}),\qquad
+ I(j)=(j-q)(j-q-1)\cdots(j-q-p+1)-nK .
+\end{equation}
+The left-hand side collects the terms that are linear in \(b_j\),
+coming from \(D^p\) and from \(u^n\). The right-hand side \(F_j\)
+collects the rest; it is a polynomial in \(b_1,\dots,b_{j-1}\) and in
+the coefficients of \(P\). The same recurrence holds at every pole of
+every wave, because \eqref{eq:normalized} does not depend on which root
+\(c\) was chosen. Which coefficients it determines depends on the
+integer roots of the \emph{indicial polynomial} \(I\).
+
+\begin{lemma}[The resonance]\label{lem:resonance}
+If \(p\) is odd, then \(I(j)\ne0\) for every integer \(j\ge1\). If
+\(p\) is even, the only positive integer root of \(I\) is
+\[
+ J=p+2q=(n+1)q .
+\]
+\end{lemma}
+
+\begin{proof}
+Write \(\Pi(j)=(j-q)(j-q-1)\cdots(j-q-p+1)\) for the product in
+\(I(j)\). Since \(q+p=nq\), we have \(n(q)_p=(q+1)_p\). For
+\(1\le j<q\), all factors of \(\Pi(j)\) are negative, and
+\(|\Pi(j)|=(q-j)_p<(q)_p<n(q)_p=|nK|\), so \(I(j)\ne0\). For
+\(q\le j<q+p\), one factor
+vanishes and \(I(j)=-nK\ne0\). For \(j\ge q+p\), we have
+\(\Pi(j)=(j-q-p+1)_p>0\), and this is strictly increasing in \(j\). If
+\(p\) is odd, then \(-nK=n(q)_p>0\), so \(I(j)>0\). If \(p\) is even,
+then \(nK=(q+1)_p\), and \(I(j)=0\) exactly when \(j-q-p+1=q+1\), that
+is, \(j=p+2q\).
+\end{proof}
+
+In the language of the Painlev\'e test, the roots of \(I\) are the
+resonances; for even \(p\) the only positive integer resonance is \(J\)
+\citep{Wu2014}. So for odd \(p\) the
+recurrence determines all \(b_j\), and the Laurent series of a
+normalized wave is determined by \(P\). For even \(p\) the recurrence determines
+\(b_1,\dots,b_{J-1}\); at the index \(J\) it reads
+\(F_J(b_1,\dots,b_{J-1})=0\) and does not contain \(b_J\); and it
+determines \(b_j\) for \(j>J\) once \(b_J\) is given. For every
+operator \(P\) of even degree and every \(h\in\CC\) we define the
+series
+\begin{equation}\label{eq:family}
+ f(z;h)=z^{-q}\sum_{j\ge0}b_j(h)\,z^j,\qquad b_0=1,\quad b_J=h,
+\end{equation}
+by the recurrence at all indices \(j\ne J\). Then
+\(P(D)f-Kf^n=-F_J\,z^{q}\), where the number \(F_J\) depends on \(P\)
+and not on \(h\). If \(P\) admits a wave, the wave has a pole
+(Proposition~\ref{prop:existence}), and its Laurent series there
+satisfies the recurrence at the index \(J\) as well. So \(F_J=0\), and
+\(f(z;h)\) is a formal solution of \eqref{eq:normalized} for every
+\(h\). (We define the series for every operator, because
+Sections~\ref{sec:selectors} and~\ref{sec:proof} treat the quantities
+built from it as polynomials in the coefficients of \(P\).) At each
+pole \(z_i\) of a wave \(v\) we then have
+\begin{equation}\label{eq:pole-germs}
+ v(z_i+z)=c\,\omega_i\,f(z;h_i)\qquad
+ \text{for some }\omega_i\in\mu_m,\ h_i\in\CC.
+\end{equation}
+We call \(h_i\) the \emph{free coefficient} of the wave at the pole
+\(z_i\), \(\omega_i\) its \emph{phase} there, and \(f(\cdot\,;h_i)\) its
+\emph{normalized series} there. For
+odd \(p\) we use the same notation without \(h\).
+
+\begin{lemma}[Weights]\label{lem:degree}
+Let \(p\) be even. Each \(b_j(h)\) is a polynomial in \(h\) and in the
+coefficients of \(P\). It is weighted-homogeneous of weight \(j\) if
+each \(a_{p-i}\) is given its weight \(i\) and \(h\) the weight \(J\). In
+particular, \(b_j(h)\) has degree at most \(\lfloor j/J\rfloor\) in
+\(h\); the part of \(f(z;h)\) of degree \(k\ge1\) in \(h\) is
+\(O(z^{kJ-q})\); and the part of degree one is
+\(h\,z^{J-q}\bigl(1+O(z)\bigr)\).
+\end{lemma}
+
+\begin{proof}
+The recurrence gives \(b_j\) as a polynomial, because \(I(j)\) is a
+nonzero number for \(j\ne J\). For \(\lambda\ne0\), the series
+\(\lambda^qf(\lambda z;h)=z^{-q}\sum_j\lambda^jb_j(h)z^j\) starts with
+\(z^{-q}\), has the coefficient \(\lambda^Jh\) at the index \(J\), and
+satisfies
+\[
+ P_\lambda(D)\bigl[\lambda^qf(\lambda z;h)\bigr]
+ -K\bigl[\lambda^qf(\lambda z;h)\bigr]^n
+ =\lambda^{nq}\bigl(P(D)f-Kf^n\bigr)(\lambda z;h)
+ =-\lambda^{J}F_J\,z^{q}.
+\]
+So it satisfies the recurrence of \(P_\lambda\) at all indices
+\(j\ne J\), and it is the series \eqref{eq:family} of the operator
+\(P_\lambda\) with free coefficient \(\lambda^Jh\). The coefficients of
+\(P_\lambda\) are \(\lambda^ia_{p-i}\), which proves the homogeneity.
+All weights are positive, so a monomial of \(b_j\) that contains
+\(h^k\) has \(kJ\le j\). The last two assertions follow, because
+\(b_j\) does not depend on \(h\) for \(j<J\) and \(b_J=h\).
+\end{proof}
+
+\begin{corollary}\label{cor:local}
+\textup{(a)} The principal part and the constant term of a normalized
+series are determined by \(P\).
+\textup{(b)} If \(z_1,z_2\) are poles of a wave \(v\), written as in
+\eqref{eq:pole-germs}, then
+\[
+ v(z_2+z)-\frac{\omega_2}{\omega_1}\,v(z_1+z)=O(z^{nq}).
+\]
+\end{corollary}
+
+\begin{proof}
+(a) These are the coefficients \(b_j\) with \(j\le q\), and \(q<J\)
+when \(p\) is even. (b) The two
+normalized series have the same coefficients \(b_0,\dots,b_{J-1}\), so
+the difference is \(c\,\omega_2\bigl(f(z;h_2)-f(z;h_1)\bigr)
+=O(z^{J-q})\), and \(J-q=nq\).
+\end{proof}
+
+Thus the free coefficient appears only at the order \(z^{nq}\), long
+after the pole; Sections~\ref{sec:selectors} and~\ref{sec:proof} rest
+on this.
+
+% ======================================================================
+\section{A wave is large only near its poles}\label{sec:analytic}
+
+This section proves the estimate of Step~2 of
+Section~\ref{sec:example} and its consequence~(b):
+Lemma~\ref{lem:distance} bounds a solution in terms of the distance to
+its poles, and Lemma~\ref{lem:finite-values} says that an expression
+without poles is constant if it is bounded on the poles. The first
+is used in Section~\ref{sec:global} to place a wave in \(\Wclass\); the
+second, in Section~\ref{sec:selectors}, to obtain the equations for the
+free coefficient. They are the only analytic estimates in
+the paper, and they do not use the form of the nonlinearity. We prove them for the solutions, meromorphic in \(\CC\),
+of
+\begin{equation}\label{eq:general-eq}
+ P(D)v+B(v)=0,
+\end{equation}
+where \(P(D)=\sum_{j=0}^pa_jD^j\) is any operator with constant
+coefficients, \(a_p\ne0\) and \(p\ge1\), and \(B\) is any polynomial of
+degree \(n\ge2\); here \(q=p/(n-1)\) need not be an integer. This
+generality is used in Proposition~\ref{prop:existence} and in
+Appendix~\ref{app:general}; for Theorems~\ref{thm:A}--\ref{thm:C} the
+reader may take \(B(v)=v^n/n\). For a solution \(v\), let \(S\) be its
+set of poles and \(d(z)=\dist(z,S)\); if \(S\) is empty, we put
+\(d\equiv\infty\) and \(d^{-q}=0\).
+
+Both lemmas rest on the maximum of a weighted modulus, the device of
+Zalcman's rescaling lemma \citep{Zalcman1975,Zalcman1998}. In a given
+disk it produces a point \(z_*\) at which the modulus of a holomorphic
+function \(w\), weighted by a power of the distance to the boundary, is
+at least as large as at the centre, and such that \(w\) stays close to
+\(w(z_*)\) on a disk about \(z_*\) whose radius is proportional to the
+distance from \(z_*\) to the boundary.
+
+\begin{lemma}[A weighted maximum]\label{lem:weighted}
+Let \(w\) be holomorphic on a neighbourhood of the closed disk
+\(\overline D(z_0,R)\) and not identically zero on it, and let
+\(\theta>0\). There is a point \(z_*\) in the open disk such that, with
+\(\delta=R-|z_*-z_0|\),
+\[
+ R^\theta|w(z_0)|\le \delta^\theta|w(z_*)|
+ \qquad\text{and}\qquad
+ \max_{|z-z_*|\le \delta/2}|w(z)|\le 2^\theta|w(z_*)|.
+\]
+Moreover, with \(c_\theta=2^{-\theta-3}\),
+\[
+ |w(z)-w(z_*)|\le\tfrac13\,|w(z_*)|
+ \qquad\text{for } |z-z_*|\le c_\theta\delta .
+\]
+In particular, \(w\) has no zero in \(\overline D(z_*,c_\theta\delta)\).
+\end{lemma}
+
+\begin{proof}
+Let \(z_*\) be a point where \((R-|z-z_0|)^\theta|w(z)|\) attains its
+maximum on the closed disk. The maximum is positive and the weight
+vanishes on the boundary, so \(z_*\) is an interior point, and the
+first inequality is the comparison with the value at \(z_0\). On
+\(\overline D(z_*,\delta/2)\) the weight is at least
+\((\delta/2)^\theta\), which gives the second inequality. Put
+\(M=|w(z_*)|>0\). Cauchy's estimate on \(\overline D(z_*,\delta/2)\)
+bounds the Taylor coefficients of \(w\) at \(z_*\), and gives, for
+\(|t|<\delta/2\),
+\[
+ |w(z_*+t)-w(z_*)|\le 2^\theta M\sum_{j\ge1}\Bigl(\frac{2|t|}{\delta}\Bigr)^j .
+\]
+For \(|t|\le c_\theta\delta\) the right-hand side is at most \(M/3\).
+\end{proof}
+
+\begin{lemma}[Distance to the poles]\label{lem:distance}
+There are constants \(C_j\), depending only on \(P\), \(B\) and \(j\),
+such that every meromorphic solution of \eqref{eq:general-eq} satisfies,
+for \(z\notin S\),
+\begin{equation}\label{eq:distance}
+ |v(z)|\le C_0\bigl(1+d(z)^{-q}\bigr),\qquad
+ |v^{(j)}(z)|\le C_j\bigl(1+d(z)^{-q-j}\bigr)\quad(j\ge1).
+\end{equation}
+If \(S\) is finite, then \(v\) is a rational function bounded at
+infinity.
+\end{lemma}
+
+\begin{proof}
+For \(v\equiv0\) there is nothing to prove. Choose \(C_B>0\) and
+\(V_0\ge1\) such that \(|B(x)|\ge C_B|x|^n\) for \(|x|\ge V_0\).
+Fix \(z_0\notin S\) and \(0<R<d(z_0)\). Apply
+Lemma~\ref{lem:weighted} to \(v\) on \(\overline D(z_0,R)\) with
+\(\theta=q\), and put \(V=|v(z_*)|\) and \(r=\delta/2\). Suppose
+\(V\ge V_0\). Since \(|v|\le2^qV\) on \(\overline D(z_*,r)\), Cauchy's
+estimate gives \(|v^{(j)}(z_*)|\le j!\,2^qVr^{-j}\), and the equation
+gives
+\[
+ C_BV^{n}\le|B(v(z_*))|=|P(D)v(z_*)|
+ \le 2^qV\sum_{j=0}^{p}|a_j|\,j!\,r^{-j}.
+\]
+Hence \(V^{n-1}\le C'\max(1,r^{-p})\), and so
+\(V\le C(1+r^{-q})\), with \(C\) depending only on \(P\) and \(B\).
+If \(V<V_0\), the same bound holds as soon as \(C\ge V_0\). The first inequality of
+Lemma~\ref{lem:weighted} now gives
+\[
+ R^q|v(z_0)|\le \delta^qV\le C(\delta^q+2^q)\le C(R^q+2^q).
+\]
+Letting \(R\to d(z_0)\), or \(R\to\infty\) if \(S\) is empty, proves the
+first estimate.
+
+For the derivatives at \(z\), use the disk of radius
+\(r_1=\tfrac12\min(1,d(z))\). On this disk the distance to \(S\) is at
+least \(r_1\), so the first estimate bounds \(v\) there by
+\(C_0(1+r_1^{-q})\), and Cauchy's estimate bounds \(v^{(j)}(z)\) by
+\(j!\,r_1^{-j}C_0(1+r_1^{-q})\). This is the second estimate.
+
+If \(S\) is finite, then \(d(z)\to\infty\) as \(z\to\infty\), so \(v\)
+is bounded near infinity. It extends holomorphically to \(\infty\), and
+a meromorphic function on the Riemann sphere is rational.
+\end{proof}
+
+\begin{proposition}[Solutions without poles]\label{prop:existence}
+Every entire solution of \eqref{eq:general-eq} is constant. If
+\(p/(n-1)\) is not a positive integer, every meromorphic solution of
+\eqref{eq:general-eq} is constant.
+\end{proposition}
+
+\begin{proof}
+An entire solution is bounded by Lemma~\ref{lem:distance}, hence
+constant by Liouville's theorem. At a pole of any solution the balance
+of \(v^{(p)}\) with the term of degree \(n\) in \(B(v)\) gives the
+order \(p/(n-1)\). If this is not a positive integer there is no pole,
+and the solution is entire.
+\end{proof}
+
+For example, the travelling waves of the generalized Bretherton
+equation \(U_{tt}+\alpha U_{xx}+\beta U_{xxxx}+\delta U+\gamma U^n=0\)
+with \(\beta\gamma\ne0\) satisfy, after a rescaling, \eqref{eq:main}
+with an even operator of degree four, so waves exist only for
+\(n\in\{2,3,5\}\) (for elliptic waves and nonzero coefficients of
+\(D^2\) and \(D^0\) in \(P\), see
+\citep{KudryashovSinelshchikovDemina2011}).
+
+\begin{lemma}[Bounded on the poles]\label{lem:finite-values}
+Let \(v\) be a nonconstant meromorphic solution of
+\eqref{eq:general-eq}, and let \(\Phi\) be a polynomial in
+\(v,v',v'',\dots\) with constant coefficients. If \(\Phi\) has no poles
+and is bounded on \(S\), then \(\Phi\) is constant.
+\end{lemma}
+
+\begin{proof}
+We may assume \(\Phi\not\equiv0\). Put \(M=\sup_S|\Phi|\). By
+\eqref{eq:distance} there are constants \(C,N>0\) such that
+\(|\Phi(z)|\le C\bigl(1+d(z)^{-N}\bigr)\) for \(z\notin S\). Given any
+disk \(\overline D(z_0,R)\), apply Lemma~\ref{lem:weighted} to the
+entire function \(\Phi\) with \(\theta=N\). If the disk
+\(\overline D(z_*,c_N\delta)\) contains a pole \(z_i\) of \(v\), then
+\(|\Phi(z_*)|\le\tfrac32|\Phi(z_i)|\le\tfrac32M\). If it contains no
+pole, then \(d(z_*)\ge c_N\delta\) and
+\(|\Phi(z_*)|\le C\bigl(1+(c_N\delta)^{-N}\bigr)\). In both cases
+\[
+ R^N|\Phi(z_0)|\le \delta^N|\Phi(z_*)|
+ \le\max\bigl(\tfrac32M,\,C\bigr)\,R^N+C\,c_N^{-N}.
+\]
+Letting \(R\to\infty\) gives \(|\Phi(z_0)|\le\max(\tfrac32M,C)\) for
+every \(z_0\). So \(\Phi\) is bounded, and constant by Liouville's
+theorem.
+\end{proof}
+
+In the applications \(\Phi\) takes only finitely many values on \(S\).
+The hypothesis on the values at the poles cannot be dropped; an example
+with \(p=2\) is given in Appendix~\ref{sec:low-order}.
+
+% ======================================================================
+\section{From one Laurent series to the global structure}\label{sec:global}
+
+This section does Step~3 of Section~\ref{sec:example} in general.
+
+\subsection{Equal series give twisted periods}
+
+From here on we return to waves. Recall that \(\Gamma\) is the group of
+twisted periods of a wave, \(\chi\colon\Gamma\to\mu_m\) its character
+(Definition~\ref{def:twisted}), and \(S\) its set of poles. A discrete
+subgroup of \(\CC\) is \(\{0\}\), a group \(\tau\ZZ\) with
+\(\tau\ne0\), or a lattice; we say that it has \emph{rank} zero, one or
+two.
+
+\begin{lemma}[Equal series and twisted periods]\label{lem:germs}
+Let \(v\) be a wave.
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.2em]
+\item Two poles \(z_1,z_2\) of \(v\) satisfy \(z_2-z_1\in\Gamma\) if
+and only if \(v(z_2+z)=\omega\,v(z_1+z)\) near \(z=0\) for some
+\(\omega\in\mu_m\).
+\item \(\Gamma\) is a discrete subgroup of \(\CC\), and the group
+\(\ker\chi\) of ordinary periods has finite index in it.
+\item Suppose the poles of \(v\) lie in finitely many cosets of
+\(\Gamma\). If \(\Gamma=\{0\}\), then \(v\) is rational and bounded
+at infinity. If \(\Gamma\) has rank one and \(\tau\) generates
+\(\ker\chi\), then \(v\) is a rational function of
+\(e^{2\pi iz/\tau}\) that is finite at \(0\) and at \(\infty\). If
+\(\Gamma\) is a lattice, then \(v\) is elliptic.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If \(\gamma=z_2-z_1\in\Gamma\), then
+\(v(z_2+z)=v(z_1+z+\gamma)=\chi(\gamma)v(z_1+z)\). Conversely, if the
+two Laurent series agree up to the factor \(\omega\), then
+\(v(z+z_2-z_1)=\omega v(z)\) near \(z_1\), hence everywhere by the
+identity theorem.
+
+(b) Suppose distinct elements \(\gamma_i\in\Gamma\) tend to \(0\).
+Passing to a subsequence, they have a common multiplier \(\omega\).
+Letting \(i\to\infty\) in \(v(z+\gamma_i)=\omega v(z)\) at a point
+where \(v\) is holomorphic and nonzero gives \(\omega=1\). Then
+\((v(z+\gamma_i)-v(z))/\gamma_i=0\) gives \(v'\equiv0\), which is
+impossible. So \(\Gamma\) is discrete. The kernel of \(\chi\) has
+finite index because \(\mu_m\) is finite.
+
+(c) If \(\Gamma=\{0\}\), then \(v\) has finitely many poles, and
+Lemma~\ref{lem:distance} applies. If \(\Gamma\) is a lattice, so is
+\(\ker\chi\), and \(v\) is elliptic. Suppose \(\Gamma\) has rank one.
+Each coset of \(\Gamma\) is a finite union of cosets of
+\(\ker\chi=\tau\ZZ\), so \(S=\bigcup_{\nu=1}^{N}(a_\nu+\tau\ZZ)\). With
+\(y=\operatorname{Im}(z/\tau)\) we have
+\[
+ d(z)\ge|\tau|\min_\nu\bigl|y-\operatorname{Im}(a_\nu/\tau)\bigr|
+ \longrightarrow\infty\qquad(y\to\pm\infty),
+\]
+uniformly in \(\operatorname{Re}(z/\tau)\). By
+Lemma~\ref{lem:distance}, \(v\) is bounded for large \(|y|\). Since
+\(\tau\) is a period, \(v\) is a function of \(t=e^{2\pi iz/\tau}\),
+meromorphic on \(\CC^*\) with finitely many poles. As
+\(|t|=e^{-2\pi y}\), it is bounded near \(t=0\) and \(t=\infty\). These
+singularities are therefore removable, and \(v\) is rational in \(t\).
+\end{proof}
+
+All leading coefficients of a wave differ by factors in \(\mu_m\). So
+part (a) says: two poles lie in the same coset of \(\Gamma\) exactly
+when their normalized series coincide.
+
+\begin{corollary}[One series, one orbit]\label{cor:one-germ}
+\textup{(a)} If a wave has the same normalized series at all its poles
+(for even \(p\), the same free coefficient at all its poles), then it
+has exactly one pole modulo \(\Gamma\) and belongs to \(\Wclass\).
+
+\textup{(b)} If a pole of one wave and a pole of another wave carry the
+same normalized series, the two waves coincide after a translation and a
+phase change.
+\end{corollary}
+
+\begin{proof}
+(a) By Lemma~\ref{lem:germs}(a) all poles lie in one coset of
+\(\Gamma\), and part (c) applies. For even \(p\) the free coefficient
+determines the normalized series. (b) If
+\(v_1(z_1+z)=c\,\omega_1f(z)\) and \(v_2(z_2+z)=c\,\omega_2f(z)\) near
+\(z=0\) with the same series \(f\), then
+\(v_2(z)=(\omega_2/\omega_1)\,v_1(z+z_1-z_2)\) near \(z_2\), hence
+everywhere by the identity theorem.
+\end{proof}
+
+\subsection{The one-pole spaces}\label{sec:spaces}
+
+We now describe the functions with one pole modulo \(\Gamma\),
+according to the rank of \(\Gamma\). For \(\Gamma=(2\pi i/k)\ZZ\) we
+use the functions \(g_r\) of Theorem~\ref{thm:A},
+\begin{equation}\label{eq:generator}
+ g_r(z)=\frac{k\,e^{rkz/m}}{e^{kz}-1},\qquad 1\le r\le m,\quad k\ne0.
+\end{equation}
+Recall that \(g_r\) has simple poles exactly at the points of
+\(\Gamma\), with residue \(1\) at \(0\), and the multiplier
+\(e^{2\pi ir/m}\) under \(z\mapsto z+2\pi i/k\). When \(r<m\), \(g_r\) tends to \(0\) at both
+ends, while \(g_m=G\) tends to \(k\) at the end
+\(\operatorname{Re}(kz)\to+\infty\) and to \(0\) at the other end.
+Replacing \(k\) by \(-k\), which gives the same \(\Gamma\), turns
+\(g_r\) into \(g_{m-r}\) for \(r<m\), and \(g_m\) into \(g_m-k\); so
+the form \eqref{eq:periodic-form} does not depend on the choice between
+\(k\) and \(-k\).
+
+For a lattice \(\Gamma\), a character \(\chi\colon\Gamma\to\CC^*\) of
+finite order and \(j\ge0\), let \(V_j^\chi\) be the space of
+meromorphic functions \(w\) with \(w(z+\gamma)=\chi(\gamma)w(z)\) for
+\(\gamma\in\Gamma\), whose poles lie in \(\Gamma\) and have order at
+most \(j\). These are elliptic functions of the second kind with
+multipliers of finite order. The following description of them is
+classical \citep{Hermite1885,AppellLacour1897}. It makes
+Theorem~\ref{thm:A}(iii) explicit and is not used in the proofs of the
+three theorems; its proof, a construction with the Weierstrass sigma
+function, is in Appendix~\ref{app:second-kind}.
+
+\begin{lemma}[Functions of the second kind]\label{lem:second-kind}
+Let \(\chi\) be a character of finite order of the lattice \(\Gamma\).
+If \(\chi\) is not trivial, then \(V_0^\chi=0\) and
+\(\dim V_j^\chi=j\) for \(j\ge1\); there is a unique
+\(g_\chi\in V_1^\chi\) with residue \(1\) at \(0\), and
+\(g_\chi,Dg_\chi,\dots,D^{j-1}g_\chi\) is a basis of \(V_j^\chi\). If
+\(\chi\) is trivial, then \(V_0^\chi=V_1^\chi=\CC\), and for \(j\ge2\)
+a basis of \(V_j^\chi\) is \(1,\wp,D\wp,\dots,D^{j-2}\wp\).
+\end{lemma}
+
+For \(n=3\) the functions \(g_\chi\) are, up to scale, Jacobi elliptic
+functions (Appendix~\ref{app:second-kind}); the function \(y\) of
+Section~\ref{sec:two-waves} is one of them.
+
+\begin{proposition}[The one-pole spaces]\label{prop:spaces}
+Let \(v\) be a wave with exactly one pole modulo \(\Gamma\), placed at
+\(0\). Then \(v\) has the form \textup{(i)}, \textup{(ii)} or
+\textup{(iii)} of Theorem~\ref{thm:A}, according to the rank of
+\(\Gamma\). In case \textup{(iii)}, \(v\in V_q^\chi\).
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:germs}(c), applied with a single coset, \(v\) is
+rational and bounded at infinity, or rational in an exponential and
+bounded at both ends, or elliptic.
+
+\emph{Rank zero.} Then \(0\) is the only pole, so
+\(v=\beta+\sum_{j=1}^{q}d_jz^{-j}\) with \(d_q\ne0\). Let \(j_0\) be
+the smallest index with \(d_{j_0}\ne0\). At infinity, the coefficients
+of \(z^0\) and of \(z^{-j_0}\) in \(P(D)v+v^n/n\) are
+\(P(0)\beta+\beta^n/n\) and \((P(0)+\beta^m)\,d_{j_0}\). Both vanish, so
+\(P(0)=-\beta^m\) and then \((\tfrac1n-1)\beta^n=0\). Hence
+\(\beta=0\).
+
+\emph{Rank one.} Let \(\Gamma=(2\pi i/k)\ZZ\) and let
+\(e^{2\pi ir/m}\) be the multiplier of \(v\) under \(z\mapsto z+2\pi
+i/k\). The functions \(D^jg_r\), \(0\le j<q\), have this multiplier,
+their principal parts at \(0\) are \((-1)^jj!\,z^{-j-1}\), and they are
+bounded at both ends. Choose \(d_0,\dots,d_{q-1}\) so that the
+difference \(v-\sum_jd_jD^jg_r\) is holomorphic at \(0\); then
+\(d_{q-1}\ne0\), because the pole of \(v\) has order \(q\). The
+difference has the same multiplier as \(v\), so it is holomorphic at
+every point of \(\Gamma\), hence entire. It is also bounded at both
+ends. As a function of \(e^{2\pi iz/\tau}\), where \(\tau\) is an
+ordinary period, it is therefore rational, without poles on \(\CC^*\)
+and bounded at \(0\) and \(\infty\), that is, a constant. A nonzero
+constant has trivial multiplier, so the difference is zero if \(r<m\),
+and it is a constant \(\beta\) if \(r=m\).
+
+\emph{Rank two.} This is the definition of \(V_q^\chi\), with the
+character \(\chi\) of \(v\).
+\end{proof}
+
+By Lemma~\ref{lem:second-kind}, a twisted elliptic wave is thus a
+combination of \(g_\chi,Dg_\chi,\dots,D^{q-1}g_\chi\), in analogy with
+\eqref{eq:periodic-form}, and an untwisted one, which requires
+\(q\ge2\), is a combination of \(1,\wp,D\wp,\dots,D^{q-2}\wp\).
+
+\subsection{Odd degree}\label{sec:odd}
+
+Let \(p\) be odd. By Lemma~\ref{lem:resonance} all poles of all waves
+carry the same normalized series. By Corollary~\ref{cor:one-germ}(a)
+every wave has exactly one pole modulo \(\Gamma\), and
+Proposition~\ref{prop:spaces} gives its form; by
+Corollary~\ref{cor:one-germ}(b) any two waves coincide after a
+translation and a phase change. This proves Theorems~\ref{thm:A}
+and~\ref{thm:B} for odd \(p\).
+
+For even \(p\) it remains to show\label{rem:remains} that the free
+coefficient takes the same value at all poles of a wave, and at most
+two values on all waves of one equation, only one when \(n\ge4\) or
+\(P\) is not even.
+
+% ======================================================================
+\section{Equations for the free coefficient}\label{sec:selectors}
+
+This section does Step~4 of Section~\ref{sec:example} for every operator of even degree: it
+constructs expressions like the \(\Psi\) of
+Section~\ref{sec:selector-example}, which have no poles and whose
+Taylor coefficients at a pole give equations for \(h\). Throughout,
+\(p\) is even, so \(K=(q)_p>0\) and \(nK=(q+1)_p\). Recall that the
+series \(f(z;h)\) of \eqref{eq:family} is defined for every operator
+\(P\) of even degree, with coefficients that are polynomials in \(h\)
+and in the coefficients of \(P\). We write \([h^k]\) and \([z^j]\) for
+the coefficient of \(h^k\) and of \(z^j\) in such a series.
+Table~\ref{tab:notation} in Appendix~\ref{app:notation} lists the
+notation.
+
+\subsection{Functions without poles}
+
+In Section~\ref{sec:selector-example} the principal part of
+\(u^2u''-\tfrac32u(u')^2\) at a pole was cancelled by a multiple of
+\(u''\), that is, by a differential operator applied to \(u\). For a
+general operator the principal part of \(u\) at a pole has \(q\) terms,
+which depend on \(P\), and one cannot expect the pole of a second
+expression to be cancelled by derivatives of \(u\) alone. Instead we
+apply a differential operator to each of two expressions, so that
+their principal parts cancel against each other.
+
+For a Laurent series \(\alpha\) at \(0\) with principal part
+\(\sum_{r=1}^{R}\alpha_{-r}z^{-r}\), define the \emph{principal-part
+polynomial}
+\[
+ \hatt\alpha(\rho)=\sum_{r=1}^{R}\alpha_{-r}\,\frac{(-\rho)^{r-1}}{(r-1)!} .
+\]
+Since \(D^{r-1}(1/z)=(-1)^{r-1}(r-1)!\,z^{-r}\), the principal part of
+\(\alpha\) is \(\hatt\alpha(D)(1/z)\). Differentiation maps principal
+parts to principal parts and holomorphic functions to holomorphic
+functions, so for every polynomial \(L\) the principal part of
+\(L(D)\alpha\) is \(L(D)\hatt\alpha(D)(1/z)\); in particular
+\(\hatt{D\alpha}=\rho\,\hatt\alpha\).
+
+\begin{lemma}[Cancelling principal parts]\label{lem:bracket}
+For Laurent series \(\alpha\) and \(\beta\) at \(0\) with finite
+principal parts, the series
+\(\hatt\alpha(D)\,\beta-\hatt\beta(D)\,\alpha\) is holomorphic at
+\(0\).
+\end{lemma}
+
+\begin{proof}
+Its principal part is
+\((\hatt\alpha\hatt\beta-\hatt\beta\hatt\alpha)(D)(1/z)=0\).
+\end{proof}
+
+For convergent series the lemma has a transparent reason. Let
+\(\alpha\) and \(\beta\) be holomorphic in \(0<|\zeta|<2\delta\). For
+\(0<|z|<\delta\) the residues at \(\zeta=0\) and \(\zeta=z\) give
+\[
+ \hatt\alpha(D)\,\beta(z)-\hatt\beta(D)\,\alpha(z)
+ =\frac{1}{2\pi i}\oint_{|\zeta|=\delta}\alpha(\zeta)\,\beta(z-\zeta)\,d\zeta ,
+\]
+and the integral is holomorphic in \(|z|<\delta\).
+
+The function \(\Psi\) of Section~\ref{sec:selector-example} arises from
+the lemma. Take \(E=u\) and \(F=u^2u''-\tfrac32u(u')^2\). On the series
+\(f(z;h)\) of that example, the principal-part polynomials of \(E\) and
+\(F\) are \(\hatt E(\rho)=-\rho\) and
+\(\hatt F(\rho)=\tfrac{s}{108}\rho^3\), and
+\[
+ \hatt E(D)\,F-\hatt F(D)\,E=-D\Bigl(F+\frac{s}{108}\,u''\Bigr)=-\Psi' .
+\]
+
+In general we need two expressions in \(u\) with two properties. Their
+principal parts on the series \(f(z;h)\) must not depend on \(h\); then
+\(\hatt E\) and \(\hatt F\) are computed from \(P\). And the two
+expressions must transform in the same way under phase changes; then at
+a pole with phase \(\omega_i\) the principal parts of \(E(u)\) and
+\(F(u)\) are those of \(E(f)\) and \(F(f)\) times the same power of
+\(\omega_i\). So one differential polynomial in \(u\) is holomorphic
+at all poles of the wave, and its expansions at the poles differ only
+by roots of unity and by the value of \(h\). Thus let \(E\) and \(F\)
+be polynomials in \(u,u',u'',\dots\) with constant coefficients such
+that:
+\begin{enumerate}[label=\textup{(H\arabic*)},leftmargin=2.8em]
+\item for some integer \(e\), \(E(\omega u)=\omega^eE(u)\) and
+\(F(\omega u)=\omega^eF(u)\) for all \(\omega\in\mu_m\);
+\item the principal parts at \(0\) of \(E(f(\cdot\,;h))\) and
+\(F(f(\cdot\,;h))\) do not depend on \(h\).
+\end{enumerate}
+Let \(\hatt E\) and \(\hatt F\) be the principal-part polynomials of
+\(E(f)\) and \(F(f)\). By (H2) they depend only on \(P\). Put
+\begin{equation}\label{eq:phi-formal}
+ \varphi(z;h)=\hatt E(D)\,F(f)-\hatt F(D)\,E(f) .
+\end{equation}
+By Lemma~\ref{lem:bracket} this is a power series in \(z\), and its
+coefficients are polynomials in \(h\) and in the coefficients of \(P\).
+
+\begin{lemma}\label{lem:bracket-wave}
+Assume \textup{(H1)} and \textup{(H2)}, and let \(v\) be a wave. Then
+the function
+\[
+ \Phi=\hatt E(D)\,F(u)-\hatt F(D)\,E(u),\qquad u=v/c,
+\]
+is entire, and at each pole \(z_i\) of \(v\),
+\(\Phi(z_i+z)=\omega_i^{\,e}\,\varphi(z;h_i)\), with \(\omega_i,h_i\) as
+in \eqref{eq:pole-germs}.
+\end{lemma}
+
+\begin{proof}
+Near \(z_i\) we have \(u(z_i+z)=\omega_if(z;h_i)\). By (H1),
+\(E(u)(z_i+z)=\omega_i^eE(f(\cdot\,;h_i))\) and similarly for \(F\).
+Hence \(\Phi(z_i+z)=\omega_i^e\,\varphi(z;h_i)\), which is holomorphic.
+Away from the poles, \(\Phi\) is holomorphic because \(u\) is.
+\end{proof}
+
+By Lemma~\ref{lem:bracket-wave} the values of \(\Phi\) at the poles are
+\(\omega_i^e\,\varphi(0;h_i)\). If the constant term \(\varphi(0;h)\)
+does not depend on \(h\), these values lie in a finite set, and
+Lemma~\ref{lem:finite-values} makes \(\Phi\) constant. Then the coefficient of every positive power of \(z\) in
+\(\varphi(z;h_i)\) vanishes. These are the equations for \(h_i\). In the example, where
+\(\Phi=-\Psi'\), the constant term \(\varphi(0;h)\) is zero.
+
+\subsection{The choice of the two expressions}\label{sec:choice}
+
+It remains to choose \(E\) and \(F\). What we need from a pair is a
+positive power of \(z\) whose coefficient in \(\varphi(z;h)\) contains
+\(h\) with a nonzero numerical factor: on a wave this coefficient
+vanishes, and this is an equation for \(h\). Both pairs
+used below are built from the quadratic expression
+\begin{equation}\label{eq:seed}
+ H(u)=uu''-\frac{q+1}{q}(u')^2 ,
+\end{equation}
+which vanishes for \(u=z^{-q}\); its partner is a power of \(u\) with
+the same behaviour under phase changes. For \(n\ge4\) the pair
+\((u^2,H)\) gives an equation of degree one
+(Section~\ref{sec:affine}). For \(n\le3\) that computation no longer
+applies, and we use the pair \((u,H_n)\) with \(H_n=u^{n-2}H\). For this
+pair the coefficients of \(\varphi\) below \(z^{J-1}\) have degree at
+most one in \(h\), and their terms in \(h\) can all vanish, as they do
+for \(D^4-s\); but the coefficient of \(z^{J-1}\) always contains
+\(h^2\), and this leads to an equation of degree two
+(Section~\ref{sec:quadratic}). The terms linear in \(h\) return in
+Section~\ref{sec:not-even}, where they detect the odd powers in \(P\).
+
+\begin{lemma}[The expression \(H\)]\label{lem:seed}
+For \(u=z^{-q}(1+\varepsilon z^j)\),
+\[
+ H(u)=\varepsilon\,j(j+1)\,z^{j-2q-2}+O(\varepsilon^2).
+\]
+In particular \(H(z^{-q})=0\), so \(H(f)\) has a pole of order at most
+\(2q+1\). Moreover
+\[
+ [h]\,H(f)=J(J+1)\,z^{p-2}\bigl(1+O(z)\bigr),\qquad
+ [h^k]\,H(f)=O\bigl(z^{kJ-2q-2}\bigr)\quad(k\ge2).
+\]
+\end{lemma}
+
+\begin{proof}
+Put \(y=u^{-1/q}\), so that \(u=y^{-q}\). Then
+\(u'=-q\,y^{-q-1}y'\) and
+\(u''=q(q+1)\,y^{-q-2}(y')^2-q\,y^{-q-1}y''\), and therefore
+\begin{equation}\label{eq:seed-y}
+ H(u)=-q\,y^{-2q-1}\,y'' .
+\end{equation}
+For \(u=z^{-q}(1+\varepsilon z^j)\) we have
+\(y=z-\tfrac{\varepsilon}{q}z^{j+1}+O(\varepsilon^2)\) and
+\(y''=-\tfrac{\varepsilon}{q}\,j(j+1)z^{j-1}+O(\varepsilon^2)\), which
+gives the first formula. The formulas for \(H(f)\) follow from it, with
+\(j=J\), and from Lemma~\ref{lem:degree}, because \(H\) is quadratic
+with two derivatives in total and \(J-2q-2=p-2\).
+\end{proof}
+
+\subsection{\texorpdfstring{The case \(n\ge4\): one value}{The case n >= 4: one value}}\label{sec:affine}
+
+The pair \((u^2,H)\) requires \(p>2q+1\), that is, \((n-3)q>1\). For
+even \(p\) this is the case exactly when \(n\ge4\): the inequality
+holds for \(n\ge5\) and for \(n=4\), \(q\ge2\); it does not hold for
+\(n\le3\); and for \(n=4\), \(q=1\) the degree \(p=3\) is odd.
+
+\begin{proposition}[One value]\label{prop:affine}
+Let \(p\) be even and \(n\ge4\), so that \(p>2q+1\).
+Take \(E=u^2\) and \(F=H\). Then
+\[
+ [z^{p-2q-1}]\,\varphi(z;h)=\Delta_1\,(h-h_*),\qquad
+ \Delta_1=-\frac{J(J+1)\,(p-2)!}{(2q-1)!\,(p-2q-1)!}\ne0,
+\]
+for a number \(h_*\) depending only on \(P\), and \(h_*\) is the free
+coefficient at every pole of every wave. In particular, every wave has
+one pole modulo \(\Gamma\), and any two waves coincide after
+translation and phase change.
+\end{proposition}
+
+\begin{proof}
+\emph{Hypotheses.} Both \(u^2\) and \(H\) are multiplied by
+\(\omega^2\) under \(u\mapsto\omega u\). By Lemma~\ref{lem:degree} the
+part of \(f^2\) depending on \(h\) is \(O(z^{J-2q})=O(z^p)\), and by
+Lemma~\ref{lem:seed} that of \(H(f)\) is \(O(z^{p-2})\). Both are
+holomorphic, so (H2) holds. The polynomial \(\hatt E\) has degree
+\(2q-1\) and leading coefficient \(-1/(2q-1)!\), and \(\hatt F\) has
+degree at most \(2q\).
+
+\emph{The dependence on \(h\).} In
+\([h]\varphi=\hatt E(D)\,[h]H(f)-\hatt F(D)\,[h]f^2\), the term of
+highest order in \(\hatt E(D)\), namely \(-D^{2q-1}/(2q-1)!\), applied to
+\(J(J+1)z^{p-2}\), gives \(\Delta_1z^{p-2q-1}\). All other terms of
+\(\hatt E(D)[h]H(f)\) contain higher powers of \(z\). Since
+\([h]f^2=2z^p(1+O(z))\) and \(\hatt F\) has degree at most \(2q\), the
+second term is \(O(z^{p-2q})\). Hence
+\[
+ [h]\,\varphi=\Delta_1z^{p-2q-1}+O(z^{p-2q}).
+\]
+For \(k\ge2\), Lemmas~\ref{lem:degree} and~\ref{lem:seed} give
+\([h^k]\varphi=O(z^{kJ-4q-1})\), and \(kJ-4q-1\ge2p-1>p-2q-1\). So the
+coefficient of \(z^{p-2q-1}\) in \(\varphi\) is affine in \(h\) with
+slope \(\Delta_1\ne0\). Because \(p-2q-1>0\), the constant term
+\(\varphi(0)\) of \(\varphi\) does not depend on \(h\).
+
+\emph{Conclusion.} By Lemma~\ref{lem:bracket-wave}, \(\Phi\) is
+entire and its values at the poles lie in the finite set
+\(\{\omega^2\varphi(0):\omega\in\mu_m\}\). By
+Lemma~\ref{lem:finite-values}, \(\Phi\) is constant. The coefficient of
+\(z^{p-2q-1}\) in \(\Phi(z_i+z)\), which is
+\(\omega_i^2\Delta_1(h_i-h_*)\), therefore vanishes, and \(h_i=h_*\).
+The last assertion follows from Corollary~\ref{cor:one-germ}.
+\end{proof}
+
+\subsection{\texorpdfstring{The cases \(n=2\) and \(n=3\): at most two values}{The cases n = 2 and n = 3: at most two values}}\label{sec:quadratic}
+
+For \(n\le3\) we have \(p\le2q\); then \(D^{2q-1}\) annihilates
+\(z^{p-2}\), and the term \(\Delta_1\) disappears. We take instead
+\(E=u\) and \(F=H_n\), where
+\[
+ H_n(u)=u^{n-2}H(u)=u^{n-1}u''-\frac{q+1}{q}\,u^{n-2}(u')^2 ,
+\]
+and obtain an equation of degree two
+(Proposition~\ref{prop:quadratic}). The proof uses an elementary
+inequality for \(n=2\), which we state first.
+
+\begin{lemma}\label{lem:kappa}
+For every integer \(q\ge4\), the number \(X=(4q+1)_q/(q)_q\) satisfies
+\(X>6q+3\).
+\end{lemma}
+
+\begin{proof}
+Each of the \(q\) factors \((4q+1+i)/(q+i)\), \(0\le i<q\), of \(X\) is
+at least \(5q/(2q-1)>5/2\), so \(X>(5/2)^q\). Moreover
+\((5/2)^q>6q+3\) for \(q\ge4\): this holds for \(q=4\), and
+\((5/2)^{q+1}-(6q+9)>\tfrac52(6q+3)-(6q+9)=9q-\tfrac32>0\).
+\end{proof}
+
+\begin{proposition}[A quadratic equation]\label{prop:quadratic}
+Let \(p\ge4\) be even and \(q\ge2\); this covers every even \(p\ge4\)
+with \(n=2\) or \(n=3\). There is a polynomial \(Q_P\) of degree two,
+depending only on \(P\), such that \(Q_P(h)=0\) for the free
+coefficient \(h\) at every pole of every wave.
+\end{proposition}
+
+\begin{proof}
+Both \(u\) and \(H_n\) are multiplied by \(\omega\) under
+\(u\mapsto\omega u\), since \(\omega^n=\omega\) for \(\omega\in\mu_m\);
+so (H1) holds with \(e=1\). Let \(a_*=(-1)^{q-1}/(q-1)!\) be the
+leading coefficient of \(\hatt E\). Write
+\(f=f_0+hf_1+h^2f_2+O(h^3)\). By Lemma~\ref{lem:degree},
+\[
+ f_0=z^{-q}\bigl(1+O(z)\bigr),\qquad
+ f_1=z^{nq}\bigl(1+O(z)\bigr),\qquad
+ f_2=\psi\,z^{(2n+1)q}\bigl(1+O(z)\bigr),
+\]
+where \(\psi\) is the coefficient of \(h^2\) in \(b_{2J}\). By the
+same lemma a monomial of \(b_{2J}\) that contains \(h^2\) has weight
+\(2J\), so it is a multiple of \(h^2\) alone. In the recurrence at the
+index \(2J\) such a term arises only from the \(\binom n2\) products
+\(b_Jb_Jb_0^{\,n-2}\) in \(u^n\). So
+\begin{equation}\label{eq:psi}
+ \psi:=[h^2]\,b_{2J}=\binom n2\frac{K}{I(2J)}=\frac{\binom n2}{X-n},
+ \qquad X=\frac{\bigl((n+2)q+1\bigr)_p}{(q)_p};
+\end{equation}
+here we used that the product \((2J-q)(2J-q-1)\cdots(2J-q-p+1)\) in
+\(I(2J)\) equals \(((n+2)q+1)_p\). Since
+\(((n+2)q+1)_p>(q+1)_p=n(q)_p\), we have \(X>n\) and \(\psi>0\).
+
+The proof has five parts. The first three show that the terms of
+\(\varphi\) of degree at least two in \(h\) begin with
+\(\Delta_2h^2z^{J-1}\), where \(\Delta_2\ne0\); the last two derive the
+quadratic equation from this.
+
+\emph{Hypothesis \textup{(H2)}.} The part of \(E(f)=f\)
+depending on \(h\) is \(O(z^{nq})\), hence holomorphic. The expression
+\(H_n\) is a product of \(n\) factors with two derivatives in total; by
+Lemma~\ref{lem:degree}, its part of degree \(k\ge1\) in \(h\) is
+\(O(z^{kJ-nq-2})\), and for \(k=1\) the exponent is \(q-2\ge0\). So
+(H2) holds. The polynomial \(\hatt E\) has degree \(q-1\), and
+\(\hatt F\) has degree at most \(nq\) because \(H_n(f)\) has a pole of
+order at most \((n-2)q+2q+1\).
+
+\emph{The terms of \(H_n(f)\) in \(h\) and \(h^2\).} Let
+\(\Bil\) be the symmetric bilinear form with \(\Bil(g,g)=H(g)\). Then
+\([h]H(f)=2\Bil(f_0,f_1)\) and \([h^2]H(f)=2\Bil(f_0,f_2)+H(f_1)\), and
+Lemma~\ref{lem:seed} gives
+\[
+ 2\Bil(f_0,f_1)=J(J+1)\,z^{p-2}\bigl(1+O(z)\bigr),\qquad
+ 2\Bil(f_0,f_2)=2J(2J+1)\,\psi\,z^{2nq-2}\bigl(1+O(z)\bigr),
+\]
+while
+\(H(f_1)=\bigl(nq(nq-1)-\tfrac{q+1}{q}(nq)^2\bigr)z^{2nq-2}(1+O(z))
+=-nJ\,z^{2nq-2}(1+O(z))\). Recall that \(H(f_0)=O(z^{-2q-1})\). For the
+term linear in \(h\),
+\[
+ [h]\,H_n(f)=f_0^{\,n-2}\cdot2\Bil(f_0,f_1)+(n-2)f_0^{\,n-3}f_1\,H(f_0)
+ =J(J+1)\,z^{q-2}\bigl(1+O(z)\bigr),
+\]
+because the second term is \(O(z^{q-1})\). For the quadratic term,
+\begin{align*}
+ [h^2]\,H_n(f)={}&f_0^{\,n-2}\bigl(2\Bil(f_0,f_2)+H(f_1)\bigr)
+ +(n-2)f_0^{\,n-3}f_1\cdot2\Bil(f_0,f_1)\\
+ &+\Bigl((n-2)f_0^{\,n-3}f_2+\tbinom{n-2}{2}f_0^{\,n-4}f_1^{\,2}\Bigr)H(f_0).
+\end{align*}
+The first two terms begin with the power \(z^{(n+2)q-2}\), with the
+coefficients \(2J(2J+1)\psi-nJ\) and \((n-2)J(J+1)\). The last term is
+\(O(z^{(n+2)q-1})\), again because the leading pole of \(H(f_0)\)
+cancels. Altogether,
+\begin{equation}\label{eq:kappa}
+ [h^2]\,H_n(f)=\kappa\,z^{(n+2)q-2}\bigl(1+O(z)\bigr),\qquad
+ \kappa=J\bigl(2(2J+1)\psi+(n-2)J-2\bigr).
+\end{equation}
+For \(n\ge3\) we have \(\kappa>0\), since \(\psi>0\) and
+\((n-2)J-2>0\). For \(n=2\) the degree \(p=q\) is even and at least
+\(4\), \(J=3q\) and \(\psi=1/(X-2)\) with \(X=(4q+1)_q/(q)_q\), so that
+\[
+ \kappa=6q\Bigl(\frac{6q+1}{X-2}-1\Bigr)<0
+\]
+by Lemma~\ref{lem:kappa}. In all cases \(\kappa\ne0\).
+
+\emph{The terms of \(\varphi\) of degree at least two in \(h\).} Only \(a_*D^{q-1}H_n(f)\) contributes to the lowest
+\(h^2\)-term of \(\varphi\):
+\begin{equation}\label{eq:Delta2}
+ [h^2]\,\varphi=\Delta_2z^{J-1}+O(z^J),\qquad
+ \Delta_2=a_*\,\kappa\,\frac{((n+2)q-2)!}{(J-1)!}\ne0.
+\end{equation}
+Indeed, \(D^{q-1}z^{(n+2)q-2}=\frac{((n+2)q-2)!}{(J-1)!}\,z^{J-1}\),
+lower derivatives of \(H_n(f)\) give higher powers of \(z\), and since
+\([h^2]f=O(z^{2J-q})\) and \(\hatt F\) has degree at most \(nq\), the
+term \(\hatt F(D)[h^2]f\) is \(O(z^{2J-q-nq})=O(z^J)\). In the same way,
+\([h^k]\varphi=O(z^{(k-1)J-1})\) for \(k\ge3\). So the terms of
+\(\varphi\) of degree at least two in \(h\) start at \(z^{J-1}\), and
+\begin{equation}\label{eq:slopes}
+ [z^i]\,\varphi=A_ih+B_i\qquad(0\le i\le J-2),
+\end{equation}
+where \(A_i\) and \(B_i\) are polynomials in the coefficients
+\(a_0,\dots,a_{p-1}\) of \(P\). In summary, the coefficients of \(h^k\) in
+\(f\), \(H_n(f)\) and \(\varphi\) begin as follows; an entry without
+\(O\) is a leading term, exact up to a factor \(1+O(z)\), and
+\(\varphi\) is a power series by Lemma~\ref{lem:bracket}:
+\begin{equation}\label{eq:leading-terms}
+\begin{array}{c|ccc}
+  k & f & H_n(f) & \varphi\\
+ \hline
+ 0 & z^{-q} & O(z^{-nq-1}) & O(1)\\
+ 1 & z^{nq} & J(J+1)\,z^{q-2} & O(1)\\
+ 2 & \psi\,z^{(2n+1)q} & \kappa\,z^{(n+2)q-2} & \Delta_2\,z^{J-1}\\
+ k\ge3 & O(z^{kJ-q}) & O(z^{kJ-nq-2}) & O(z^{(k-1)J-1})
+\end{array}
+\end{equation}
+
+\emph{A function whose values at the poles do not depend on \(h\).} Let \(\Phi\) be the entire function of
+Lemma~\ref{lem:bracket-wave}. At a pole \(z_i\) we have
+\(\Phi(z_i)=\omega_i(A_0h_i+B_0)\) and, since \(J-2\ge1\),
+\(\Phi'(z_i)=\omega_i(A_1h_i+B_1)\). Put
+\[
+ T=\Phi\ \text{ if } A_0=0,\qquad
+ T=A_0\,\Phi'-A_1\,\Phi\ \text{ if } A_0\ne0.
+\]
+Then \(T\) is entire, and its value at a pole \(z_i\) is
+\(\omega_iB_0\) in the first case and \(\omega_i(A_0B_1-A_1B_0)\) in the
+second. These values lie in a finite set, so \(T\) is constant by
+Lemma~\ref{lem:finite-values}. (By Lemma~\ref{lem:slopes}(b) below, the first case is \(a_{p-1}=0\);
+this is not used in the proof.)
+
+\emph{The quadratic equation.} If \(A_0=0\), the coefficient of
+\(z^{J-1}\) in \(T(z_i+z)\) is \(\omega_i\) times a polynomial in
+\(h_i\) of degree two with leading coefficient \(\Delta_2\). If
+\(A_0\ne0\), the coefficient of \(z^{J-2}\) in \(T(z_i+z)\) is
+\(\omega_i\) times a polynomial in \(h_i\) of degree two with leading
+coefficient \(A_0(J-1)\Delta_2\): the derivative \(\Phi'\) contributes
+\((J-1)\Delta_2h_i^2\) at this power, while \(\Phi\) has no
+\(h^2\)-term below \(z^{J-1}\). In both cases the power of \(z\) is
+positive, so the coefficient vanishes because \(T\) is constant.
+Dividing by \(\omega_i\) gives the polynomial \(Q_P\).
+\end{proof}
+
+
+In Section~\ref{sec:selector-example}, \(A_0=0\),
+\(T=\Phi=-\Psi'\), and \(Q_P\) is the coefficient of \(z^7\) in
+\(-\Psi'\). Proposition~\ref{prop:quadratic} does not extend to
+\(p=2\), where one equation can have infinitely many waves
+(Appendix~\ref{sec:low-order}): at \((n,q)=(2,2)\) one finds \(X=15\)
+and \(\kappa=0\).
+
+% ======================================================================
+\section{Proof of Theorem A and of the bounds in Theorem B}\label{sec:proof}
+
+This section does Step~5 of Section~\ref{sec:example} in general and
+proves Theorem~\ref{thm:A} and the bounds in Theorem~\ref{thm:B}.
+
+\subsection{Two values in one wave}\label{sec:two-germs}
+
+For \(n=2,3\) a wave might carry
+the two roots of \(Q_P\) at different poles. A count of zeros and poles
+shows that this does not happen.
+
+\begin{lemma}[Two values, one orbit]\label{lem:two-germs}
+Let \(p\) be even, and let \(v\) be a wave whose free coefficient takes
+at most two values at its poles. Then \(v\) has exactly one pole modulo
+\(\Gamma\).
+\end{lemma}
+
+\begin{proof}
+The free coefficient determines the normalized series, so the series of
+\(v\) fall into at most two classes. By Lemma~\ref{lem:germs}(a) its
+poles lie in at most two cosets of \(\Gamma\), and by part~(c) it lies
+in \(\Wclass\).
+Suppose there are two, containing poles \(z_1\) and \(z_2\), and write
+\(v(z_i+z)=c\,\omega_if(z;h_i)\) as in \eqref{eq:pole-germs}. Put
+\[
+ a=z_2-z_1,\qquad \omega=\frac{\omega_2}{\omega_1}\in\mu_m,\qquad
+ W(x)=v(z_1+a+x)-\omega\,v(z_1+x).
+\]
+We show that \(W\equiv0\). Then \(a\in\Gamma\), which contradicts the
+choice of \(z_1\) and \(z_2\). Suppose \(W\not\equiv0\).
+
+\emph{Zeros and poles of \(W\).} By Corollary~\ref{cor:local}(b), \(W\)
+has a zero of order at least \(nq\) at \(x=0\). It has the same
+character as \(v\), so the same holds at every point of \(\Gamma\). The
+poles of \(v\) form the set \((z_1+\Gamma)\cup(z_1+a+\Gamma)\), so the
+poles of \(W\) lie in \(\Gamma\cup(a+\Gamma)\cup(-a+\Gamma)\). On
+\(\Gamma\) the function \(W\) vanishes, so its poles lie in the two
+cosets \(\pm a+\Gamma\), and they have order at most \(q\).
+
+\emph{The compact surface.} Let \(\cyl\) be the Riemann sphere
+\(\CC\cup\{\infty\}\) if \(\Gamma=\{0\}\); the cylinder \(\CC/\Gamma\)
+with its two ends added, again a sphere, if \(\Gamma\) has rank one;
+and the torus \(\CC/\Gamma\) if \(\Gamma\) is a lattice. The function
+\(W^m\) is invariant under \(\Gamma\), so it is a meromorphic function
+on \(\CC/\Gamma\). By Lemma~\ref{lem:germs}(c), \(v\) and hence \(W^m\)
+are bounded near the added points, so \(W^m\) extends to a meromorphic
+function on \(\cyl\). The quotient map is locally biholomorphic, so it
+preserves orders of zeros and poles. A nonzero meromorphic function on
+a compact Riemann surface has as many zeros as poles, counted with
+multiplicity.
+
+\emph{The case \(n\ge3\).} On \(\cyl\) the function \(W^m\) has poles of
+total order at most \(2qm\), and a zero of order at least \(nqm\). This
+is a contradiction.
+
+\emph{The case \(n=2\).} Now \(m=1\) and \(\omega=1\), the leading
+coefficient \(c\) is the same at all poles, and \(q=p\) is even. If
+\(2a\in\Gamma\), the two cosets \(\pm a+\Gamma\) coincide; then \(W\)
+has poles of total order at most \(q\) and a zero of order at least
+\(2q\), a contradiction. If \(2a\notin\Gamma\), this count gives no
+contradiction: \(W\) has poles of total order at most \(2q\) and a zero
+of order at least \(2q\). One more zero comes from the odd part of
+\(W\). Consider
+\[
+ \Omega(x)=W(x)-W(-x)
+ =v(z_1+a+x)-v(z_1+x)-v(z_1+a-x)+v(z_1-x).
+\]
+The reflection \(x\mapsto-x\) acts on \(\cyl\), so \(\Omega\) is
+meromorphic there, with poles only at the two points \(\pm a\), of
+order at most \(q\). It is odd and \(O(x^{2q})\) at \(0\), hence
+\(O(x^{2q+1})\). At \(x=-a\) the four terms are evaluated at \(z_1\),
+\(z_1-a\), \(z_1+2a\) and \(z_1+a\). The points \(z_1-a\) and
+\(z_1+2a\) are not poles of \(v\), since neither \(a\) nor \(2a\) lies
+in \(\Gamma\). So near \(x=-a\) only the term \(v(z_1+a+x)\) of
+\(W(x)\) has a pole, with leading coefficient \(c\), and only the term
+\(-v(z_1-x)\) of \(W(-x)\) has a pole, with leading coefficient \(-c\)
+because \(q\) is even. Thus \(\Omega(x)=2c\,(x+a)^{-q}+\cdots\) is not
+identically zero, and on \(\cyl\) it has at least \(2q+1\) zeros and at
+most \(2q\) poles. This is impossible. So \(W\equiv0\) in all cases.
+\end{proof}
+
+\subsection{Proof of Theorem A, and the bound of two waves}
+
+Let \(v\) be a wave. By Proposition~\ref{prop:existence} it has a pole,
+so \(q=p/m\) is a positive integer. For odd \(p\) the theorem was
+proved in Section~\ref{sec:odd}. Let \(p\) be even. If \(n\ge4\),
+Proposition~\ref{prop:affine} shows that all poles of all waves carry
+the same free coefficient, and Corollary~\ref{cor:one-germ}(a) applies.
+If \(n\in\{2,3\}\), then \(p\ge4\), because \(p\ge3\) is even, and
+\(q\ge2\); by Proposition~\ref{prop:quadratic} the free coefficients at
+the poles of all waves are roots of \(Q_P\), and
+Lemma~\ref{lem:two-germs} applies.
+In each case \(v\) has exactly one pole modulo \(\Gamma\), and
+Proposition~\ref{prop:spaces} gives its form. This proves
+Theorem~\ref{thm:A}.
+
+By Corollary~\ref{cor:one-germ}(b), two waves that share a value of the
+free coefficient coincide after translation and phase change. So an
+equation has at most as many waves as there are values of the free
+coefficient: at most two, and only one if \(n\ge4\). This proves the
+first assertion of Theorem~\ref{thm:B}.
+
+\subsection{Operators that are not even}\label{sec:not-even}
+
+For \(n=2,3\) the quadratic equation leaves two possible values of the
+free coefficient. The terms of \(\varphi\) that are linear in \(h\)
+decide between them whenever \(P\) is not even. We keep the pair
+\(E=u\), \(F=H_n\) and the assumptions \(p\ge4\) even and \(q\ge2\), and
+recall from \eqref{eq:slopes} that \([z^i]\varphi=A_ih+B_i\) for
+\(0\le i\le J-2\), and that \(a_{p-k}\) has weight \(k\).
+
+\begin{lemma}[The terms linear in \(h\)]\label{lem:slopes}
+Let \(p\ge4\) be even and \(q\ge2\).
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.2em]
+\item \(A_i\) is a weighted-homogeneous polynomial of weight \(i+1\).
+\item \(A_0=c_0\,a_{p-1}\) and \(A_1=c_1\,a_{p-1}^2\), where
+\[
+ c_0=(-1)^q\,\frac{2(n+1)(nq+1)(J+1)}{(n-1)(J-1)},\qquad
+ c_1=-\frac{nq+2}{(n-1)(J-1)}\,c_0 .
+\]
+\item Let \(n\in\{2,3\}\), let \(j\) be odd with \(3\le j\le p-1\), and
+suppose that \(a_{p-i}=0\) for all odd \(i<j\). Then
+\(A_{j-1}=c_{j-1}\,a_{p-j}\) with a number \(c_{j-1}\ne0\) depending
+only on \(n\), \(q\) and \(j\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) By the proof of Lemma~\ref{lem:degree}, \(\lambda^qf(\lambda z;h)\)
+is the series \eqref{eq:family} of the operator \(P_\lambda\) with
+free coefficient \(\lambda^Jh\). The expressions \(E=u\) and \(F=H_n\)
+are homogeneous: \(H_n\) has \(n\) factors and two derivatives, so
+\(H_n\bigl(\lambda^qf(\lambda\,\cdot)\bigr)(z)
+=\lambda^{nq+2}H_n(f)(\lambda z)\). If a Laurent series \(\alpha\) has the
+principal-part polynomial \(\hatt\alpha(\rho)\), then
+\(\lambda^N\alpha(\lambda z)\) has
+\(\lambda^{N-1}\hatt\alpha(\rho/\lambda)\), for every integer \(N\).
+Inserting this into \eqref{eq:phi-formal} shows that the series
+\(\varphi\) of \(P_\lambda\), taken at the free coefficient
+\(\lambda^Jh\), equals \(\lambda^{J+1}\varphi(\lambda z;h)\). Comparing
+the coefficients of \(h\,z^i\) gives
+\(A_i(P_\lambda)=\lambda^{i+1}A_i(P)\), and the coefficients of
+\(P_\lambda\) are \(\lambda^ka_{p-k}\).
+
+(b), (c) By (a), \(A_0\) is a multiple of \(a_{p-1}\), and \(A_1\) is a
+combination of \(a_{p-1}^2\) and \(a_{p-2}\). Under the hypothesis of
+(c), \(A_{j-1}\) has odd weight \(j\), so each of its monomials contains
+a coefficient \(a_{p-i}\) with \(i\) odd; those with \(i<j\) vanish,
+and the only monomial of weight \(j\) containing \(a_{p-i}\) with
+\(i\ge j\) is \(a_{p-j}\) itself. It remains to find the numerical
+coefficients. They depend only on \(n\), \(q\) and \(j\). Since
+\([z^i]\varphi=A_ih+B_i\), the number \(A_i\) is the coefficient of
+\(z^i\) in \(\partial\varphi/\partial h\) at every value of \(h\). So
+the coefficients can be computed from any convenient operator and any
+value of \(h\). This is done in
+Appendix~\ref{app:slopes} by three explicit computations with Laurent
+series. First, \(A_1=0\) for every even operator, so \(A_1\) contains
+no term \(a_{p-2}\). Second, \(c_0\) and \(c_1\) are read off from an
+operator that has an explicit wave; at the free coefficient of this
+wave the derivative of \(f(z;h)\) with respect to \(h\) is also
+explicit. Third, \(c_{j-1}\) is found from the operator
+\(D^p+a\,D^{p-j}\) to first order in \(a\), and an inequality between
+binomial coefficients shows that it is not zero.
+\end{proof}
+
+\begin{proposition}[One wave unless \(P\) is even]\label{prop:not-even}
+Let \(p\ge4\) be even and \(n\in\{2,3\}\).
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.2em]
+\item If \(A_i\ne0\) for some \(i\) with \(1\le i\le J-2\), then the
+free coefficient equals \(-B_i/A_i\) at all poles of all waves, and
+\eqref{eq:main} has at most one wave up to translation and phase
+change.
+\item If \(P\) is not even, then \(A_i\ne0\) for some \(i\) with
+\(1\le i\le p-2\).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Let \(v\) be a wave, and let \(\Phi\) be the entire function of
+Lemma~\ref{lem:bracket-wave} for \(E=u\), \(F=H_n\). By
+Proposition~\ref{prop:quadratic} the free coefficients \(h_i\) at the
+poles of \(v\) are roots of \(Q_P\). So the values
+\(\omega_i(A_0h_i+B_0)\) of \(\Phi\) at the poles lie in a finite set,
+and \(\Phi\) is constant by Lemma~\ref{lem:finite-values}. Hence the
+coefficients of all positive powers of \(z\) in \(\varphi(z;h)\) vanish
+for the free coefficient \(h\) at any pole of any wave; by
+\eqref{eq:slopes},
+\[
+ A_ih+B_i=0\qquad(1\le i\le J-2).
+\]
+If \(A_i\ne0\) for one of these \(i\), then \(h=-B_i/A_i\). So all
+poles of all waves carry the same normalized series, and
+Corollary~\ref{cor:one-germ} applies.
+
+(b) Since \(P\) is not even and \(p\) is even, there is a least odd
+\(j\) with \(a_{p-j}\ne0\), and \(j\le p-1\). If \(j=1\), then
+\(A_1=c_1a_{p-1}^2\ne0\). If \(j\ge3\), then
+\(A_{j-1}=c_{j-1}a_{p-j}\ne0\), and \(2\le j-1\le p-2\).
+\end{proof}
+
+So an equation has at most one wave if \(n\in\{2,3\}\) and \(P\) is not
+even. Together with Section~\ref{sec:odd} and
+Proposition~\ref{prop:affine} this proves the second assertion of
+Theorem~\ref{thm:B}; Table~\ref{tab:cases} collects the cases. The last
+assertion, that \(D^4-s\) with \(s\ne0\) has exactly two waves, is
+proved in
+Section~\ref{sec:two-waves} for \(n=3\) and in Section~\ref{sec:n2} for
+\(n=2\).
+
+Proposition~\ref{prop:not-even}(a) can also apply to an even operator
+when \(p\ge6\). For
+\(n=3\) and \(P(D)=D^6+a_0\) with \(a_0\ne0\) one finds
+\(A_5=-\tfrac{13}{888}\,a_0\), so the equation
+\(v^{(6)}+a_0v+v^3/3=0\) has only one wave,
+\(v=-\tfrac c2\,\wp'(z;0,-a_0/4320)\).
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+case & values of \(h\) on all waves of one equation & proved in\\
+\midrule
+\(p\) odd & no free coefficient & Lemma~\ref{lem:resonance}\\
+\(p\) even, \(n\ge4\) & at most one & Proposition~\ref{prop:affine}\\
+\(p\) even, \(n=2,3\), \(P\) not even & at most one &
+ Propositions~\ref{prop:quadratic} and~\ref{prop:not-even}\\
+\(p\) even, \(n=2,3\), \(P\) even & at most two &
+ Proposition~\ref{prop:quadratic}\\
+\bottomrule
+\end{tabular}
+\caption{The free coefficient \(h\) in the proof of
+Theorems~\ref{thm:A} and~\ref{thm:B}. In each case a wave has one pole
+modulo \(\Gamma\) (Corollary~\ref{cor:one-germ}(a) in the first two
+rows, Lemma~\ref{lem:two-germs} in the last two) and therefore carries one
+value of \(h\) (Lemma~\ref{lem:germs}(a)); each value belongs to at
+most one wave
+(Corollary~\ref{cor:one-germ}(b)).}
+\label{tab:cases}
+\end{table}
+
+% ======================================================================
+\section{The power of a wave}\label{sec:power}
+
+This section does Step~7 of Section~\ref{sec:example} in general and
+proves Theorem~\ref{thm:C}.
+
+\subsection{The formula}\label{sec:power-formula}
+
+Let \(p\ge3\) and let \(u=z^{-q}\sum_jb_jz^j\) be a normalized wave. The coefficients \(b_1,\dots,b_p\) precede the only
+possible resonance \(J=p+2q\), so they are determined by \(P\), and the
+recurrence defines them for every operator, whether or not a wave
+exists. Define \(\ell_0=1,\ell_1,\dots,\ell_p\) by
+\begin{equation}\label{eq:ell}
+ \Bigl(\sum_{i=0}^{p}b_i(P)\,z^i\Bigr)^{m}
+ =\sum_{j=0}^{p}\ell_j(P)\,z^j+O(z^{p+1}).
+\end{equation}
+Then every normalized wave satisfies
+\[
+ u^m=\sum_{j=0}^{p}\ell_j(P)\,z^{j-p}+O(z),
+\]
+so both the principal part and the constant term of \(u^m\) are fixed
+by \(P\).
+
+The power \(u^m\) has trivial character, because \(\chi\) takes values
+in \(\mu_m\); so \(u^m\) is invariant under \(\Gamma\), with one pole
+of order \(p\) modulo \(\Gamma\). We shall write it as a combination
+of standard functions \(\Lambda_r\). For each group \(\Gamma\), and for
+\(r\) in the range given below, there is a unique function
+\(\Lambda_r\) with the following properties. It is invariant under
+\(\Gamma\), has poles only on \(\Gamma\), and satisfies
+\(\Lambda_r=z^{-r}+O(z)\) at \(0\). It is bounded at infinity if
+\(\Gamma=\{0\}\), and at the two ends if \(\Gamma\) has rank one.
+Explicitly:
+\begin{itemize}
+\item if \(\Gamma=\{0\}\): \(\Lambda_r=z^{-r}\), \(1\le r\le p\);
+\item if \(\Gamma=(2\pi i/k)\ZZ\): with \(G=k\,e^{kz}/(e^{kz}-1)\),
+\[
+ \Lambda_r=\frac{(-1)^{r-1}}{(r-1)!}
+ \Bigl(D^{r-1}G-[z^0]\,D^{r-1}G\Bigr),\qquad 1\le r\le p;
+\]
+\item if \(\Gamma\) is a lattice: with \(\wp=\wp(z;\Gamma)\),
+\[
+ \Lambda_r=\frac{(-1)^{r}}{(r-1)!}
+ \Bigl(D^{r-2}\wp-[z^0]\,D^{r-2}\wp\Bigr),\qquad 2\le r\le p.
+\]
+\end{itemize}
+Since \(D^jG=(-1)^jj!\,z^{-j-1}+O(1)\) and
+\(D^j\wp=(-1)^j(j+1)!\,z^{-j-2}+O(1)\), these functions indeed satisfy
+\(\Lambda_r=z^{-r}+O(z)\). Each \(\Lambda_r\) is unique, because the
+difference of two candidates is a bounded function without poles on
+\(\CC/\Gamma\) (or on the sphere), hence a constant, and its constant
+term is zero. No elliptic function has a single simple pole, so there
+is no \(\Lambda_1\) in the lattice case. Writing a function of
+\(\Wclass\) through the derivatives of one function, here \(G\) or
+\(\wp\), is Hermite's decomposition, a standard tool for constructing
+meromorphic travelling waves
+\citep{MusetteConte2003,DeminaKudryashov2011,DeminaKudryashovElliptic2011,DeminaKudryashovKawahara2010}.
+
+\begin{theorem}[The formula for \(u^m\)]\label{thm:power}
+Let \(p\ge3\) and let \(u\) be a normalized wave with group of twisted
+periods \(\Gamma\). Then
+\begin{equation}\label{eq:completion}
+ u^m=\ell_p+\sum_{r=1}^{p}\ell_{p-r}\Lambda_r,
+\end{equation}
+with the functions \(\Lambda_r\) of the group \(\Gamma\), and:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.2em]
+\item if \(\Gamma=\{0\}\), then \(\ell_p=0\);
+\item if \(\Gamma=(2\pi i/k)\ZZ\), then the right-hand side is a monic
+polynomial of degree \(p\) in \(G\); the residue \(\ell_{p-1}\) may be
+nonzero (Corollary~\ref{cor:residue});
+\item if \(\Gamma\) is a lattice, then \(\ell_{p-1}=0\), the term
+\(r=1\) is absent, and the right-hand side is an elliptic function for
+\(\Gamma\).
+\end{enumerate}
+In each case the right-hand side is the only function that is invariant
+under \(\Gamma\), has poles only on \(\Gamma\), is bounded at infinity or
+at the two ends when \(\Gamma\) has rank zero or one, and has the
+principal part and constant term prescribed by \eqref{eq:ell}. In particular, \(u^m\) does not depend on the character
+or on any further coefficient of the wave.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:A}, \(u^m\) is invariant under \(\Gamma\), has a
+single pole of order \(p\) modulo \(\Gamma\), and is bounded at infinity
+or at the two ends when \(\Gamma\) has rank zero or one.
+
+(i) The difference \(u^m-\sum_r\ell_{p-r}z^{-r}\) has no poles and is
+bounded, so it is a constant, equal to its constant term \(\ell_p\).
+Both \(u^m\) and the sum tend to \(0\) at infinity by
+Theorem~\ref{thm:A}(i), so \(\ell_p=0\).
+
+(ii) By \eqref{eq:ell}, \(u^m\) and the right-hand side of
+\eqref{eq:completion} have the same principal part and constant term
+at \(0\). Their difference is invariant under \(\Gamma\), has no poles
+and is bounded at both ends; so it is a constant, which is zero. Since
+\(DG=G(k-G)\), the function \(D^{r-1}G\) is a polynomial of degree \(r\)
+in \(G\) with leading coefficient \((-1)^{r-1}(r-1)!\); so \(\Lambda_p\)
+is monic of degree \(p\) in \(G\), and \(\ell_0=1\).
+
+(iii) The residue \(\ell_{p-1}\) of the elliptic function \(u^m\) at its
+only pole in a period cell vanishes. As in (ii), the difference of
+\(u^m\) and the right-hand side is then an elliptic function without
+poles, hence a constant, which is zero.
+
+Uniqueness, among the functions that are invariant under \(\Gamma\),
+have poles only on \(\Gamma\) and are bounded at infinity or at the
+ends, follows as for \(\Lambda_r\).
+\end{proof}
+
+All coefficients in these formulas are explicit. For instance,
+\([z^0]D^jG=B_{j+1}(1)\,k^{j+1}/(j+1)\) with the Bernoulli polynomials
+\(B_j\), and the constant terms of \(D^j\wp\) are polynomials in the
+invariants of the lattice. The theorem describes \(u^m\) once \(\Gamma\)
+is known; it does not determine the rate \(k\) or the lattice.
+
+\begin{corollary}[Power residue]\label{cor:residue}
+Let \(p\ge3\). The number \(\mathcal R(P)=\ell_{p-1}(P)\) is a polynomial in the
+coefficients of \(P\), and for a normalized wave it equals
+\(\Res_{z=0}u^m\). Every elliptic wave requires \(\mathcal R(P)=0\).
+For a wave with \(\Gamma=(2\pi i/k)\ZZ\),
+\begin{equation}\label{eq:end-values}
+ u_+^{\,m}-u_-^{\,m}=k\,\mathcal R(P),
+\end{equation}
+where \(u_\pm\) are the limits of \(u\) as
+\(\operatorname{Re}(kz)\to\pm\infty\).
+\end{corollary}
+
+\begin{proof}
+The elliptic case is part (iii) of Theorem~\ref{thm:power}. If \(\Gamma\)
+has rank one, then \(G\to k\) as \(\operatorname{Re}(kz)\to+\infty\)
+and \(G\to0\) as \(\operatorname{Re}(kz)\to-\infty\). Since
+\(DG=G(k-G)\), every derivative \(D^jG\), \(j\ge1\), vanishes at both
+ends, so \(\Lambda_r\) takes the same value at both ends for \(r\ge2\),
+while \(\Lambda_1=G-k/2\) increases by \(k\). Formula
+\eqref{eq:completion} gives \eqref{eq:end-values}.
+\end{proof}
+
+For elliptic solutions, conditions obtained from the vanishing of a sum
+of residues are a standard tool \citep{Hone2005,ConteNg2010}; the
+corollary applies it to \(u^m\), which has one pole modulo \(\Gamma\).
+Theorem~\ref{thm:power} and Corollary~\ref{cor:residue} are the precise
+form of Theorem~\ref{thm:C}, which is thereby proved. Formula
+\eqref{eq:completion} has further consequences.
+
+\begin{corollary}\label{cor:power-consequences}
+Let \(p\ge3\).
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.2em]
+\item A rational wave has \(\ell_{p-r}=0\) for \(1\le r<m\), besides
+\(\ell_p=0\).
+\item A twisted wave with \(\Gamma\) of rank one has
+\(\mathcal R(P)=0\).
+\item If \(n\ge3\) and \(\mathcal R(P)\ne0\), every wave is an
+untwisted front: \(\Gamma\) has rank one, the character is trivial, and
+the limits at the two ends are different.
+\item Two waves of one equation that are not related by translation
+and phase change never have the same twisted periods.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(a) By Theorem~\ref{thm:power}(i), \(u^m=\sum_r\ell_{p-r}z^{-r}\), and
+\(u^m=O(z^{-m})\) at infinity by Theorem~\ref{thm:A}(i).
+
+(b) Such a wave tends to \(0\) at both ends
+(Theorem~\ref{thm:A}(ii)), so \(\mathcal R(P)=0\) by
+\eqref{eq:end-values}.
+
+(c) Now \(m\ge2\) and \(\ell_{p-1}=\mathcal R(P)\ne0\). By (a) with
+\(r=1\) no wave is rational, by Corollary~\ref{cor:residue} none is
+elliptic, and by (b) none is twisted. So \(\Gamma\) has rank one and
+the character is trivial, and \(u_+^m\ne u_-^m\) by
+\eqref{eq:end-values}.
+
+(d) If two normalized waves of the same equation have the same group
+\(\Gamma\), then \eqref{eq:completion} gives them the same power
+\(u^m\); their quotient is then a constant in \(\mu_m\), which is \(1\)
+because both begin with \(z^{-q}\).
+\end{proof}
+
+By part~(d), a wave is determined, up to a phase change, by \(P\), the
+position of one pole and the group \(\Gamma\). If \(\Gamma\) has rank
+one and \(\mathcal R(P)\ne0\), the limits satisfy
+\(P(0)u_\pm=Ku_\pm^{\,n}\) by \eqref{eq:normalized}, so
+\(u_\pm^m\in\{0,P(0)/K\}\), and \eqref{eq:end-values} gives the rate
+\(k=\pm P(0)/(K\mathcal R(P))\).
+
+\subsection{The residue condition: the Kuramoto--Sivashinsky equation}\label{sec:ks}\label{ex:ks}
+
+The Kuramoto--Sivashinsky equation with dispersion,
+\(U_t+UU_x+\mu U_{xx}+\delta U_{xxx}+\nu U_{xxxx}=0\), \(\nu\ne0\),
+also describes pressure waves in a liquid with gas bubbles
+\citep{KudryashovSinelshchikovFourthOrder2010}. Its travelling waves
+\(U=w(x-st)\) satisfy
+\[
+ \nu w'''+\delta w''+\mu w'-sw+\frac{w^2}{2}+C=0
+\]
+for a constant \(C\). Since \(n=2\), the shift \(w=v+w_0\) with
+\(w_0^2/2-sw_0+C=0\) removes \(C\) and changes only the constant
+term of the linear part: \(v\) satisfies \(P(D)v+v^2/2=0\) for the operator
+\(P(D)=\nu D^3+\delta D^2+\mu D+a_0\) with \(a_0=w_0-s\), and \(q=3\).
+
+Consider first \(\nu=1\), so that \(P\) is monic. Then \(c=120\), and
+\(u=v/120\) satisfies \(P(D)u+60u^2=0\). For
+\(u=z^{-3}+b_1z^{-2}+b_2z^{-1}+O(1)\), the coefficients of \(z^{-5}\)
+and \(z^{-4}\) give
+\[
+ 96b_1+12\delta=0,\qquad 114b_2+6\delta b_1-3\mu+60b_1^2=0,
+\]
+so that
+\[
+ u=z^{-3}-\frac{\delta}{8}z^{-2}+\frac{16\mu-\delta^2}{608}z^{-1}+O(1).
+\]
+Here \(m=1\) and \(\mathcal R(P)=\Res_{z=0}u=(16\mu-\delta^2)/608\).
+For general \(\nu\), the function \(v/\nu\) solves the equation of the
+monic operator \(P/\nu\). So \(v=120\nu u\), where \(u\) is a normalized
+wave of \(P/\nu\), and
+\(\mathcal R=(16\mu\nu-\delta^2)/(608\nu^2)\). By
+Corollary~\ref{cor:residue}, every elliptic travelling wave requires
+\[
+ \delta^2=16\mu\nu,
+\]
+independently of \(s\) and \(C\)
+\citep[Eq.~(3) and Theorem~1(i)]{Eremenko2006}.
+
+The condition holds for \(\delta=4\) and \(\mu=\nu=1\). At the speed
+\(s=0\), the functions
+\[
+ w=-60\,\wp'-60\,\wp-1,\qquad \wp=\wp\bigl(z;\tfrac1{12},g_3\bigr),
+\]
+solve \(w'''+4w''+w'+w^2/2+C=0\) with \(C=1080g_3-13\). For
+\(27g_3^2\ne12^{-3}\) they are elliptic. So at a single speed there
+are infinitely many elliptic travelling waves,
+one for each integration constant other than \(-8\) and \(-18\). This
+is why the bound of Theorem~\ref{thm:B} refers to a fixed integration
+constant as well as to a fixed speed: the operator \(P\) depends on
+both. For \(C=-8\) and \(C=-18\), that is, \(g_3=\pm1/216\), the
+function \(\wp\) degenerates, and the formula gives a wave that is
+rational in an exponential. By Theorem~\ref{thm:B} it is the only
+wave, so for these two constants there is no elliptic wave. Thus the
+condition \(\delta^2=16\mu\nu\) is necessary for an elliptic wave and
+not sufficient. The elliptic travelling waves of the
+Kuramoto--Sivashinsky equation with dispersion were found by
+\citet{Kudryashov1990}, and by \citet{Eremenko2006} there are no others.
+
+\subsection{\texorpdfstring{Two waves for \(n=2\)}{Two waves for n = 2}}\label{sec:n2}
+
+The bound of two waves is also attained for \(n=2\), and
+Theorem~\ref{thm:power} finds the waves. For
+\(P(D)=D^4-s\) with \(s\ne0\) we have \(q=4\), \(m=1\) and
+\(K=840\), and the normalized equation is \(u''''=s\,u+840\,u^2\). The
+recurrence gives \(u=z^{-4}-\tfrac{s}{1680}+O(z^{4})\), so that
+\(\ell_1=\ell_2=\ell_3=0\) and \(\ell_4=-s/1680\) in \eqref{eq:ell}. By
+Theorem~\ref{thm:power}, every normalized wave is
+\(u=\Lambda_4-s/1680\). To write \(\Lambda_4\) in the same way for
+all three kinds of \(\Gamma\), we use the Weierstrass function
+\(\wp=\wp(z;g_2,g_3)\) and its degenerations. If \(\Gamma\) is a
+lattice, \(\wp\) is its Weierstrass function. If
+\(\Gamma=(2\pi i/k)\ZZ\), put \(\wp=k^2/12-DG\) and
+\((g_2,g_3)=(k^4/12,-k^6/216)\). If \(\Gamma=\{0\}\), put
+\(\wp=z^{-2}\) and \((g_2,g_3)=(0,0)\). In all three cases
+\(\wp''=6\wp^2-g_2/2\) and
+\(\Lambda_4=\tfrac16\bigl(\wp''-[z^0]\wp''\bigr)=\wp^2-g_2/10\), so
+that
+\[
+ u=\wp^2-\frac{g_2}{10}-\frac{s}{1680}.
+\]
+Substituting into the equation gives
+\[
+ g_3=0,\qquad g_2^2=\frac{s^2}{23184}.
+\]
+So \(g_3=0\) and \(g_2\ne0\), and \(\wp\) is not degenerate. Hence \(v''''-sv+v^2/2=0\) has exactly two waves for every
+\(s\ne0\), both elliptic, one for each root
+\(g_2=\pm s/(12\sqrt{161})\); they are different waves, because their
+free coefficients \(h=g_2^3/10400\) are opposite and not zero. They are the
+solutions (26) of \citet{DeminaKudryashovKawahara2010}, with \(g_2\) a
+root of the quadratic equation (25) of that paper, at \(\beta=0\) and
+\(C_1=0\) in its notation. With Section~\ref{sec:two-waves}, this
+completes the proof of Theorem~\ref{thm:B}.
+
+The same computation shows that the bound is attained for \(p=6\). For
+\(P(D)=D^6+a_0\) with \(a_0\ne0\) it gives
+\(u=\wp^3-\tfrac{3g_2}{20}\wp-\tfrac{3g_3}{28}+\tfrac{a_0}{665280}\)
+with \(g_2=0\) and \(g_3^2=a_0^2/3643833600\). So
+\(v^{(6)}+a_0v+v^2/2=0\) has exactly two waves, both elliptic, one for
+each sign of \(g_3\); they are different waves, because their lattices
+are different.
+% ======================================================================
+\section{Further consequences, and an example}\label{sec:consequences}\label{sec:examples}
+
+\subsection{Equations without dissipation}\label{sec:even}
+
+If \(v\) solves \eqref{eq:main}, then \(v(-z)\), multiplied by a number
+whose \(m\)th power is \((-1)^p\), solves the same equation with
+\(P(\rho)\) replaced by \((-1)^pP(-\rho)\). In particular, for even
+\(P\) the \emph{reflection} \(v(z)\mapsto v(-z)\) is a symmetry of
+\eqref{eq:main}, and every wave is symmetric:
+
+\begin{proposition}[Reflection]\label{prop:reflection}
+Let \(P\) be even. Every wave \(v\) has one pole modulo \(\Gamma\), its
+character has order at most two, and at every pole \(z_0\)
+\begin{equation}\label{eq:reflection}
+ v(z_0+z)=(-1)^q\,v(z_0-z).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The pole orbit comes from Theorem~\ref{thm:A} if \(p\ge3\) and from
+Proposition~\ref{prop:low-order} if \(p=2\). Since \(P\) is even,
+\(v(2z_0-z)\) is again a wave. If \(q\) is odd, then \(m=p/q\) is even,
+so \(-1\in\mu_m\) and \(-v(2z_0-z)\) is a wave too. In both cases
+\(\tilde v(z)=(-1)^qv(2z_0-z)\) is a wave with the same leading
+coefficient as \(v\) at \(z_0\). Reflection multiplies the normalized
+Laurent coefficient \(b_j\) by \((-1)^j\), so it preserves the free
+coefficient \(b_J\), because \(J=p+2q\) is even. A normalized series is
+determined by its free coefficient, so the series of \(v\) and
+\(\tilde v\) at \(z_0\) coincide, and \(\tilde v=v\). This is
+\eqref{eq:reflection}.
+
+Place the pole at \(0\), so that \(v(-z)=(-1)^qv(z)\). For a twisted
+period \(\gamma\), \(v(z+\gamma)=\chi(\gamma)v(z)\) and reflection give
+\(v(z-\gamma)=\chi(\gamma)v(z)\). On the other hand
+\(v(z-\gamma)=\chi(\gamma)^{-1}v(z)\). Hence \(\chi(\gamma)^2=1\).
+\end{proof}
+
+\begin{corollary}[Limits at the two ends]\label{cor:ends}
+Let \(P\) be even and let \(v\) be a wave with \(\Gamma\) of rank one.
+The limits \(v_\pm\) of \(v\) at its two ends are constant solutions of
+\eqref{eq:main}, and \(v_+=(-1)^qv_-\). Hence a front, with
+\(v_+\ne v_-\), requires odd \(q\); then \(n\) is odd, and \(v_\pm\) are
+opposite nonzero constant solutions.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:reflection} and Lemma~\ref{lem:germs}(c),
+\(v\) is a rational function of \(t=e^{2\pi iz/\tau}\) that is finite
+at \(t=0\) and \(t=\infty\);
+here \(\tau\) generates the group of ordinary periods. So
+the limits exist, and all derivatives of \(v\) tend to \(0\) at the
+ends, because \(D=(2\pi i/\tau)\,t\,d/dt\). Letting
+\(\operatorname{Re}(kz)\to\pm\infty\) in \eqref{eq:main} shows that
+\(v_\pm\) are constant solutions. Reflection in a pole interchanges the
+two ends, so taking limits in \eqref{eq:reflection} gives
+\(v_+=(-1)^qv_-\). If \(q\) is odd, \(n\) is odd as in the previous
+proof, and a front has \(v_+=-v_-\ne v_-\), so \(v_\pm\ne0\).
+\end{proof}
+
+\subsection{A first-derivative term}\label{sec:drift}
+
+If a first-derivative term is added to an even operator, the
+reflection symmetry is lost. For \(n\ge3\) and \(p\ge4\) there are then
+no waves at all.
+
+\begin{corollary}[No waves with a first-derivative term]\label{cor:drift}
+Let \(n\ge3\), let \(p\ge4\) be even, and let \(P(D)=P_e(D)+a_1D\),
+where \(P_e\) is even and \(a_1\ne0\). Then every meromorphic solution
+of \eqref{eq:main} is constant; the constant solutions are \(v=0\) and
+the roots of \(v^m=-nP(0)\).
+\end{corollary}
+
+\begin{proof}
+Suppose there is a wave; then \(p=mq\) with \(q\) an integer, and
+\(K=(q)_p\). At a pole, in the normalization \eqref{eq:normalized},
+induction on \eqref{eq:recurrence} gives \(b_j=0\) for odd \(j<p-1\): the even part \(P_e\) and the
+nonlinearity preserve the parity of Laurent indices, and the term
+\(a_1D\) first contributes at index \(p-1\). At that index
+\(I(p-1)=-nK\), because \(0\le p-1-q<p\). Hence
+\[
+ b_{p-1}=-\frac{qa_1}{nK},\qquad
+ \mathcal R(P)=\Res_{z=0} u^m=m\,b_{p-1}=-\frac{pa_1}{nK}\ne0 ;
+\]
+here \(\Res u^m=mb_{p-1}\) because \(b_{p-1}\) is the only coefficient
+of odd index below \(p\). Since \(b_j=0\) for odd \(j<p-1\),
+\begin{equation}\label{eq:drift-parity}
+ v(z_0+z)-(-1)^qv(z_0-z)=O(z^{p-1-q})
+\end{equation}
+at every pole \(z_0\), and the exponent is positive for \(n\ge3\) and
+\(p\ge4\).
+
+By Corollary~\ref{cor:power-consequences}(c) the wave is untwisted and
+\(\Gamma\) has rank one, and by Theorem~\ref{thm:A} its poles form one
+orbit of \(\Gamma\). Place one of them at \(0\). Then
+\(u(z)-(-1)^qu(-z)\) is invariant under \(\Gamma\), has no poles by
+\eqref{eq:drift-parity}, is bounded at both ends and vanishes at \(0\);
+so it is zero. Then all Laurent coefficients of odd index of \(u\) at
+\(0\) vanish, in particular \(b_{p-1}=0\), which is false.
+\end{proof}
+
+In terms of \eqref{eq:pde} with zero integration constant: let
+\(n\ge3\), let the order \(p+1\) be at least \(5\), and let
+\(\varepsilon U_{xx}\) with \(\varepsilon\ne0\) be the only derivative
+of even order. Then no travelling wave is meromorphic and nonconstant.
+For example, travelling waves \(U=w(x-st)\) of
+\[
+ U_t+U^2U_x+\varepsilon U_{xx}+\delta U_{xxx}+U_{xxxxx}=0,
+\]
+with zero integration constant, satisfy \eqref{eq:main} with \(n=3\)
+and \(P(\rho)=\rho^4+\delta\rho^2+\varepsilon\rho-s\), to which the
+corollary applies when \(\varepsilon\ne0\).
+
+\begin{remark}\label{rem:drift}
+(a) In some cases the absence of waves has a local reason. For \(n=3\) and
+\(P(D)=D^4+a_2D^2+a_1D+a_0\), the number \(F_J\) of
+Section~\ref{sec:local} equals \(-a_1^2a_2/900\). So for
+\(a_1a_2\ne0\) no Laurent series with a pole satisfies the equation,
+and Proposition~\ref{prop:existence} alone shows that every meromorphic
+solution is constant, as in \citep{KudryashovSinelshchikov2012SH} for
+the Swift--Hohenberg equation without dispersion. For \(a_2=0\) the number \(F_J\) vanishes, and the
+conclusion rests on Corollary~\ref{cor:drift}.
+
+(b) The proof of Corollary~\ref{cor:drift} needs the exponent
+\(p-1-q\) in \eqref{eq:drift-parity} to be positive; it is zero for
+\(n=3\), \(p=2\) and negative for \(n=2\). For \(p=2\) the conclusion
+does not hold: for \(n=3\), the function \(v=c\,G\), with \(G=k\,e^{kz}/(e^{kz}-1)\)
+and \(c^2=-6\), solves \(v''-3kv'+2k^2v+v^3/3=0\), and for \(n=2\) the front of the
+Korteweg--de Vries--Burgers equation is a wave of
+\(v''+a_1v'+a_0v+v^2/2=0\) with \(a_1\ne0\) and
+\(a_0=\pm6a_1^2/25\).
+\end{remark}
+
+For \(n=2\) and even \(p\ge4\) the conclusion of
+Corollary~\ref{cor:drift} holds at least up to degree ten.
+
+\begin{proposition}[\(n=2\), \(p\le10\)]\label{prop:drift-n2}
+Let \(n=2\), let \(p\in\{4,6,8,10\}\), and let \(P(D)=P_e(D)+a_1D\),
+where \(P_e\) is even and \(a_1\ne0\). Then \eqref{eq:main} has no
+waves.
+\end{proposition}
+
+\begin{proof}
+Suppose there is a wave; by Theorem~\ref{thm:A} it has one of the
+forms (i)--(iii). Here \(m=1\) and \(q=p\). As in the proof of
+Corollary~\ref{cor:drift}, the recurrence gives \(b_j=0\) for odd
+\(j<p-1\) and
+\(\Res_{z=0}u=b_{p-1}=pa_1/(p!-2K)\ne0\). So the wave is not elliptic.
+For a rational wave \(u=\sum_{j=1}^{p}d_jz^{-j}\), the coefficients of
+\(z^{-1}\) and \(z^{-2}\) in \eqref{eq:normalized} at infinity give
+\(a_0d_1=0\) and \(a_0d_2-a_1d_1=Kd_1^2\), so
+\(d_1\in\{0,-a_1/K\}\). But \(d_1=b_{p-1}\), and \(b_{p-1}\) is neither
+of these numbers, because \((2-p)K<0<p!\). For the waves that are
+rational in an exponential, an exact elimination in the space of
+Theorem~\ref{thm:A}(ii), with all coefficients of \(P_e\) unknown,
+shows that \(a_1=0\) (Appendix~\ref{app:computations}).
+\end{proof}
+
+We do not know a proof for all even \(p\ge4\).
+
+\subsection{The Swift--Hohenberg equation with dispersion}\label{sec:sh}
+
+Theorem~\ref{thm:A} turns the search for waves into a finite
+computation. We carry it out for the equation
+\[
+ U_t+2U_{xx}-\sigma U_{xxx}+U_{xxxx}=\alpha U-U^3 ,
+\]
+the pure cubic case of the equation studied by
+\citet{KudryashovSinelshchikov2012SH}. Travelling waves \(U=w(x-st)\)
+satisfy \(P(D)w+w^3=0\) with
+\[
+ P(\rho)=\rho^4-\sigma\rho^3+2\rho^2-s\rho-\alpha ;
+\]
+this is \eqref{eq:main} for \(v=\sqrt3\,w\), so \(n=3\) and \(q=2\).
+The operator is not even unless \(\sigma=s=0\). We determine all waves
+that are rational in an exponential.
+
+By the scaling of Section~\ref{sec:local}, a wave of \(P\) with rate
+\(2\lambda\) comes from a wave with rate \(2\) of the operator
+\(\widetilde P\) given by
+\[
+ \widetilde P(\rho)=\rho^4+a_3\rho^3+a_2\rho^2+a_1\rho+a_0,\qquad
+ P(\rho)=\lambda^4\widetilde P(\rho/\lambda).
+\]
+We first find the waves with rate \(2\), with \(a_3,\dots,a_0\)
+unknown, and then return to \(P\).
+
+By Theorem~\ref{thm:A}(ii), a wave with rate \(2\) lies, after a
+translation, in one of two spaces according to its character. We place
+the pole at \(i\pi/2\). If the multiplier under \(z\mapsto z+i\pi\) is
+\(-1\), the space is spanned by \(\sech z\) and \(D\sech z\); if the
+multiplier is \(1\), it is spanned by \(1\), \(\tanh z\) and
+\(D\tanh z=\sech^2z\). The normalized equation
+is \(\widetilde P(D)u=120u^3\). We scale the amplitude so that the
+leading coefficient at \(i\pi/2\) is \(i/2\) in the first space and
+\(-1/2\) in the second. The squares of these numbers are
+\(\mp\tfrac14\), so the coefficient \(120\) becomes \(\mp480\), and the
+wave has one of the forms
+\begin{equation}\label{eq:sh-spaces}
+\begin{aligned}
+ w_1&=(D-\xi)\,\tfrac12\sech z, &\qquad
+ &\text{with}\quad\widetilde P(D)w_1=-480\,w_1^3,\\
+ w_2&=\beta+\tfrac12\sech^2z-\tfrac{\xi}{2}\tanh z, &\qquad
+ &\text{with}\quad\widetilde P(D)w_2=480\,w_2^3 .
+\end{aligned}
+\end{equation}
+The parameter \(\beta\) is the midpoint of the two end values
+\(\beta\mp\xi/2\) of \(w_2\) as \(\operatorname{Re}z\to\pm\infty\).
+
+Both substitutions are finite computations. For \(w_2\), write
+\(Y=(1+e^{2z})^{-1}\), so that \(\tanh z=1-2Y\), \(DY=-2Y(1-Y)\), and
+\(w_2\) is a polynomial of degree two in \(Y\). Then
+\(\widetilde P(D)w_2-480w_2^3\) is a polynomial of degree at most six
+in \(Y\). The coefficient of \(Y^6\) vanishes by the normalization, the
+coefficients of \(Y^5,\dots,Y^2\) determine \(a_3,\dots,a_0\) in turn
+(Table~\ref{tab:sh}, top), and what remains is affine in \(Y\). An
+affine function of \(Y\) is zero exactly when it vanishes at \(Y=0\)
+and \(Y=1\), that is, at the two ends, where all derivatives of \(w_2\)
+tend to \(0\). So the remaining conditions are
+\(w_\pm(a_0-480\,w_\pm^2)=0\) for the two end values
+\(w_\pm=\beta\mp\xi/2\). The end values are therefore equal, opposite,
+or one of them is zero, which puts \((\beta,\xi)\) on one of the lines
+\(\xi=0\), \(\beta=0\), \(\beta=\pm\xi/2\); on each line, inserting
+\(a_0\) from the top of the table gives the equation in the lower part
+of Table~\ref{tab:sh}. The four lines meet only at the origin
+\(\beta=\xi=0\), which gives the wave \(\tfrac12\sech^2z\). For \(w_1\)
+the same computation determines \(a_3,\dots,a_0\) and leaves one
+polynomial condition on \(\xi\).
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+ & twisted, \(w_1\) & untwisted, \(w_2\)\\
+\midrule
+\(a_3\) & \(-14\xi\) & \(-14\xi\)\\
+\(a_2\) & \(46\xi^2+10\) & \(46\xi^2-120\beta-20\)\\
+\(a_1\) & \(-2\xi(7\xi^2+10)\) & \(-2\xi(7\xi^2-300\beta-20)\)\\
+\(a_0\) & \(-14\xi^4-80\xi^2-11\) &
+ \(1440\beta^2-120\beta\xi^2+480\beta-14\xi^4+160\xi^2+64\)\\
+condition & \(\xi(\xi^2-1)(7\xi^2+17)=0\) & see below\\
+\bottomrule
+\end{tabular}
+
+\medskip
+\begin{tabular}{@{}ll@{}}
+\toprule
+line & remaining equation for \(w_2\) (necessary and sufficient)\\
+\midrule
+\(\beta=-\xi/2\) & \(\xi(\xi-4)(\xi^2-4)(7\xi-2)=0\)\\
+\(\beta=\xi/2\) & \(\xi(\xi+4)(\xi^2-4)(7\xi+2)=0\)\\
+\(\xi=0\) & \(\beta(30\beta^2+15\beta+2)=0\)\\
+\(\beta=0\) & \(\xi(\xi^2-4)(7\xi^2+8)=0\)\\
+\bottomrule
+\end{tabular}
+\caption{The forms \eqref{eq:sh-spaces} at rate \(k=2\). Top: the
+coefficients of \(\widetilde P\) and the remaining condition. Bottom:
+the remaining equation for \(w_2\) on each of the four lines.}
+\label{tab:sh}
+\end{table}
+
+Altogether there are five values of \(\xi\) for the twisted form
+\(w_1\) and fifteen pairs \((\beta,\xi)\) for the untwisted form
+\(w_2\). To return to the physical equation, rescale by
+\(\lambda\ne0\): the wave is
+\(A\,w_j(\lambda z)\) for the operator
+\(P(\rho)=\lambda^4\widetilde P(\rho/\lambda)\), with
+\(\Gamma=(i\pi/\lambda)\ZZ\), that is, with rate \(k=2\lambda\), and with
+\(A^2=480\lambda^4\) for \(w_1\) and \(A^2=-480\lambda^4\) for \(w_2\).
+Comparing coefficients with \(P\) gives
+\[
+ \lambda^2a_2=2,\qquad \sigma=-\lambda a_3,\qquad
+ s=-\lambda^3a_1,\qquad \alpha=-\lambda^4a_0 .
+\]
+Here \(a_2\ne0\) for all twenty parameter values, and
+\(\sigma^2=2a_3^2/a_2\). Replacing \(z\) by \(-z\) turns \(w_1\) and
+\(w_2\) into \(-w_1\) and \(w_2\) with \(-\xi\) in place of \(\xi\); so
+the parameter values with \(\xi\) and \(-\xi\), taken with the factors
+\(\lambda\) and \(-\lambda\), describe the same wave of the same
+equation. As \(s\) and \(\alpha\) vary, the dispersion
+coefficients that admit waves rational in an exponential are
+\begin{equation}\label{eq:sh-sigma}
+\begin{aligned}
+ \text{twisted:}&\quad \sigma^2\in\Bigl\{0,\ 7,\ \frac{833}{89}\Bigr\},\\
+  \text{untwisted:}&\quad \sigma^2\in\Bigl\{0,\ \frac{392}{71},\
+ \frac{784}{127},\ \frac{1568}{239},\ \frac{392}{41},\
+ \frac{392}{11}\Bigr\}.
+\end{aligned}
+\end{equation}
+Each value of \(\sigma\) comes with the values of \(s\) and \(\alpha\)
+determined by Table~\ref{tab:sh}. By Theorem~\ref{thm:A} there are no
+further waves rational in an exponential, and by
+Proposition~\ref{prop:not-even} an equation with \(\sigma\ne0\) has at
+most one wave; each of the two values of \(\sigma\) with
+\(\sigma^2=392/11\) occurs for two waves, which have different \(s\)
+and \(\alpha\).
+
+The list agrees with \citep{KudryashovSinelshchikov2012SH}, where the
+equation contains an additional quadratic term \(bU^2\). The untwisted
+waves with \(\sigma\ne0\) are its solutions with one pole per period,
+at \(b=0\) in conditions (25) and (26) of that paper. The twisted waves
+with \(\sigma\ne0\) are degenerations of its elliptic solutions with
+poles of two types; those solutions satisfy the
+condition\footnote{The condition is \(\alpha=2b^2/(9\kappa)\) for the
+nonlinear terms \(\alpha U+bU^2+\kappa U^3\); here \(\kappa=-1\), and
+\(\kappa=30\) in \citep{KudryashovSinelshchikov2012SH}.} under which
+adding a constant to \(U\) removes the quadratic term and leaves no
+constant term. The stationary waves are in Section~3 of that paper.
+
+The list also illustrates the results of the preceding sections. By
+Corollaries~\ref{cor:residue} and~\ref{cor:power-consequences}(b), every
+elliptic wave and every twisted wave rational in an exponential has
+\(\mathcal R(P)=0\), which for the Swift--Hohenberg operator reads
+\[
+ s=\frac{\sigma\,(392-39\sigma^2)}{1372};
+\]
+this is the speed of the elliptic solutions in
+\citep{KudryashovSinelshchikov2012SH}. And the entries with
+\(\sigma=0\) agree with Corollary~\ref{cor:drift}: for \(\sigma=0\) and
+\(s\ne0\), the operator is an even polynomial minus \(sD\), so there
+are no waves; accordingly, \(\sigma=-\lambda a_3=14\lambda\xi\) vanishes
+only for \(\xi=0\), and then \(a_1=0\) and \(s=0\).
+
+Few of these waves are real on the real axis. Suppose that a wave
+\(w=A\,w_j(\lambda z)\) of the list is. At every pole \(w^2\sim-120\,(z-z_0)^{-4}\), so the leading coefficient is
+purely imaginary. At a real pole it would be real; so \(w\) has no real
+pole. Its poles come in conjugate pairs, with conjugate, hence
+opposite, leading coefficients. An untwisted wave has the same leading
+coefficient at all its poles; so no untwisted wave is real. For the
+twisted waves with \(\xi^2=-17/7\) we have \(\lambda^2=-7/356\), so all
+poles lie on one line parallel to the real axis; a conjugate pair of
+poles would place this line on the real axis, where \(w\) has no pole;
+so these waves are not real either. The twisted waves with \(\xi=0\) and \(\xi=\pm1\) are
+real: there \(\lambda^2=1/5\) and \(1/28\), so \(\lambda\) and \(A\)
+are real, and \(w_1\) is real on the real axis for real \(\xi\).
+
+% ======================================================================
+\section{Open questions}\label{sec:scope}
+
+The bound of two waves is attained for \(p=4\) with \(n=2\) and \(n=3\)
+(Sections~\ref{sec:two-waves} and~\ref{sec:n2}) and for \(p=6\) with
+\(n=2\) (Section~\ref{sec:n2}). We do not know an equation with two
+waves for \(n=3\) and \(p\ge6\), or for \(n=2\) and \(p\ge8\).
+
+Theorems~\ref{thm:A} and~\ref{thm:B} describe all waves of a single
+equation. The inverse question, which operators admit waves, is not
+treated here beyond the examples of Sections~\ref{sec:example},
+\ref{sec:power} and~\ref{sec:consequences}; for \(n=2\), the
+operator--wave pairs with prescribed rate or lattice are counted in
+\citep{MigitaBinomialCount2026}. How to select the real bounded waves
+from these complex spaces, and how stable they are, remain open
+questions.
+
+\appendix
+
+% ======================================================================
+\section{Notation}\label{app:notation}
+
+Table~\ref{tab:notation} lists the main symbols, with the place where
+each is introduced.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}l@{\hspace{1em}}>{\raggedright\arraybackslash}p{0.56\textwidth}@{\hspace{1em}}l@{}}
+\toprule
+symbol & meaning & see\\
+\midrule
+\(D\); \(n\), \(m=n-1\) & \(d/dz\); power of the nonlinearity; phases \(\omega\in\mu_m\) & \eqref{eq:main}\\
+\(p\), \(q=p/m\) & degree of \(P\); order of every pole & \eqref{eq:balance}\\
+\((a)_k\) & rising factorial \(a(a+1)\cdots(a+k-1)\) & \eqref{eq:balance}\\
+wave & nonconstant solution of \eqref{eq:main} that is meromorphic in \(\CC\) & Section~\ref{sec:intro}\\
+\(\Wclass\) & functions that are rational, rational in an exponential, or elliptic & Section~\ref{sec:intro}\\
+\(\Gamma\), \(\chi\) & group of twisted periods of a wave; its character & Definition~\ref{def:twisted}\\
+twisted, untwisted & with nontrivial, trivial character & Section~\ref{sec:intro}\\
+\(k\); ends; front & rate, \(\Gamma=(2\pi i/k)\ZZ\); \(\operatorname{Re}(kz)\to\pm\infty\); wave with different limits at the ends & Section~\ref{sec:intro}\\
+\(a_{p-k}\) & coefficient of \(D^{p-k}\) in \(P\); it has weight \(k\) & Section~\ref{sec:local}\\
+\(K\), \(c\) & \(K=(-1)^p(q)_p\) and \(c^m=-nK\) & \eqref{eq:normalized}\\
+\(u\) & normalized wave, \(u(z)=v(z_0+z)/c=z^{-q}(1+O(z))\), \(P(D)u=Ku^n\) & \eqref{eq:normalized}\\
+\(b_j\), \(I(j)\) & normalized Laurent coefficients; indicial polynomial & \eqref{eq:recurrence}\\
+\(J\), \(h\) & for even \(p\): resonance index \(J=(n+1)q\); free coefficient \(h=b_J\) & Lemma~\ref{lem:resonance}, \eqref{eq:family}\\
+\(f(z;h)\), \(F_J\) & series defined by the recurrence; \(P(D)f-Kf^n=-F_Jz^q\) & \eqref{eq:family}\\
+\(\omega_i\), \(h_i\) & phase and free coefficient of a wave at its pole \(z_i\) & \eqref{eq:pole-germs}\\
+\(S\), \(d(z)\) & pole set of a solution; distance to it & Section~\ref{sec:analytic}\\
+\(g_r\), \(G=g_m\) & functions with simple poles on \(\Gamma=(2\pi i/k)\ZZ\) & \eqref{eq:periodic-form}\\
+\(V_j^\chi\), \(g_\chi\) & functions of the second kind on a lattice, poles of order \(\le j\); element of \(V_1^\chi\) with residue \(1\) & Section~\ref{sec:spaces}\\
+\(\wp(z;g_2,g_3)\), \(\wp(z;\Gamma)\) & Weierstrass function with \((\wp')^2=4\wp^3-g_2\wp-g_3\); that of the lattice \(\Gamma\) & Section~\ref{sec:two-waves}\\
+\(\hatt\alpha\) & principal-part polynomial of a Laurent series \(\alpha\) & Section~\ref{sec:selectors}\\
+\(E\), \(F\); \(\varphi\), \(\Phi\) & two expressions in \(u\); the combination \eqref{eq:phi-formal} on \(f(z;h)\) and on a wave & \eqref{eq:phi-formal}\\
+\(H\), \(H_n\) & \(H(u)=uu''-\tfrac{q+1}{q}(u')^2\) and \(H_n=u^{n-2}H\) & \eqref{eq:seed}, Section~\ref{sec:quadratic}\\
+\(\Delta_1\) & slope in \(h\) of the coefficient \([z^{p-2q-1}]\varphi\), for \(n\ge4\) & Proposition~\ref{prop:affine}\\
+\([h^k]\), \([z^j]\) & coefficient of \(h^k\), of \(z^j\) in a series & Section~\ref{sec:selectors}\\
+\(\psi\), \(\kappa\), \(\Delta_2\); \(X\) & leading coefficients of the terms in \(h^2\), for \(n=2,3\); \(\psi=\binom n2/(X-n)\) & \eqref{eq:psi}--\eqref{eq:Delta2}\\
+\(a_*\) & leading coefficient of \(\hatt E\) for \(E=u\) & Proposition~\ref{prop:quadratic}\\
+\(A_i\), \(B_i\) & \([z^i]\varphi=A_ih+B_i\) for the pair \((u,H_n)\) and \(i\le J-2\) & \eqref{eq:slopes}\\
+\(T\); \(Q_P\) & entire function whose values at the poles do not contain \(h\); quadratic polynomial with \(Q_P(h)=0\) & Proposition~\ref{prop:quadratic}\\
+\(c_0\), \(c_1\), \(c_{j-1}\) & numerical factors of \(A_0\), \(A_1\), \(A_{j-1}\) & Lemma~\ref{lem:slopes}\\
+\(\ell_j\), \(\mathcal R(P)\) & coefficient of \(z^{j-p}\) in \(u^m\); the residue \(\mathcal R(P)=\ell_{p-1}\) & \eqref{eq:ell}, Corollary~\ref{cor:residue}\\
+\(\Lambda_r\) & invariant function with \(\Lambda_r=z^{-r}+O(z)\) & Section~\ref{sec:power}\\
+\bottomrule
+\end{tabular}
+\caption{Notation used throughout.}
+\label{tab:notation}
+\end{table}
+
+
+
+% ======================================================================
+\section{Elliptic functions of the second kind}\label{app:deferred}\label{app:second-kind}
+
+We prove Lemma~\ref{lem:second-kind}. Recall that \(V_j^\chi\) is the
+space of meromorphic functions \(w\) with
+\(w(z+\gamma)=\chi(\gamma)w(z)\) for \(\gamma\) in the lattice
+\(\Gamma\), whose poles lie in \(\Gamma\) and have order at most \(j\).
+
+\begin{proof}[Proof of Lemma~\ref{lem:second-kind}]
+A function \(w\) in \(V_0^\chi\) is entire, and \(|w|\) is periodic, so
+\(w\) is bounded and hence constant; a nonzero constant has trivial
+character. Thus \(V_0^\chi=0\) if \(\chi\) is not trivial.
+
+For existence, let \(\sigma\) be the Weierstrass sigma function of
+\(\Gamma\), and let \(\eta\colon\Gamma\to\CC\) be the quasi-period
+homomorphism of the zeta function, \(\zeta(z+\gamma)=\zeta(z)+\eta(\gamma)\).
+The function \(e^{az}\sigma(z-z_\chi)/\sigma(z)\) has the multiplier
+\(\exp\bigl(a\gamma-\eta(\gamma)z_\chi\bigr)\) under \(z\mapsto z+\gamma\).
+If \(\gamma_1,\gamma_2\) is a basis of \(\Gamma\), Legendre's relation
+\(\eta(\gamma_1)\gamma_2-\eta(\gamma_2)\gamma_1=\pm2\pi i\) shows that
+\((a,z_\chi)\mapsto\bigl(a\gamma_1-\eta(\gamma_1)z_\chi,\,a\gamma_2-\eta(\gamma_2)z_\chi\bigr)\)
+is a linear bijection of \(\CC^2\); so \(a\) and \(z_\chi\) can be chosen
+to realize any character. If \(\chi\) is not trivial, then
+\(z_\chi\notin\Gamma\): otherwise the function would be a constant
+multiple of some \(e^{bz}\), whose multipliers \(e^{b\gamma}\) have
+finite order for all \(\gamma\) in a lattice only if \(b=0\), and then
+\(\chi\) would be trivial. So the function has a simple pole at \(0\),
+and dividing by its residue gives \(g_\chi\). The derivatives
+\(D^ig_\chi\) have leading terms \((-1)^ii!\,z^{-i-1}\), so a suitable
+combination of them has any prescribed principal part at \(0\). The
+difference from a given element of \(V_j^\chi\) lies in \(V_0^\chi=0\).
+This proves the basis property and the uniqueness.
+
+For the trivial character, the residue at the only pole of an elliptic
+function is zero, and the derivatives of \(\wp\) remove all higher
+principal coefficients, leaving a constant.
+\end{proof}
+
+For \(m=2\) the functions \(g_\chi\) of the three characters of order
+two are
+\begin{equation}\label{eq:jacobi}
+ g_{\chi_i}=\sqrt{\wp-e_i}\qquad(i=1,2,3),
+\end{equation}
+where \(e_1,e_2,e_3\) are the values of \(\wp\) at the three
+half-periods of \(\Gamma\) and the root is chosen with leading term
+\(z^{-1}\). Up to scale these are the Jacobi functions \(\cs\), \(\ds\),
+\(\ns\); translation by the half-period that is called \(iK'\) in
+Jacobi's notation turns them into multiples of \(\dn\), \(\cn\), \(\sn\)
+\citep[\S\S22.4, 23.6]{DLMFonline}.
+
+% ======================================================================
+\section{The terms linear in the free coefficient}\label{app:slopes}
+
+This appendix computes the constants of Lemma~\ref{lem:slopes}. Its
+formulas, in particular \eqref{eq:ap-data} and \eqref{eq:first-odd},
+are also checked by exact computation in the script
+\mbox{\path{check_linear_terms.py}} (Appendix~\ref{app:computations}).
+We keep the assumptions of the lemma: \(p\ge4\) is even, \(q\ge2\),
+\(E=u\) and \(F=H_n\). Fix an operator \(P\) and a value of \(h\), and write
+\[
+ f=f(z;h),\qquad f_h=\frac{\partial f}{\partial h},\qquad
+ \eta=H_n(f),\qquad \eta_h=\frac{\partial\eta}{\partial h};
+\]
+for series in \(z\), a prime denotes the derivative with respect to \(z\). By
+Lemma~\ref{lem:degree} and the table \eqref{eq:leading-terms},
+\(f_h=z^{nq}(1+O(z))\) and
+\(\eta_h=J(J+1)z^{q-2}(1+O(z))\) are power series. The principal parts
+of \(f\) and \(\eta\) do not depend on \(h\), so
+\begin{equation}\label{eq:lin-phi}
+ \frac{\partial\varphi}{\partial h}=\hatt E(D)\,\eta_h-\hatt F(D)\,f_h,
+\end{equation}
+where \(\hatt E\) and \(\hatt F\) are the principal-part polynomials of
+\(f\) and \(\eta\). By \eqref{eq:slopes}, \(A_i\) is the coefficient of
+\(z^i\) in \(\partial\varphi/\partial h\) for \(i\le J-2\), at every
+value of \(h\).
+
+\subsection{Residue formulas}
+
+Let \(\alpha\) be a Laurent series with finite principal part
+\(\sum_r\alpha_{-r}z^{-r}\), and \(g=\sum_kg_kz^k\) a power series. By
+the definition of \(\hatt\alpha\),
+\begin{align*}
+ [z^0]\,\hatt\alpha(D)g&=\sum_r(-1)^{r-1}\alpha_{-r}\,g_{r-1}
+ =\Res_{z=0}\alpha(z)\,g(-z),\\
+ [z^1]\,\hatt\alpha(D)g&=\sum_r(-1)^{r-1}r\,\alpha_{-r}\,g_{r}
+ =\Res_{z=0}\alpha'(z)\,g(-z).
+\end{align*}
+With \eqref{eq:lin-phi} this gives, for every value of \(h\),
+\begin{equation}\label{eq:A-residues}
+ A_0=\Res_{z=0}\bigl[f(z)\,\eta_h(-z)-\eta(z)\,f_h(-z)\bigr],\qquad
+ A_1=\Res_{z=0}\bigl[f'(z)\,\eta_h(-z)-\eta'(z)\,f_h(-z)\bigr].
+\end{equation}
+
+\subsection{Even operators}
+
+We first show that \(A_1\) contains no term \(a_{p-2}\).
+
+\begin{lemma}\label{lem:even-A1}
+If \(P\) is even, then \(A_1=0\).
+\end{lemma}
+
+\begin{proof}
+For even \(P\) the recurrence preserves the parity of Laurent indices,
+so \(b_j(h)=0\) for odd \(j\). Hence \(f_h(-z)=(-1)^{nq}f_h(z)\) and
+\(\eta_h(-z)=(-1)^{q}\eta_h(z)\), and \((-1)^{nq}=(-1)^q\) because \(p\)
+is even. So \eqref{eq:A-residues} gives
+\[
+ A_1=(-1)^q\,\Res_{z=0}\bigl[f'\eta_h-\eta'f_h\bigr].
+\]
+
+Let \(\mathcal L\) be the linearization of \(H_n\) at \(f\):
+\[
+ \mathcal L g=f^{\,n-1}g''-\frac{2(q+1)}{q}\,f^{\,n-2}f'\,g'+\theta\,g
+\]
+with a Laurent series \(\theta\). Then \(\eta_h=\mathcal Lf_h\), and
+\(\eta'=\mathcal Lf'\) because \(H_n\) has constant coefficients. With
+the Wronskian \(W=f'f_h'-f''f_h\) we get
+\[
+ f'\eta_h-\eta'f_h=f^{\,n-1}W'-\frac{2(q+1)}{q}\,f^{\,n-2}f'\,W .
+\]
+The residue of a derivative vanishes. Integrating by parts twice, and
+using \((n-1)+2(q+1)/q=(J+2)/q\), we find
+\[
+ \Res\bigl[f'\eta_h-\eta'f_h\bigr]=-\frac{J+2}{q}\,\Res\bigl[f^{\,n-2}f'\,W\bigr]
+ =\frac{J+2}{q}\,\Res\bigl[f_h\,\Theta\bigr],
+\]
+where
+\[
+ \Theta=(n-2)f^{\,n-3}(f')^3+3f^{\,n-2}f'f'' ;
+\]
+the last step holds because
+\(f^{\,n-2}f'W=\bigl(f^{\,n-2}(f')^2f_h\bigr)'-f_h\Theta\).
+
+Now \((f^{\,n})'''=n f^{\,n-1}f'''+n(n-1)\,\Theta\). Put
+\(\mathcal M=P(D)-nKf^{\,n-1}\), and recall from
+Section~\ref{sec:local} that \(P(D)f-Kf^n=-F_Jz^q\), where the number
+\(F_J\) does not depend on \(h\). Differentiating this identity with
+respect to \(h\) gives \(\mathcal Mf_h=0\), and differentiating it
+three times with respect to \(z\) gives
+\[
+ \mathcal Mf'''=n(n-1)K\,\Theta-F_J\,(z^q)''' .
+\]
+The product of \(f_h\) with a polynomial has no residue, so
+\(n(n-1)K\Res[f_h\Theta]=\Res[f_h\,\mathcal Mf''']\). Finally, for an even
+operator \(P\), integration by parts gives
+\(\Res[\alpha\,P(D)\beta]=\Res[\beta\,P(D)\alpha]\) for all Laurent
+series \(\alpha,\beta\). Hence \(\Res[f_h\,\mathcal Mf''']
+=\Res[f'''\,\mathcal Mf_h]=0\), and \(A_1=0\).
+\end{proof}
+
+By Lemma~\ref{lem:slopes}(a), \(A_1=c_1a_{p-1}^2+c'a_{p-2}\) with numbers
+\(c_1,c'\). For the even operator \(D^p+a_{p-2}D^{p-2}\),
+Lemma~\ref{lem:even-A1} gives \(c'a_{p-2}=0\), so \(c'=0\).
+
+\subsection{An explicit family}
+
+We now compute \(c_0\) and \(c_1\). For \(\varepsilon\ne0\) consider
+the operator
+\[
+ P_\varepsilon(\rho)=\prod_{i=0}^{p-1}\bigl(\rho+(q+i)\varepsilon\bigr),
+ \qquad a_{p-1}=\varepsilon\sum_{i=0}^{p-1}(q+i)
+ =\tfrac12\,\varepsilon\,p\,(J-1).
+\]
+Put \(\zeta=e^{-\varepsilon z}\), so that
+\(D=-\varepsilon\zeta\,d/d\zeta\). For a function \(g\) of \(\zeta\) we
+have \(\bigl(D+(q+i)\varepsilon\bigr)\bigl[\zeta^{q+i}g\bigr]
+=-\varepsilon\,\zeta^{q+i+1}\,dg/d\zeta\). Applying the factors with
+\(i=0,\dots,p-1\) in turn gives
+\[
+ P_\varepsilon(D)\bigl[\zeta^{q}g(\zeta)\bigr]
+ =\varepsilon^{p}\,\zeta^{q+p}\,\frac{d^{p}g}{d\zeta^{p}} .
+\]
+Hence, if \(Y(x)\) satisfies \(Y^{(p)}=KY^n\), then
+\(u=(-\varepsilon)^q\zeta^q\,Y(\zeta-1)\) satisfies
+\(P_\varepsilon(D)u=Ku^n\), because \(q+p=nq\) and \(p\) is even. The
+operator \(D^p\) admits the wave \(x^{-q}\), so its series
+\eqref{eq:family} is a formal solution of \(Y^{(p)}=KY^n\) for every
+value \(\tilde h\) of the free coefficient, and by
+Lemma~\ref{lem:degree} it equals
+\(x^{-q}\bigl(1+\tilde hx^J+O(\tilde h^2)\bigr)\). Therefore, with
+\(x=e^{-\varepsilon z}-1\),
+\begin{equation}\label{eq:ap-family}
+ (-\varepsilon)^q(1+x)^q\,x^{-q}\bigl(1+\tilde hx^J+O(\tilde h^2)\bigr)
+\end{equation}
+is a formal solution of \(P_\varepsilon(D)u=Ku^n\). It starts with
+\(z^{-q}\), so it is the series \(f(z;h)\) of \(P_\varepsilon\), where
+\(h\) is its coefficient of \(z^{J-q}\). The term linear in
+\(\tilde h\) is
+\((-\varepsilon)^q(1+x)^qx^{nq}\,\tilde h
+=\varepsilon^Jz^{nq}(1+O(z))\,\tilde h\), because
+\(x=-\varepsilon z(1+O(z))\) and \((-\varepsilon)^{q+nq}=\varepsilon^J\),
+and the terms of higher degree in \(\tilde h\) are \(O(z^{2J-q})\). So
+\(h=h_0+\varepsilon^J\tilde h\) for a constant \(h_0\). For \(\tilde h=0\) it is
+the wave \(u=\bigl(\varepsilon/(e^{\varepsilon z}-1)\bigr)^q\) of
+\(P_\varepsilon\).
+
+We evaluate \eqref{eq:A-residues} at \(h=h_0\), that is, at
+\(\tilde h=0\), where
+\(\partial/\partial h=\varepsilon^{-J}\partial/\partial\tilde h\). By
+\eqref{eq:seed-y}, \(H_n(f)=-q\,y^{-nq-1}y''\) with \(y=f^{-1/q}\), and
+\eqref{eq:ap-family} gives
+\(y=-x\,(1+\tilde hx^J)^{-1/q}/(\varepsilon(1+x))+O(\tilde h^2)\). Using
+\(D=-\varepsilon(1+x)\,d/dx\), a direct computation yields, at
+\(\tilde h=0\),
+\begin{equation}\label{eq:ap-data}
+\begin{aligned}
+ f&=(-\varepsilon)^q(1+x)^q\,x^{-q}, \qquad
+ \varepsilon^Jf_h=(-\varepsilon)^q(1+x)^q\,x^{nq},\qquad
+ \eta=q\,\varepsilon^2(-\varepsilon)^{nq}(1+x)^{nq}\,x^{-nq-1},\\
+ \varepsilon^J\eta_h&=\varepsilon^2(-\varepsilon)^{nq}(1+x)^{nq}\,x^{q-2}
+ \bigl(J(J+1)+(2J^2+J+nq)\,x+J^2x^2\bigr).
+\end{aligned}
+\end{equation}
+We compute the residues in the variable \(x\). Here
+\(dz=-dx/(\varepsilon(1+x))\), and replacing \(z\) by \(-z\) replaces
+\(x\) by \(-x/(1+x)\), so that a product \((1+x)^\mu x^\nu\)
+becomes \((-1)^\nu(1+x)^{-\mu-\nu}x^\nu\). Thus
+\[
+ \varepsilon^Jf_h(-z)=(-1)^q(-\varepsilon)^q\,\frac{x^{nq}}{(1+x)^{J}},\qquad
+ \varepsilon^J\eta_h(-z)=(-1)^q\varepsilon^2(-\varepsilon)^{nq}\,
+ \frac{x^{q-2}\bigl(J(J+1)+qx-nqx^2\bigr)}{(1+x)^{J}},
+\]
+and \(f'=q\,\varepsilon(-\varepsilon)^q(1+x)^qx^{-q-1}\),
+\(\eta'=q\,\varepsilon^3(-\varepsilon)^{nq}(1+x)^{nq}x^{-nq-2}(nq+1+x)\).
+Since \((-\varepsilon)^{q+nq}=\varepsilon^J\), this gives
+\begin{align*}
+ A_0&=(-1)^{q+1}\varepsilon\,\Res_{x=0}
+ \Bigl[\frac{J(J+1)+qx-nqx^2}{x^{2}(1+x)^{nq+1}}
+ -\frac{q}{x\,(1+x)^{q+1}}\Bigr]\\
+ &=(-1)^q\,\varepsilon\,J(J+1)(nq+1),\\
+ A_1&=(-1)^{q+1}q\,\varepsilon^2\,\Res_{x=0}
+ \Bigl[\frac{J(J+1)+qx-nqx^2}{x^{3}(1+x)^{nq+1}}
+ -\frac{nq+1+x}{x^{2}(1+x)^{q+1}}\Bigr]\\
+ &=(-1)^{q+1}\varepsilon^2\,\tfrac12\,q\,J(J+1)(nq+1)(nq+2).
+\end{align*}
+Both are nonzero. Dividing by \(a_{p-1}\) and by \(a_{p-1}^2\), and
+using \(J/p=(n+1)/(n-1)\), we obtain the constants \(c_0\) and \(c_1\)
+of Lemma~\ref{lem:slopes}(b).
+
+\subsection{The first odd coefficient}
+
+It remains to compute \(c_{j-1}\) and to show that it is not zero. Let
+\(j\) be odd with \(3\le j\le p-1\), and let
+\(P=D^p+a_{p-j}D^{p-j}\). The number \(c_{j-1}\) is the coefficient of
+\(a_{p-j}\) in \(A_{j-1}\), so we compute modulo \(a_{p-j}^2\); we write
+\(a=a_{p-j}\) for short. By Lemma~\ref{lem:degree}, modulo \(a^2\) and
+\(h^2\),
+\[
+ f(z;h)=z^{-q}\bigl(1+\beta_j\,a\,z^{j}+h\,z^{J}+\gamma_j\,a\,h\,z^{J+j}\bigr)
+\]
+with numbers \(\beta_j\) and \(\gamma_j\). The recurrence
+\eqref{eq:recurrence} at the indices \(j\) and \(J+j\) reads
+\[
+ I(j)\,\beta_j=(q)_{p-j},\qquad
+ I(J+j)\,\gamma_j=-\frac{(nq)!}{(q+j)!}+(n-1)\,\frac{(nq)!}{q!}\,\beta_j .
+\]
+By the proof of Lemma~\ref{lem:resonance}, \(I(j)<0\) and \(I(J+j)>0\).
+So \(\beta_j<0\) and \(\gamma_j<0\).
+
+We use \eqref{eq:lin-phi} at \(h=0\). Let \(\Bil\) be the bilinear form
+of \(H\), as in the proof of Proposition~\ref{prop:quadratic}. A direct
+computation gives
+\(2\Bil(z^{i-q},z^{nq})=\bigl((J-i)(J-i+1)-2ni\bigr)z^{p-2+i}\), and
+Lemma~\ref{lem:seed} gives
+\(2\Bil(z^{-q},z^{nq+i})=(J+i)(J+i+1)\,z^{p-2+i}\) and
+\(H\bigl(z^{-q}(1+\beta_ja z^j)\bigr)=j(j+1)\beta_ja\,z^{j-2q-2}\).
+Hence, at \(h=0\) and modulo \(a^2\),
+\begin{gather*}
+ \eta=j(j+1)\,\beta_ja\,z^{j-nq-2},\qquad
+ \eta_h=J(J+1)\,z^{q-2}+\bigl(s_j\beta_j+(J+j)(J+j+1)\gamma_j\bigr)a\,z^{q-2+j},\\
+ s_j=(n-2)\bigl(J(J+1)+j(j+1)\bigr)+(J-j)(J-j+1)-2nj ;
+\end{gather*}
+the three parts of \(s_j\) come from \(f^{\,n-2}\), from the factor
+\(f^{\,n-3}f_hH(f)\), and from \(\Bil(f,f_h)\). The principal-part
+polynomials are, modulo \(a^2\),
+\[
+ \hatt E(\rho)=\frac{(-\rho)^{q-1}}{(q-1)!}
+ +\beta_ja\,\frac{(-\rho)^{q-j-1}}{(q-j-1)!},\qquad
+ \hatt F(\rho)=j(j+1)\,\beta_ja\,\frac{(-\rho)^{nq+1-j}}{(nq+1-j)!},
+\]
+where the second term of \(\hatt E\) is absent if \(j\ge q\). Reading
+off the coefficient of \(a\,z^{j-1}\) in \eqref{eq:lin-phi}, with
+\(j\) odd and \(p\) even, we obtain
+\begin{equation}\label{eq:first-odd}
+\begin{aligned}
+ (-1)^{q}c_{j-1}={}&-\binom{q+j-2}{j-1}\bigl(s_j\beta_j+(J+j)(J+j+1)\gamma_j\bigr)\\
+ &+J(J+1)\binom{q-2}{j-1}\beta_j-j(j+1)\binom{nq}{j-1}\beta_j ,
+\end{aligned}
+\end{equation}
+where \(\binom{q-2}{j-1}=0\) if \(j\ge q\). Up to this point \(n\ge2\)
+is arbitrary.
+
+Since \(\beta_j<0\) and \(\gamma_j<0\), we can write
+\eqref{eq:first-odd} as
+\begin{align*}
+ (-1)^{q}c_{j-1}={}&|\beta_j|\Bigl[\binom{q+j-2}{j-1}s_j-J(J+1)\binom{q-2}{j-1}\Bigr]\\
+ &+\binom{q+j-2}{j-1}(J+j)(J+j+1)\,|\gamma_j|
+ +j(j+1)\binom{nq}{j-1}|\beta_j| .
+\end{align*}
+The last two terms are positive. So \((-1)^qc_{j-1}>0\) will follow
+from
+\begin{equation}\label{eq:first-odd-ineq}
+ \binom{q+j-2}{j-1}\,s_j\ \ge\ J(J+1)\binom{q-2}{j-1},
+\end{equation}
+which we now prove for \(n=3\) and for \(n=2\). For \(n=3\) we have
+\(J=4q\), \(j\le2q-1\) and
+\[
+ s_j=J(J+1)+j(j-5)+(J-j)(J-j+1)>J(J+1),
+\]
+because \(j(j-5)\ge-6\) and \(J-j\ge2q+1\ge5\). Since
+\(\binom{q+j-2}{j-1}\ge\binom{q-2}{j-1}\), this proves
+\eqref{eq:first-odd-ineq}. For \(n=2\) we have \(J=3q\),
+\(3\le j\le q-1\) and
+\[
+ s_j=J(J+1)-j(6q+5-j)\ \ge\ J(J+1)\Bigl(1-\frac{2j}{3q}\Bigr)>0,
+\]
+because \(j(6q+5-j)\le j(6q+2)\) and \(J(J+1)=3q(3q+1)\). Moreover
+\[
+ \binom{q+j-2}{j-1}\Big/\binom{q-2}{j-1}
+ =\prod_{i=0}^{j-2}\Bigl(1+\frac{j}{q-2-i}\Bigr)
+ \ \ge\ 1+\frac{j(j-1)}{q},
+\]
+since each of the \(j-1\) factors is at least \(1+j/q\). The product
+of the two lower bounds is
+\[
+ \Bigl(1+\frac{j(j-1)}{q}\Bigr)\Bigl(1-\frac{2j}{3q}\Bigr)
+ =1+\frac jq\Bigl(j-1-\frac23-\frac{2j(j-1)}{3q}\Bigr)
+ \ \ge\ 1+\frac jq\cdot\frac{j-3}{3}\ \ge\ 1,
+\]
+where we used \(j<q\) in the first inequality. This proves
+\eqref{eq:first-odd-ineq} for \(n=2\). In both cases
+\(c_{j-1}\ne0\), which completes the proof of
+Lemma~\ref{lem:slopes}.
+
+% ======================================================================
+\section{Degrees one and two}\label{sec:low-order}
+
+Theorems~\ref{thm:A} and~\ref{thm:B} assume \(p\ge3\). The one-pole
+conclusion extends to the following cases of low degree.
+
+\begin{proposition}\label{prop:low-order}
+Every wave has exactly one pole modulo \(\Gamma\), and hence one of the
+forms of Proposition~\ref{prop:spaces}, in each of the following cases:
+\textup{(a)}~\(p=1\); \textup{(b)}~\(P(D)=D^2+a_0\);
+\textup{(c)}~\(P(D)=D^2+a_1D+a_0\) and the wave is elliptic. In case
+\textup{(c)} necessarily \(a_1=0\).
+\end{proposition}
+
+\begin{proof}
+(a) Since \(p\) is odd, the normalized series is unique; apply
+Corollary~\ref{cor:one-germ}.
+
+(b) Pole balance leaves \((n,q)=(2,2)\) or \((3,1)\), and \(J=2q+2\).
+The energy
+\[
+ \mathcal E=\frac{(v')^2}{2}+\frac{a_0v^2}{2}+\frac{v^{n+1}}{n(n+1)}
+\]
+is constant along every solution. At a pole write
+\(v=cz^{-q}\bigl(1+\sum_{j\ge1}b_jz^j\bigr)\) with \(h=b_J\). The
+constant \(\mathcal E\) equals the constant term of its Laurent
+expansion at the pole, which gives
+\[
+ \frac{\mathcal E}{c^2}=-q(2q+3)\,h+\mathcal E_0,
+\]
+where \(\mathcal E_0\) depends only on \(b_1,\dots,b_{J-1}\), hence
+only on \(P\). Indeed, the coefficient of \(h\) is \(-q(q+2)\) from
+\((v')^2/2\) plus \(-q(q+1)\) from the last term, while the \(h\)-term
+of \(a_0v^2/2\) has a positive power of \(z\). In both admissible cases
+\(c^2\) is the same for all leading coefficients. Hence \(h\) is the
+same at all poles, and Corollary~\ref{cor:one-germ} applies.
+
+(c) Pole balance again leaves \((n,q)=(2,2)\) or \((3,1)\). At each
+pole, the recurrence gives \(c^m=-nq(q+1)\) and \(b_1=-a_1/(n+3)\).
+The elliptic function \(v^m\) has a double pole at each pole of \(v\),
+with residue
+\[
+ \Res v^m=mc^mb_1=\frac{mnq(q+1)}{n+3}\,a_1,
+\]
+the same at every pole. The residues in a period cell add up to zero,
+so \(a_1=0\), and (b) applies.
+\end{proof}
+
+Part (b) is the case \(p=2\) of Lemma~\ref{lem:energy} below, since
+\(I'(J)=2q+3\) when \(p=2\). In two respects degree two differs from
+higher degree.
+
+\emph{Infinitely many waves.}\label{sec:order-two} A single equation
+can have infinitely many waves, so the bound of Theorem~\ref{thm:B}
+requires \(p\ge3\). For \(n=2\) and \(P(D)=D^2+a_0\), the functions
+\[
+ v=-12\,\wp\bigl(z;\tfrac{a_0^2}{12},g_3\bigr)-a_0,\qquad
+ g_3\in\CC,\quad 27g_3^2\ne\bigl(\tfrac{a_0^2}{12}\bigr)^3,
+\]
+solve \(v''+a_0v+v^2/2=0\), by the identity \(\wp''=6\wp^2-g_2/2\).
+Their free coefficient is \(h=g_3/28\), so different values of \(g_3\)
+give different normalized series, and the corresponding waves are not
+related by translation or phase change. They still have one pole modulo
+\(\Gamma\), as Proposition~\ref{prop:low-order}(b) asserts.
+
+\emph{Waves outside \(\Wclass\).} Equations with \(a_1\ne0\) can have
+meromorphic solutions outside \(\Wclass\)
+\citep[Lemmas~4.4 and~4.5]{ConteNgWu2015}. For \(k\ne0\) and all
+constants \(\zeta_0\) and \(g_3\), the function
+\(v=-12k^2e^{-2kz}\wp(e^{-kz}-\zeta_0;0,g_3)\) is a meromorphic
+solution of \(v''+5kv'+6k^2v+v^2/2=0\)
+\citep{AblowitzZeppetella1979}, \citep[Lemma~4.4]{ConteNgWu2015}. For
+\(g_3\ne0\) it lies outside \(\Wclass\), because it has too many poles:
+they are the points with \(e^{-kz}\in\zeta_0+\Lambda\), where
+\(\Lambda\) is the period lattice of \(\wp(\cdot\,;0,g_3)\), and their
+number in \(|z|\le r\) grows exponentially with \(r\), whereas a
+function of \(\Wclass\) has \(O(r^2)\) poles in \(|z|\le r\). The
+expression
+\((v'+2kv)^2+v^3/3=-144\,g_3k^6e^{-6kz}\) has no poles, and for
+\(g_3\ne0\) it is not constant. So the hypothesis on the values at
+the poles in Lemma~\ref{lem:finite-values} cannot be dropped.
+
+% ======================================================================
+\section{Polynomial nonlinearities}\label{app:general}
+
+Moving a constant solution of a general polynomial equation to \(0\)
+and absorbing the linear term into \(P\) gives
+\begin{equation}\label{eq:B}
+ P(D)v+B(v)=0,\qquad
+ B(v)=\frac{v^n}{n}+B_*(v),
+\end{equation}
+where \(B_*\) is a polynomial that contains only the powers
+\(v^2,\dots,v^{n-1}\). The leading balance at a pole is unchanged:
+\(p=mq\) and \(c^m=-nK\). The Laurent recurrence has the same indicial
+polynomial \(I\); the lower terms of \(B\) change only the right-hand
+sides, which now also depend on the choice of \(c\). The phase changes
+that preserve \eqref{eq:B} form the group \(\mu_{m'}\), where \(m'\) is
+the largest divisor of \(m\) such that \(B\) contains only powers
+\(v^j\) with \(j\equiv1\pmod{m'}\). For the pure power, \(m'=m\).
+
+For an even operator \(P(D)=D^p+\sum_{0\le i<p/2}a_{2i}D^{2i}\), put
+\[
+ \mathcal Q_i(v)=\sum_{a=0}^{i-2}(-1)^a\,v^{(a+1)}v^{(2i-1-a)}
+ +\frac{(-1)^{i-1}}{2}\bigl(v^{(i)}\bigr)^2 ,
+\]
+so that \(D\mathcal Q_i(v)=v'v^{(2i)}\); for \(i=1\) the sum is empty.
+The energy
+\begin{equation}\label{eq:energy}
+ \mathcal E(v)=\mathcal Q_{p/2}(v)+\sum_{1\le i<p/2}a_{2i}\,\mathcal Q_i(v)
+ +\frac{a_0}{2}v^2+\int_0^vB(x)\,dx
+\end{equation}
+satisfies \(D\mathcal E(v)=v'\bigl(P(D)v+B(v)\bigr)\), so it is constant
+along every solution. This first integral fixes the free coefficient,
+as in \citet*[Lemma~4]{EremenkoLiaoNg2009}. \citet{Demina2019} classifies the meromorphic integrals of autonomous
+equations with two dominant monomials.
+
+\begin{lemma}[The energy fixes the free coefficient]\label{lem:energy}
+Let \(P\) be even, and fix a root \(c\) of \(c^m=-nK\). The Laurent
+recurrence with leading coefficient \(c\) is compatible at \(J=p+2q\),
+and its formal solutions form a one-parameter family
+\(v=cz^{-q}\bigl(1+\sum_{j\ge1}b_jz^j\bigr)\) with free coefficient
+\(h=b_J\). Along this family
+\begin{equation}\label{eq:energy-h}
+ \mathcal E(v)=-qc^2I'(J)\,h+\mathcal E_0,\qquad
+ I'(J)=(q+1)_p\sum_{i=1}^{p}\frac{1}{q+i}>0,
+\end{equation}
+where \(\mathcal E_0\) depends only on \(P\), \(B\) and \(c\). Hence a
+leading coefficient and a value of the energy determine the Laurent
+series.
+\end{lemma}
+
+\begin{proof}
+Construct the series up to index \(J-1\). For this truncated series the
+lowest term of \(P(D)v+B(v)\) that can be nonzero is \(\Omega z^q\), and
+the residue of \(v'(P(D)v+B(v))\) is then \(-qc\,\Omega\). This is the
+residue of the derivative \(D\mathcal E\), so it vanishes, and
+\(\Omega=0\). The coefficient \(b_J\) is therefore free, and all later
+coefficients are determined.
+
+Every term of \(\mathcal E\) has a pole of order at most \(J\). A
+factor \(h\) comes with the power \(z^J\). So \(h\) enters the constant
+term only through terms of pole order \(J\) in which all other factors
+are at leading order, and it enters linearly. To compute the coefficient of \(h\), perturb
+\(v=cz^{-q}(1+\varepsilon z^j)\). The top
+linear term of the equation is \(\varepsilon cI(j)z^{j-q-p}\); write the
+corresponding term of \(\mathcal E\) as \(\varepsilon L(j)z^{j-J}\). The
+identity \(D\mathcal E=v'(P(D)v+B(v))\) gives \((j-J)L(j)=-qc^2I(j)\)
+as polynomials in \(j\), so \(L(J)=-qc^2I'(J)\). The formula for
+\(I'(J)\) follows by differentiating the product in \(I(j)\), whose
+factors at \(j=J\) are \(q+p,\dots,q+1\). Finally, since
+\(D\mathcal E=0\) formally, the constant Laurent coefficient of
+\(\mathcal E\) is its value.
+\end{proof}
+
+The theorem below needs Lemma~\ref{lem:germs} for the solutions of
+\eqref{eq:B} and for subgroups of \(\mu_m\). The proof of that lemma
+uses only Lemma~\ref{lem:distance} and the finiteness of \(\mu_m\). So
+the lemma holds for every nonconstant meromorphic solution \(v\) of
+\eqref{eq:general-eq} and every finite group \(U\subset\CC^*\), with
+\(\mu_m\) replaced by \(U\) and \(\Gamma\) by the group
+\[
+ \Gamma_U=\{\gamma\in\CC:\ v(z+\gamma)=\omega v(z)
+ \text{ for some }\omega\in U\};
+\]
+since \(v\not\equiv0\), the multiplier \(\omega=\chi(\gamma)\) is
+unique, and \(\chi\colon\Gamma_U\to U\) is a homomorphism.
+
+\begin{theorem}[Polynomial nonlinearity; cf.\ \citep{Eremenko2006,ConteNgWong2012,Wu2014}]\label{thm:general}
+Let \(B\) have the symmetry group \(\mu_{m'}\), and assume that \(p\) is
+odd or \(P\) is even. Then every nonconstant meromorphic solution of
+\eqref{eq:B} belongs to \(\Wclass\). Put \(\mathcal H=\mu_{m'}\) if
+\(p\) is odd, and \(\mathcal H=\mu_{m'}\cap\{\pm1\}\) if \(P\) is even.
+Two poles whose leading coefficients have ratio \(\omega\in\mathcal H\)
+differ by a twisted period with multiplier \(\omega\), and the poles
+form at most \(m/|\mathcal H|\) cosets of \(\Gamma_{\mathcal H}\).
+\end{theorem}
+
+\begin{proof}
+For odd \(p\) the recurrence determines the Laurent series from its
+leading coefficient. For even \(P\) the energy of a solution is
+constant, so by Lemma~\ref{lem:energy} each leading coefficient carries
+at most one Laurent series among the poles of the solution.
+
+Let \(z_1,z_2\) be poles with \(c_2=\omega c_1\), \(\omega\in\mathcal
+H\), and compare \(v(z_1+z)\) with \(\omega^{-1}v(z_2+z)\). The second
+function is again a solution, because \(\omega\) is a symmetry, and the
+two have the same leading coefficient. For odd \(p\) this identifies
+the two Laurent series. For even \(P\), the symmetry gives
+\(\mathcal E(\omega v)=\omega^2\mathcal E(v)\), since every quadratic
+term scales by \(\omega^2\) and
+\(\int_0^{\omega v}B=\omega^2\int_0^vB\); for \(\omega=\pm1\) the two
+energies agree, and the energy lemma identifies the series. By the
+identity theorem, \(z_2-z_1\) is a twisted period with multiplier
+\(\omega\).
+
+The \(m\) leading coefficients form \(m/|\mathcal H|\) orbits under
+\(\mathcal H\), and two poles whose leading coefficients lie in the same
+orbit differ by an element of \(\Gamma_{\mathcal H}\), as just shown.
+Lemma~\ref{lem:germs}, in the form stated before the theorem with
+\(U=\mathcal H\), gives membership in \(\Wclass\) and the bound on the
+number of cosets.
+\end{proof}
+
+For the pure power and an even operator with \(n\le3\) we have
+\(\mu_m\subset\{\pm1\}\); so the theorem gives one pole orbit, as
+Lemma~\ref{lem:two-germs} does.
+
+\begin{remark}
+For an even operator and a polynomial nonlinearity, the reflection
+argument of Proposition~\ref{prop:reflection} applies whenever
+\((-1)^q\in\mu_{m'}\): the reflected series has the same leading
+coefficient and the same free coefficient, because \(J\) is even. So
+reflection symmetry holds for every even \(q\), and for odd \(q\) when
+\(B\) is odd. This alone does not relate different orbits of leading
+coefficients.
+\end{remark}
+
+% ======================================================================
+\section{Computer checks}\label{app:computations}
+
+The theorems are proved in the text for all \(n\) and \(q\). Exact
+computations with Python~3 and SymPy check the displayed identities,
+the constants of Sections~\ref{sec:selectors} and~\ref{sec:proof} and
+of Appendix~\ref{app:slopes}, and the examples. The numbers quoted in
+the examples without derivation, such as the entries of
+Table~\ref{tab:sh}, the number \(F_J\) in Remark~\ref{rem:drift}(a) and
+the coefficient \(A_5\) in Section~\ref{sec:not-even}, are obtained by
+finite computations that can be done by hand. The only statement of the
+paper that rests on a computer elimination is
+Proposition~\ref{prop:drift-n2}; the script
+\mbox{\path{check_drift_n2.py}} carries out the elimination for
+\(p=4,6,8,10\) and shows that the statement does not hold for \(p=2\). The
+scripts are the ancillary files (\path{anc/}); the command
+\texttt{python3 run\_all.py} in that folder runs all of them, and
+\path{anc/README.md} describes each script.
+
+\section*{Use of AI tools}
+
+{\small
+This paper was prepared with substantial use of generative AI, disclosed
+as recommended by the Leiden Declaration on Artificial Intelligence and
+Mathematics.\footnote{\url{https://leidendeclaration.ai/}, 2 June 2026.}
+The main mathematical ideas were produced by \texttt{gpt-6-astra}
+(OpenAI) in dialogue with the author; parts of the proofs, of the
+verification and of the preparation of the text were carried out with
+Claude Fable~5.1 and Claude Opus~5.5 (Anthropic). No automated system
+is an author; responsibility for the results and for the attribution of
+prior work rests with the author.\par}
+
+\begingroup
+\raggedright
+\bibliographystyle{abbrvnat}
+\bibliography{references}
+\endgroup
+
+\end{document}

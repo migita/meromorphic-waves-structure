@@ -1,0 +1,319 @@
+\begin{thebibliography}{41}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ablowitz and Zeppetella(1979)]{AblowitzZeppetella1979}
+M.~J. Ablowitz and A.~Zeppetella.
+\newblock Explicit solutions of {Fisher's} equation for a special wave speed.
+\newblock \emph{Bulletin of Mathematical Biology}, 41\penalty0 (6):\penalty0
+  835--840, 1979.
+\newblock \doi{10.1016/S0092-8240(79)80020-8}.
+
+\bibitem[Appell and Lacour(1897)]{AppellLacour1897}
+P.~Appell and {\'E}.~Lacour.
+\newblock \emph{Principes de la th{\'e}orie des fonctions elliptiques et
+  applications}.
+\newblock Gauthier-Villars, Paris, 1897.
+\newblock URL \url{https://archive.org/details/principestheorie00apperich}.
+
+\bibitem[Belova(2023)]{BelovaThesis}
+M.~V. Belova.
+\newblock Algebraic invariants for ordinary differential equations: theory and
+  applications.
+\newblock Doctoral dissertation, National Research University Higher School of
+  Economics, in Russian, 365 pp., 2023.
+\newblock URL
+  \url{https://www.frccsc.ru/diss-council/00207303/diss/list/belova_mv}.
+\newblock Cover dated 2023; deposited 17 February 2026.
+
+\bibitem[Conte and Ng(2010)]{ConteNg2010}
+R.~Conte and T.-W. Ng.
+\newblock {Meromorphic solutions of a third order nonlinear differential
+  equation}.
+\newblock \emph{Journal of Mathematical Physics}, 51\penalty0 (3):\penalty0
+  033518, 2010.
+\newblock \doi{10.1063/1.3319568}.
+
+\bibitem[Conte et~al.(2012)Conte, Ng, and Wong]{ConteNgWong2012}
+R.~Conte, T.-W. Ng, and K.-K. Wong.
+\newblock Exact meromorphic stationary solutions of the real cubic
+  {Swift--Hohenberg} equation.
+\newblock \emph{Studies in Applied Mathematics}, 129\penalty0 (1):\penalty0
+  117--131, 2012.
+\newblock \doi{10.1111/j.1467-9590.2012.00546.x}.
+
+\bibitem[Conte et~al.(2015)Conte, Ng, and Wu]{ConteNgWu2015}
+R.~Conte, T.-W. Ng, and C.-F. Wu.
+\newblock {Hayman}'s classical conjecture on some nonlinear second-order
+  algebraic {ODEs}.
+\newblock \emph{Complex Variables and Elliptic Equations}, 60\penalty0
+  (11):\penalty0 1539--1552, 2015.
+\newblock \doi{10.1080/17476933.2015.1033414}.
+\newblock URL \url{https://arxiv.org/abs/1503.07074}.
+
+\bibitem[Conte et~al.(2018)Conte, Ng, and Wu]{ConteNgWu2018}
+R.~Conte, T.-W. Ng, and C.-F. Wu.
+\newblock Singularity methods for meromorphic solutions of differential
+  equations.
+\newblock In N.~Euler, editor, \emph{Nonlinear Systems and Their Remarkable
+  Mathematical Structures}, volume~1, pages 159--186. CRC Press, Boca Raton,
+  2018.
+\newblock URL \url{https://arxiv.org/abs/1806.03177}.
+
+\bibitem[Demina(2019)]{Demina2019}
+M.~V. Demina.
+\newblock Classification of meromorphic integrals for autonomous nonlinear
+  ordinary differential equations with two dominant monomials.
+\newblock \emph{Journal of Mathematical Analysis and Applications},
+  479\penalty0 (2):\penalty0 1851--1862, 2019.
+\newblock \doi{10.1016/j.jmaa.2019.07.026}.
+
+\bibitem[Demina(2022)]{Demina2022}
+M.~V. Demina.
+\newblock Meromorphic solutions of autonomous ordinary differential equations
+  without the finiteness property.
+\newblock \emph{Journal of Mathematical Analysis and Applications},
+  516\penalty0 (2):\penalty0 126516, 2022.
+\newblock \doi{10.1016/j.jmaa.2022.126516}.
+
+\bibitem[Demina and Kudryashov(2010)]{DeminaKudryashovKawahara2010}
+M.~V. Demina and N.~A. Kudryashov.
+\newblock From {Laurent} series to exact meromorphic solutions: The {Kawahara}
+  equation.
+\newblock \emph{Physics Letters A}, 374\penalty0 (39):\penalty0 4023--4029,
+  2010.
+\newblock \doi{10.1016/j.physleta.2010.08.013}.
+
+\bibitem[Demina and Kudryashov(2011{\natexlab{a}})]{DeminaKudryashov2011}
+M.~V. Demina and N.~A. Kudryashov.
+\newblock Explicit expressions for meromorphic solutions of autonomous
+  nonlinear ordinary differential equations.
+\newblock \emph{Communications in Nonlinear Science and Numerical Simulation},
+  16\penalty0 (3):\penalty0 1127--1134, 2011{\natexlab{a}}.
+\newblock \doi{10.1016/j.cnsns.2010.06.035}.
+
+\bibitem[Demina and
+  Kudryashov(2011{\natexlab{b}})]{DeminaKudryashovElliptic2011}
+M.~V. Demina and N.~A. Kudryashov.
+\newblock On elliptic solutions of nonlinear ordinary differential equations.
+\newblock \emph{Applied Mathematics and Computation}, 217\penalty0
+  (23):\penalty0 9849--9853, 2011{\natexlab{b}}.
+\newblock \doi{10.1016/j.amc.2011.04.043}.
+
+\bibitem[Eremenko(1982)]{Eremenko1982}
+A.~Eremenko.
+\newblock Meromorphic solutions of equations of {Briot--Bouquet} type.
+\newblock \emph{Teoriya Funktsi{\u\i}, Funktsional'ny{\u\i} Analiz i ikh
+  Prilozheniya}, 38:\penalty0 48--56, 1982.
+\newblock English translation: Amer. Math. Soc. Transl. (2) 133 (1986), 15--23,
+  \doi{10.1090/trans2/133/04}.
+
+\bibitem[Eremenko(2006)]{Eremenko2006}
+A.~Eremenko.
+\newblock Meromorphic traveling wave solutions of the {Kuramoto--Sivashinsky}
+  equation.
+\newblock \emph{Journal of Mathematical Physics, Analysis, Geometry},
+  2\penalty0 (3):\penalty0 278--286, 2006.
+\newblock URL \url{https://arxiv.org/abs/nlin/0504053}.
+
+\bibitem[Eremenko et~al.(2009)Eremenko, Liao, and Ng]{EremenkoLiaoNg2009}
+A.~E. Eremenko, L.~Liao, and T.-W. Ng.
+\newblock Meromorphic solutions of higher order {Briot--Bouquet} differential
+  equations.
+\newblock \emph{Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 146\penalty0 (1):\penalty0 197--206, 2009.
+\newblock \doi{10.1017/S030500410800176X}.
+\newblock URL \url{https://arxiv.org/abs/0707.2898}.
+
+\bibitem[Halburd and Wang(2015)]{HalburdWang2015}
+R.~Halburd and J.~Wang.
+\newblock All admissible meromorphic solutions of {Hayman's} equation.
+\newblock \emph{International Mathematics Research Notices}, 2015\penalty0
+  (18):\penalty0 8890--8902, 2015.
+\newblock \doi{10.1093/imrn/rnu218}.
+
+\bibitem[Hermite(1885)]{Hermite1885}
+C.~Hermite.
+\newblock \emph{Sur quelques applications des fonctions elliptiques}.
+\newblock Gauthier-Villars, Paris, 1885.
+\newblock URL \url{https://archive.org/details/surquelquesappl00hermgoog}.
+
+\bibitem[Hone(2005)]{Hone2005}
+A.~N.~W. Hone.
+\newblock Non-existence of elliptic travelling wave solutions of the complex
+  {Ginzburg--Landau} equation.
+\newblock \emph{Physica D}, 205\penalty0 (1--4):\penalty0 292--306, 2005.
+\newblock \doi{10.1016/j.physd.2004.10.011}.
+
+\bibitem[Kawahara(1972)]{Kawahara1972}
+T.~Kawahara.
+\newblock Oscillatory solitary waves in dispersive media.
+\newblock \emph{Journal of the Physical Society of Japan}, 33\penalty0
+  (1):\penalty0 260--264, 1972.
+\newblock \doi{10.1143/JPSJ.33.260}.
+
+\bibitem[Kudryashov(1990)]{Kudryashov1990}
+N.~A. Kudryashov.
+\newblock Exact solutions of the generalized {Kuramoto--Sivashinsky} equation.
+\newblock \emph{Physics Letters A}, 147\penalty0 (5--6):\penalty0 287--291,
+  1990.
+\newblock \doi{10.1016/0375-9601(90)90449-X}.
+
+\bibitem[Kudryashov(2005)]{Kudryashov2005Simplest}
+N.~A. Kudryashov.
+\newblock Simplest equation method to look for exact solutions of nonlinear
+  differential equations.
+\newblock \emph{Chaos, Solitons \& Fractals}, 24\penalty0 (5):\penalty0
+  1217--1231, 2005.
+\newblock \doi{10.1016/j.chaos.2004.09.109}.
+
+\bibitem[Kudryashov(2010)]{Kudryashov2010}
+N.~A. Kudryashov.
+\newblock Meromorphic solutions of nonlinear ordinary differential equations.
+\newblock \emph{Communications in Nonlinear Science and Numerical Simulation},
+  15\penalty0 (10):\penalty0 2778--2790, 2010.
+\newblock \doi{10.1016/j.cnsns.2009.11.013}.
+\newblock URL \url{https://arxiv.org/abs/1201.0126}.
+
+\bibitem[Kudryashov and Migita(2007)]{KudryashovMigita2007}
+N.~A. Kudryashov and A.~V. Migita.
+\newblock Periodic structures developing with account for dispersion in a
+  turbulence model.
+\newblock \emph{Fluid Dynamics}, 42\penalty0 (3):\penalty0 463--471, 2007.
+\newblock \doi{10.1134/S0015462807030143}.
+
+\bibitem[Kudryashov and
+  Sinelshchikov(2010)]{KudryashovSinelshchikovFourthOrder2010}
+N.~A. Kudryashov and D.~I. Sinelshchikov.
+\newblock Nonlinear evolution equations for describing waves in bubbly liquids
+  with viscosity and heat transfer consideration.
+\newblock \emph{Applied Mathematics and Computation}, 217\penalty0
+  (1):\penalty0 414--421, 2010.
+\newblock \doi{10.1016/j.amc.2010.05.033}.
+
+\bibitem[Kudryashov and Sinelshchikov(2012)]{KudryashovSinelshchikov2012SH}
+N.~A. Kudryashov and D.~I. Sinelshchikov.
+\newblock {Exact solutions of the Swift--Hohenberg equation with dispersion}.
+\newblock \emph{Communications in Nonlinear Science and Numerical Simulation},
+  17\penalty0 (1):\penalty0 26--34, 2012.
+\newblock \doi{10.1016/j.cnsns.2011.04.008}.
+
+\bibitem[Kudryashov et~al.(2011)Kudryashov, Sinelshchikov, and
+  Demina]{KudryashovSinelshchikovDemina2011}
+N.~A. Kudryashov, D.~I. Sinelshchikov, and M.~V. Demina.
+\newblock Exact solutions of the generalized {Bretherton} equation.
+\newblock \emph{Physics Letters A}, 375\penalty0 (7):\penalty0 1074--1079,
+  2011.
+\newblock \doi{10.1016/j.physleta.2011.01.010}.
+
+\bibitem[Kuramoto and Tsuzuki(1976)]{KuramotoTsuzuki1976}
+Y.~Kuramoto and T.~Tsuzuki.
+\newblock Persistent propagation of concentration waves in dissipative media
+  far from thermal equilibrium.
+\newblock \emph{Progress of Theoretical Physics}, 55\penalty0 (2):\penalty0
+  356--369, 1976.
+\newblock \doi{10.1143/PTP.55.356}.
+
+\bibitem[Laine(1993)]{Laine1993}
+I.~Laine.
+\newblock \emph{Nevanlinna Theory and Complex Differential Equations},
+  volume~15 of \emph{De Gruyter Studies in Mathematics}.
+\newblock Walter de Gruyter, Berlin, 1993.
+\newblock \doi{10.1515/9783110863147}.
+
+\bibitem[Meng and Halburd(2025)]{MengHalburd2025}
+T.~Meng and R.~Halburd.
+\newblock All meromorphic solutions of a {3D Lotka--Volterra} system: detecting
+  partial integrability.
+\newblock \emph{Physica D}, 476:\penalty0 134674, 2025.
+\newblock \doi{10.1016/j.physd.2025.134674}.
+
+\bibitem[Migita(2026)]{MigitaBinomialCount2026}
+A.~Migita.
+\newblock A binomial count of meromorphic travelling waves.
+\newblock Zenodo preprint, 2026.
+\newblock \doi{10.5281/zenodo.22944239}.
+
+\bibitem[Musette and Conte(2003)]{MusetteConte2003}
+M.~Musette and R.~Conte.
+\newblock Analytic solitary waves of nonintegrable equations.
+\newblock \emph{Physica D: Nonlinear Phenomena}, 181\penalty0 (1--2):\penalty0
+  70--79, 2003.
+\newblock \doi{10.1016/S0167-2789(03)00069-1}.
+\newblock URL \url{https://arxiv.org/abs/nlin/0302051}.
+
+\bibitem[Olver et~al.(2026)]{DLMFonline}
+F.~W.~J. Olver et~al., editors.
+\newblock \emph{{NIST} Digital Library of Mathematical Functions}.
+\newblock National Institute of Standards and Technology, 2026.
+\newblock Release 1.2.8 of 2026-09-15, \url{https://dlmf.nist.gov/}.
+
+\bibitem[Pol{\'a}{\v c}ik et~al.(2007)Pol{\'a}{\v c}ik, Quittner, and
+  Souplet]{PolacikQuittnerSouplet2007}
+P.~Pol{\'a}{\v c}ik, P.~Quittner, and P.~Souplet.
+\newblock Singularity and decay estimates in superlinear problems via
+  {Liouville}-type theorems, {I}: Elliptic equations and systems.
+\newblock \emph{Duke Mathematical Journal}, 139\penalty0 (3):\penalty0
+  555--579, 2007.
+\newblock \doi{10.1215/S0012-7094-07-13935-8}.
+
+\bibitem[Sivashinsky(1977)]{Sivashinsky1977}
+G.~I. Sivashinsky.
+\newblock Nonlinear analysis of hydrodynamic instability in laminar
+  flames---{I}. {D}erivation of basic equations.
+\newblock \emph{Acta Astronautica}, 4\penalty0 (11--12):\penalty0 1177--1206,
+  1977.
+\newblock \doi{10.1016/0094-5765(77)90096-0}.
+
+\bibitem[Steinmetz(2002)]{Steinmetz2002}
+N.~Steinmetz.
+\newblock Value distribution of the {Painlev{\'e}} transcendents.
+\newblock \emph{Israel Journal of Mathematics}, 128:\penalty0 29--52, 2002.
+\newblock \doi{10.1007/BF02785417}.
+
+\bibitem[Steinmetz(2017)]{Steinmetz2017}
+N.~Steinmetz.
+\newblock A unified approach to the {Painlev{\'e}} transcendents.
+\newblock \emph{Annales Academi{\ae} Scientiarum Fennic{\ae} Mathematica},
+  42\penalty0 (1):\penalty0 17--49, 2017.
+\newblock \doi{10.5186/aasfm.2017.4203}.
+
+\bibitem[Steinmetz(2018)]{Steinmetz2018}
+N.~Steinmetz.
+\newblock An old new class of meromorphic functions.
+\newblock \emph{Journal d'Analyse Math{\'e}matique}, 134\penalty0 (2):\penalty0
+  615--641, 2018.
+\newblock \doi{10.1007/s11854-018-0020-4}.
+
+\bibitem[Swift and Hohenberg(1977)]{SwiftHohenberg1977}
+J.~Swift and P.~C. Hohenberg.
+\newblock Hydrodynamic fluctuations at the convective instability.
+\newblock \emph{Physical Review A}, 15\penalty0 (1):\penalty0 319--328, 1977.
+\newblock \doi{10.1103/PhysRevA.15.319}.
+
+\bibitem[Wu(2014)]{Wu2014}
+C.-F. Wu.
+\newblock Exact meromorphic stationary solutions of the cubic-quintic
+  {Swift--Hohenberg} equation.
+\newblock \emph{Analysis in Theory and Applications}, 30\penalty0 (1):\penalty0
+  108--119, 2014.
+\newblock \doi{10.4208/ata.2014.v30.n1.7}.
+
+\bibitem[Zalcman(1975)]{Zalcman1975}
+L.~Zalcman.
+\newblock A heuristic principle in complex function theory.
+\newblock \emph{The American Mathematical Monthly}, 82\penalty0 (8):\penalty0
+  813--817, 1975.
+\newblock \doi{10.1080/00029890.1975.11993942}.
+
+\bibitem[Zalcman(1998)]{Zalcman1998}
+L.~Zalcman.
+\newblock Normal families: new perspectives.
+\newblock \emph{Bulletin of the American Mathematical Society}, 35\penalty0
+  (3):\penalty0 215--230, 1998.
+\newblock \doi{10.1090/S0273-0979-98-00755-1}.
+
+\end{thebibliography}

@@ -1,0 +1,2 @@
+# Version used to verify the submission package; Python 3 required.
+sympy==1.12
